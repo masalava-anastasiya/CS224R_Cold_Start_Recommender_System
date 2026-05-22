@@ -36,7 +36,7 @@ Hooks for future model components:
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 import numpy as np
 import torch
@@ -52,11 +52,17 @@ class ColdStartEnv:
         chronological order (produced by preprocess.build_ratings_by_user).
     item_emb:
         Tensor of shape (n_items, emb_dim) — the cached φ(x) matrix.
+    user_emb:
+        Optional tensor of shape (n_users, user_emb_dim) — static demographic
+        features ψ(u). Pass None if use_user_features is False.
     config:
         DataConfig instance.
     user_pool:
         List of user_idxs this env draws episodes from. Pass the cold set
         for evaluation, or the warm set for any warm-user diagnostics.
+    warm_users:
+        Set of warm user indices. Required when expose_user_features is
+        "warm_only" so the env knows which users may receive side info.
     rng:
         Optional seeded numpy Generator. Created from config.random_seed if
         not provided.
@@ -68,15 +74,21 @@ class ColdStartEnv:
         item_emb: torch.Tensor,
         config,  # DataConfig — not annotated to avoid circular import
         user_pool: List[int],
+        user_emb: Optional[torch.Tensor] = None,
+        warm_users: Optional[Set[int]] = None,
         rng: Optional[np.random.Generator] = None,
     ) -> None:
         self.ratings_by_user = ratings_by_user
         self.item_emb = item_emb          # (n_items, emb_dim)
+        self.user_emb = user_emb
         self.config = config
         self.user_pool = list(user_pool)
+        self.warm_users = warm_users
         self.rng = rng if rng is not None else np.random.default_rng(config.random_seed)
 
         self.emb_dim: int = item_emb.shape[1]
+        self.user_emb_dim: int = user_emb.shape[1] if user_emb is not None else 0
+        self._validate_expose_user_features()
 
         # Populated by reset()
         self._current_user: Optional[int] = None
@@ -177,6 +189,37 @@ class ColdStartEnv:
     # Internal helpers
     # ------------------------------------------------------------------
 
+    def _validate_expose_user_features(self) -> None:
+        mode = self.config.expose_user_features
+        valid_modes = {"never", "always", "warm_only"}
+        if mode not in valid_modes:
+            raise ValueError(
+                f"expose_user_features must be one of {sorted(valid_modes)}, got {mode!r}"
+            )
+        if mode != "never" and self.user_emb is None:
+            raise ValueError(
+                "user_emb must be provided when expose_user_features is not 'never'"
+            )
+        if mode == "warm_only" and self.warm_users is None:
+            raise ValueError(
+                "warm_users must be provided when expose_user_features is 'warm_only'"
+            )
+
+    def _should_expose_user_features(self, user_idx: int) -> bool:
+        mode = self.config.expose_user_features
+        if mode == "never" or self.user_emb is None:
+            return False
+        if mode == "always":
+            return True
+        assert self.warm_users is not None
+        return user_idx in self.warm_users
+
+    def _get_user_emb(self, user_idx: Optional[int]) -> torch.Tensor:
+        if user_idx is None or not self._should_expose_user_features(user_idx):
+            return torch.zeros(self.user_emb_dim, dtype=torch.float32)
+        assert self.user_emb is not None
+        return self.user_emb[user_idx]
+
     def _compute_reward(self, raw_rating: float) -> float:
         if self.config.reward_mode == "binary":
             return 1.0 if raw_rating >= self.config.rating_threshold else 0.0
@@ -193,6 +236,10 @@ class ColdStartEnv:
             Tensor (t, emb_dim) — stacked φ(x) for each revealed item.
             Shape is (0, emb_dim) at t=0 so downstream code can always
             concatenate without a special-case branch.
+        user_emb:
+            Tensor (user_emb_dim,) — static demographic features ψ(u), or
+            zeros when expose_user_features is "never" or the user is cold
+            under "warm_only".
         candidates:
             1-D LongTensor of candidate item_idxs for this episode.
         t:
@@ -207,6 +254,7 @@ class ColdStartEnv:
         return {
             "history": list(self._revealed),
             "revealed_emb": revealed_emb,
+            "user_emb": self._get_user_emb(self._current_user),
             "candidates": torch.tensor(self._candidates, dtype=torch.long),
             "t": self._t,
         }
@@ -235,6 +283,7 @@ class VectorizedColdStartEnv:
         self.envs = envs
         self.B = len(envs)
         self.emb_dim = envs[0].emb_dim
+        self.user_emb_dim = envs[0].user_emb_dim
         self._states: List[Dict[str, Any]] = [{}] * self.B
 
     def reset_all(self) -> Dict[str, Any]:
@@ -283,6 +332,7 @@ class VectorizedColdStartEnv:
 
         return {
             "revealed_emb": torch.stack(padded_embs, dim=0),  # (B, max_t, emb_dim)
+            "user_emb": torch.stack([s["user_emb"] for s in states], dim=0),  # (B, user_emb_dim)
             "mask": torch.stack(masks, dim=0),                  # (B, max_t)
             "histories": [s["history"] for s in states],
             "candidates": [s["candidates"] for s in states],
@@ -306,7 +356,13 @@ if __name__ == "__main__":
     config = DataConfig()
     processed = Path(config.data_dir) / "processed"
 
-    required = ["id_maps.pt", "ratings_by_user.pt", "user_split.pt", "item_emb.pt"]
+    required = [
+        "id_maps.pt",
+        "ratings_by_user.pt",
+        "user_split.pt",
+        "item_emb.pt",
+        "user_emb.pt",
+    ]
     missing = [f for f in required if not (processed / f).exists()]
     if missing:
         print(
@@ -319,18 +375,29 @@ if __name__ == "__main__":
     ratings_by_user = torch.load(processed / "ratings_by_user.pt", weights_only=False)
     user_split = torch.load(processed / "user_split.pt", weights_only=False)
     item_emb = torch.load(processed / "item_emb.pt", weights_only=False)
+    user_emb = torch.load(processed / "user_emb.pt", weights_only=False)
     cold_users = user_split["cold"]
+    warm_users = set(user_split["warm"])
 
     print(f"Cold users available: {len(cold_users)}")
     print(f"Item embedding shape: {tuple(item_emb.shape)}")
+    print(f"User embedding shape: {tuple(user_emb.shape)}")
 
-    env = ColdStartEnv(ratings_by_user, item_emb, config, user_pool=cold_users)
+    env = ColdStartEnv(
+        ratings_by_user,
+        item_emb,
+        config,
+        user_pool=cold_users,
+        user_emb=user_emb,
+        warm_users=warm_users,
+    )
 
     print("\n--- Reset ---")
     state = env.reset()
     print(f"  user_idx:          {env.current_user}")
     print(f"  candidates:        {state['candidates'].shape}  (# items in episode)")
     print(f"  revealed_emb:      {state['revealed_emb'].shape}")
+    print(f"  user_emb:          {state['user_emb'].shape}")
     print(f"  history:           {state['history']}")
     print(f"  t:                 {state['t']}")
 

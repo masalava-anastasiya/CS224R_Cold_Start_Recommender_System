@@ -8,7 +8,8 @@ Produces (in data/processed/):
     ratings_by_user.pt  – dict[user_idx -> list[(item_idx, rating, timestamp)]]
     user_split.pt       – {'warm': [...], 'cold': [...]}
     item_emb.pt         – (n_items, emb_dim) tensor
-    config_hash.txt     – hex digest of the DataConfig used to build the cache
+    user_emb.pt         – (n_users, user_feature_dim) tensor
+    config_hash.txt     – cache key: preprocess version + DataConfig hash
 """
 
 from __future__ import annotations
@@ -30,6 +31,65 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from src.config import DataConfig
+
+# Bump when preprocessing logic changes (invalidates cached artifacts).
+PREPROCESS_VERSION = "2"
+
+
+ARTIFACT_NAMES = (
+    "id_maps.pt",
+    "ratings_by_user.pt",
+    "user_split.pt",
+    "item_emb.pt",
+    "user_emb.pt",
+)
+
+
+def _cache_key(config: DataConfig) -> str:
+    return f"v{PREPROCESS_VERSION}:{config.config_hash()}"
+
+
+def _artifacts_consistent(processed_dir: Path) -> bool:
+    """Verify tensor shapes and dict keys match id_maps metadata."""
+    try:
+        id_maps = torch.load(processed_dir / "id_maps.pt", weights_only=False)
+        ratings_by_user = torch.load(processed_dir / "ratings_by_user.pt", weights_only=False)
+        user_split = torch.load(processed_dir / "user_split.pt", weights_only=False)
+        item_emb = torch.load(processed_dir / "item_emb.pt", weights_only=False)
+        user_emb = torch.load(processed_dir / "user_emb.pt", weights_only=False)
+    except Exception:
+        return False
+
+    n_users = id_maps["n_users"]
+    n_items = id_maps["n_items"]
+
+    if user_emb.shape[0] != n_users:
+        return False
+    if item_emb.shape[0] != n_items:
+        return False
+    if len(ratings_by_user) != n_users:
+        return False
+    if set(ratings_by_user.keys()) != set(range(n_users)):
+        return False
+
+    warm = user_split["warm"]
+    cold = user_split["cold"]
+    if len(warm) + len(cold) != n_users:
+        return False
+    if set(warm) | set(cold) != set(range(n_users)):
+        return False
+
+    return True
+
+
+def _cache_is_valid(processed_dir: Path, config: DataConfig) -> bool:
+    hash_file = processed_dir / "config_hash.txt"
+    artifacts = [processed_dir / name for name in ARTIFACT_NAMES]
+    if not hash_file.exists() or not all(a.exists() for a in artifacts):
+        return False
+    if hash_file.read_text().strip() != _cache_key(config):
+        return False
+    return _artifacts_consistent(processed_dir)
 
 
 # ---------------------------------------------------------------------------
@@ -78,8 +138,9 @@ def build_id_maps(
 ) -> Tuple[Dict[int, int], Dict[int, int], int, int]:
     """Map raw UserIDs and MovieIDs to contiguous 0-based indices.
 
-    Only IDs that appear in ratings_df are included, so the index space
-    perfectly covers the embedding matrices.
+    The user map is provisional — it covers all users in the raw ratings file.
+    After sparse-user filtering, ``rebuild_user_id_map`` remaps surviving users
+    to contiguous indices 0 … n_users-1.
 
     Returns (user_id_map, item_id_map, n_users, n_items).
     """
@@ -137,6 +198,37 @@ def filter_and_sort(
     filtered.sort_values(["user_idx", "Timestamp"], ascending=True, inplace=True)
     filtered.reset_index(drop=True, inplace=True)
     return filtered
+
+
+# ---------------------------------------------------------------------------
+# Step 4b: Rebuild user ID map after filtering
+# ---------------------------------------------------------------------------
+
+def rebuild_user_id_map(
+    ratings_df: pd.DataFrame,
+    users_df: pd.DataFrame,
+) -> Tuple[pd.DataFrame, pd.DataFrame, Dict[int, int], int]:
+    """Remap surviving users to contiguous 0-based indices.
+
+    Called after sparse-user filtering so ``user_emb`` and ``n_users`` align
+    with the users that actually appear in ``ratings_by_user``.
+    """
+    ratings_df = ratings_df.copy()
+    users_df = users_df.copy()
+
+    surviving_user_ids = sorted(ratings_df["UserID"].unique())
+    user_id_map: Dict[int, int] = {uid: idx for idx, uid in enumerate(surviving_user_ids)}
+    n_users = len(user_id_map)
+
+    ratings_df["user_idx"] = ratings_df["UserID"].map(user_id_map)
+    users_df["user_idx"] = users_df["UserID"].map(user_id_map)
+    users_df = users_df[users_df["user_idx"].notna()].copy()
+    users_df["user_idx"] = users_df["user_idx"].astype(int)
+
+    ratings_df.sort_values(["user_idx", "Timestamp"], ascending=True, inplace=True)
+    ratings_df.reset_index(drop=True, inplace=True)
+
+    return ratings_df, users_df, user_id_map, n_users
 
 
 # ---------------------------------------------------------------------------
@@ -200,20 +292,19 @@ def run(config: DataConfig | None = None) -> None:
     processed_dir = Path(config.data_dir) / "processed"
     processed_dir.mkdir(parents=True, exist_ok=True)
 
-    # Check cache validity
     hash_file = processed_dir / "config_hash.txt"
-    current_hash = config.config_hash()
-    artifacts = [
-        processed_dir / name
-        for name in ("id_maps.pt", "ratings_by_user.pt", "user_split.pt", "item_emb.pt")
-    ]
-    if (
-        hash_file.exists()
-        and hash_file.read_text().strip() == current_hash
-        and all(a.exists() for a in artifacts)
-    ):
-        print("All artifacts are up-to-date (config hash matches). Skipping recomputation.")
+    current_key = _cache_key(config)
+    if _cache_is_valid(processed_dir, config):
+        print("All artifacts are up-to-date (cache key matches). Skipping recomputation.")
         return
+
+    stale_reason = None
+    if hash_file.exists() and hash_file.read_text().strip() != current_key:
+        stale_reason = "config or pipeline version changed"
+    elif all((processed_dir / name).exists() for name in ARTIFACT_NAMES):
+        stale_reason = "artifact contents are inconsistent with current pipeline"
+    if stale_reason:
+        print(f"Rebuilding cache ({stale_reason})...")
 
     print("Loading raw MovieLens-1M files...")
     ratings_df, movies_df, users_df = load_raw(config.data_dir)
@@ -229,12 +320,12 @@ def run(config: DataConfig | None = None) -> None:
     print(f"Filtering users with < {config.min_ratings_per_user} ratings and sorting...")
     ratings_df = filter_and_sort(ratings_df, config)
 
-    surviving_users = sorted(ratings_df["user_idx"].unique().tolist())
-    n_users = len(surviving_users)
+    print("Rebuilding user ID map for surviving users...")
+    ratings_df, users_df, user_id_map, n_users = rebuild_user_id_map(ratings_df, users_df)
     n_items = len(item_id_map)
 
     print(f"Splitting {n_users} users into warm/cold sets...")
-    warm_users, cold_users = split_users(surviving_users, config)
+    warm_users, cold_users = split_users(list(range(n_users)), config)
 
     print("Building per-user rating lists...")
     ratings_by_user = build_ratings_by_user(ratings_df)
@@ -244,9 +335,12 @@ def run(config: DataConfig | None = None) -> None:
     movies_df = movies_df[movies_df["item_idx"].isin(surviving_items)].copy()
 
     print("Building item embeddings (this may take a while on first run)...")
-    from src.data.encoders import build_item_embeddings  # local import to avoid circular
+    from src.data.encoders import build_item_embeddings, build_user_embeddings
 
     item_emb = build_item_embeddings(movies_df, item_id_map, config)
+
+    print("Building user embeddings...")
+    user_emb = build_user_embeddings(users_df, user_id_map, config)
 
     print("Saving artifacts to", processed_dir)
     torch.save(
@@ -261,7 +355,8 @@ def run(config: DataConfig | None = None) -> None:
     torch.save(ratings_by_user, processed_dir / "ratings_by_user.pt")
     torch.save({"warm": warm_users, "cold": cold_users}, processed_dir / "user_split.pt")
     torch.save(item_emb, processed_dir / "item_emb.pt")
-    hash_file.write_text(current_hash)
+    torch.save(user_emb, processed_dir / "user_emb.pt")
+    hash_file.write_text(current_key)
 
     print("\n=== Preprocessing complete ===")
     print(f"  Users (after filter): {n_users}  (raw: {n_users_raw})")
@@ -269,7 +364,8 @@ def run(config: DataConfig | None = None) -> None:
     print(f"  Warm users:           {len(warm_users)}")
     print(f"  Cold users:           {len(cold_users)}")
     print(f"  Item embedding shape: {tuple(item_emb.shape)}")
-    print(f"  Config hash:          {current_hash}")
+    print(f"  User embedding shape: {tuple(user_emb.shape)}")
+    print(f"  Cache key:            {current_key}")
 
 
 if __name__ == "__main__":
