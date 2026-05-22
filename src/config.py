@@ -24,6 +24,10 @@ class DataConfig:
     embedding_dim: int = 384          # must match the sentence-transformer output
     use_genre_features: bool = True   # concatenate multi-hot genre vector to text emb
 
+    # User encoding
+    use_user_features: bool = True    # build user_emb.pt from Gender/Age/Occupation
+    expose_user_features: str = "never"  # "never" | "always" | "warm_only"
+
     # Reward
     rating_threshold: float = 4.0    # ratings >= this are "positive" in binary mode
     reward_mode: str = "raw"         # "raw" (1-5 rating) | "binary"

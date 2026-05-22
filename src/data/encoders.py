@@ -44,6 +44,18 @@ GENRE_VOCAB: List[str] = [
 ]
 GENRE_TO_IDX: Dict[str, int] = {g: i for i, g in enumerate(GENRE_VOCAB)}
 
+# MovieLens-1M user demographic vocabularies (order matters for one-hot vectors)
+GENDER_VOCAB: List[str] = ["M", "F"]
+GENDER_TO_IDX: Dict[str, int] = {g: i for i, g in enumerate(GENDER_VOCAB)}
+
+# Age field stores bucket codes, not literal ages (see data/raw/README)
+AGE_BUCKETS: List[int] = [1, 18, 25, 35, 45, 50, 56]
+AGE_TO_IDX: Dict[int, int] = {code: i for i, code in enumerate(AGE_BUCKETS)}
+
+OCCUPATION_VOCAB: List[int] = list(range(21))
+
+USER_FEATURE_DIM: int = len(GENDER_VOCAB) + len(AGE_BUCKETS) + len(OCCUPATION_VOCAB)  # 30
+
 
 def _parse_year(title: str) -> str:
     """Extract the 4-digit year from MovieLens title format 'Movie Name (1995)'."""
@@ -137,4 +149,66 @@ def build_item_embeddings(
 
     result = torch.tensor(emb_matrix, dtype=torch.float32)
     print(f"  Item embedding shape: {tuple(result.shape)}")
+    return result
+
+
+def _encode_user_row(row: pd.Series) -> np.ndarray:
+    """One-hot encode Gender, Age bucket, and Occupation for a single user."""
+    vec = np.zeros(USER_FEATURE_DIM, dtype=np.float32)
+
+    gender = row["Gender"]
+    if gender in GENDER_TO_IDX:
+        vec[GENDER_TO_IDX[gender]] = 1.0
+
+    age_offset = len(GENDER_VOCAB)
+    age = int(row["Age"])
+    if age in AGE_TO_IDX:
+        vec[age_offset + AGE_TO_IDX[age]] = 1.0
+
+    occ_offset = age_offset + len(AGE_BUCKETS)
+    occupation = int(row["Occupation"])
+    if 0 <= occupation < len(OCCUPATION_VOCAB):
+        vec[occ_offset + occupation] = 1.0
+
+    return vec
+
+
+def build_user_embeddings(
+    users_df: pd.DataFrame,
+    user_id_map: Dict[int, int],
+    config,  # DataConfig; avoid circular import by not annotating here
+) -> torch.Tensor:
+    """Encode all users in users_df and return a (n_users, USER_FEATURE_DIM) tensor.
+
+    The tensor is indexed by user_idx (contiguous 0 … n_users-1), not raw UserID.
+    ``users_df`` must contain exactly the surviving users in ``user_id_map``.
+
+    Args:
+        users_df:    DataFrame with columns [UserID, Gender, Age, Occupation, user_idx].
+        user_id_map: raw UserID -> user_idx mapping (surviving users only).
+        config:      DataConfig instance.
+
+    Returns:
+        L2-normalised tensor of shape (n_users, USER_FEATURE_DIM).
+    """
+    n_users = len(user_id_map)
+    if not config.use_user_features:
+        return torch.zeros(n_users, USER_FEATURE_DIM, dtype=torch.float32)
+
+    valid_users = users_df[users_df["user_idx"].notna()].copy()
+    assert len(valid_users) == n_users, (
+        f"Expected {n_users} users in users_df, found {len(valid_users)}"
+    )
+
+    print(f"  Encoding {n_users} users (Gender + Age + Occupation)...")
+    emb_matrix = np.zeros((n_users, USER_FEATURE_DIM), dtype=np.float32)
+    for _, row in valid_users.iterrows():
+        emb_matrix[int(row["user_idx"])] = _encode_user_row(row)
+
+    norms = np.linalg.norm(emb_matrix, axis=1, keepdims=True)
+    norms = np.where(norms == 0, 1.0, norms)
+    emb_matrix = emb_matrix / norms
+
+    result = torch.tensor(emb_matrix, dtype=torch.float32)
+    print(f"  User embedding shape: {tuple(result.shape)}")
     return result
