@@ -63,7 +63,6 @@ class GreedyCFBaseline:
         user_to_row = {u: i for i, u in enumerate(warm_users)}
 
         # Dense warm-user rating matrix (n_warm x n_items).
-        # 3936 x 3706 x 4 bytes ~= 58 MB -- fits comfortably in RAM.
         R = np.zeros((n_warm, self.n_items), dtype=np.float32)
         for u in warm_users:
             row = user_to_row[u]
@@ -71,8 +70,8 @@ class GreedyCFBaseline:
                 R[row, item_idx] = float(rating)
 
         # Item means over warm users who actually rated the item.
-        rated = R > 0                                     # (n_warm, n_items) bool
-        counts = rated.sum(axis=0)                        # (n_items,)
+        rated = R > 0
+        counts = rated.sum(axis=0)
         self.item_means: np.ndarray = np.where(
             counts > 0, R.sum(axis=0) / np.maximum(counts, 1), 0.0
         ).astype(np.float64)
@@ -83,23 +82,18 @@ class GreedyCFBaseline:
         R_centered[r_idx, c_idx] -= self.item_means[c_idx]
 
         # Truncated SVD: R_centered ~= U Sigma V^T
-        # Uses randomised SVD internally -- fast even for dense matrices.
         svd = TruncatedSVD(n_components=self.k, random_state=42)
-        U_sigma = svd.fit_transform(R_centered)  # (n_warm, k)
-        self.Q: np.ndarray = svd.components_.T   # (n_items, k)  item factors
+        U_sigma = svd.fit_transform(R_centered)
+        self.Q: np.ndarray = svd.components_.T
 
         # Global prior: mean warm-user vector in latent space.
-        # At t=0 (no cold-user history) theta is set to this, so the policy
-        # recommends items that appeal to the average warm user.
-        self._global_prior: np.ndarray = U_sigma.mean(axis=0)  # (k,)
+        self._global_prior: np.ndarray = U_sigma.mean(axis=0)
 
     # ------------------------------------------------------------------
     # Gym-like interface
     # ------------------------------------------------------------------
 
     def reset(self, user_idx: Optional[int] = None) -> None:
-        """Reset per-episode state.  user_idx accepted but not used
-        (the policy has no side information about the cold user)."""
         self._selected = set()
         self._history_items = []
         self._history_rewards = []
@@ -121,9 +115,9 @@ class GreedyCFBaseline:
         candidates: List[int] = state["candidates"].tolist()
         available = [c for c in candidates if c not in self._selected]
         if not available:
-            available = candidates  # fallback; should not occur in normal use
+            available = candidates  # fallback
 
-        Q_sub = self.Q[available]                          # (n_avail, k)
+        Q_sub = self.Q[available]
         preds = Q_sub @ self._theta + self.item_means[available]
         return available[int(np.argmax(preds))]
 
