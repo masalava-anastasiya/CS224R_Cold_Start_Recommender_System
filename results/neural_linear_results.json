@@ -1,0 +1,46 @@
+{
+  "neural_linear_ts": {
+    "config": {
+      "lambda_prior": 50.0,
+      "sigma_noise": 0.5,
+      "use_warm_prior": true,
+      "reward_mode": "raw",
+      "T": 20,
+      "n_cold_users": 1688,
+      "n_warm_users": 3936
+    },
+    "metrics": {
+      "avg_cum_reward": 75.43009478672985,
+      "std_cum_reward": 8.872175179068382,
+      "avg_reward_per_step": 3.7715047393364927,
+      "std_reward_per_step": 0.44360875895341906,
+      "avg_reward_step1": 4.181279620853081,
+      "std_reward_step1": 0.9509687116475272,
+      "avg_reward_5": 4.108886255924171,
+      "std_reward_5": 0.5437422474040878,
+      "ndcg_5": 0.8465868335880828,
+      "std_ndcg_5": 0.09975576034194406,
+      "hit_5": 0.995260663507109
+    }
+  },
+  "random": {
+    "config": {
+      "seed": 42,
+      "reward_mode": "raw",
+      "T": 20
+    },
+    "metrics": {
+      "avg_cum_reward": 75.43009478672985,
+      "std_cum_reward": 8.872175179068382,
+      "avg_reward_per_step": 3.7715047393364927,
+      "std_reward_per_step": 0.44360875895341906,
+      "avg_reward_step1": 3.786137440758294,
+      "std_reward_step1": 1.1379378788761396,
+      "avg_reward_5": 3.7601895734597157,
+      "std_reward_5": 0.6395184518978538,
+      "ndcg_5": 0.7717792053905161,
+      "std_ndcg_5": 0.12415083058430074,
+      "hit_5": 0.9739336492890995
+    }
+  }
+}

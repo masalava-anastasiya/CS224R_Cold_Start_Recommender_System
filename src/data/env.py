@@ -66,6 +66,12 @@ class ColdStartEnv:
     rng:
         Optional seeded numpy Generator. Created from config.random_seed if
         not provided.
+    use_full_candidate_pool:
+        If True, the candidate set for each episode is ALL items the user
+        ever rated (avg ~176), not just the first T. The agent still takes
+        T steps, so it selects T items from a much larger pool. This makes
+        exploration genuinely valuable: the agent must discover which items
+        are good rather than exhaustively selecting everything.
     """
 
     def __init__(
@@ -77,6 +83,7 @@ class ColdStartEnv:
         user_emb: Optional[torch.Tensor] = None,
         warm_users: Optional[Set[int]] = None,
         rng: Optional[np.random.Generator] = None,
+        use_full_candidate_pool: bool = False,
     ) -> None:
         self.ratings_by_user = ratings_by_user
         self.item_emb = item_emb          # (n_items, emb_dim)
@@ -84,6 +91,7 @@ class ColdStartEnv:
         self.config = config
         self.user_pool = list(user_pool)
         self.warm_users = warm_users
+        self.use_full_candidate_pool = use_full_candidate_pool
         self.rng = rng if rng is not None else np.random.default_rng(config.random_seed)
 
         self.emb_dim: int = item_emb.shape[1]
@@ -122,17 +130,21 @@ class ColdStartEnv:
         T = self.config.cold_start_horizon_T
 
         full_history = self.ratings_by_user[user_idx]  # chronological
-        # Episode window: first T interactions
-        episode_window = full_history[:T]
 
-        self._episode_history = episode_window
-        self._candidates = [item_idx for item_idx, _, _ in episode_window]
+        if self.use_full_candidate_pool:
+            # non-exhaustive mode: agent picks T items from ALL the user's
+            # rated movies (~176 on avg). this makes exploration valuable
+            # because the agent must *discover* which items are good.
+            candidate_window = full_history
+        else:
+            # standard exhaustive mode: candidates = first T interactions
+            candidate_window = full_history[:T]
+
+        self._episode_history = candidate_window
+        self._candidates = [item_idx for item_idx, _, _ in candidate_window]
         self._candidate_rating = {
-            item_idx: rating for item_idx, rating, _ in episode_window
+            item_idx: rating for item_idx, rating, _ in candidate_window
         }
-
-        # TODO: optional negative sampling — add unrated items to _candidates
-        # and assign reward 0.0 (or use rejection-sampling protocol).
 
         self._revealed = []
         self._t = 0
