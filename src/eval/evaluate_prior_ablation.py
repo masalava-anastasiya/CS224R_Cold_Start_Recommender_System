@@ -179,7 +179,10 @@ def print_table(
 
 # ── main ─────────────────────────────────────────────────────────────
 
-def main() -> None:
+def main(
+    warm_fractions: Optional[List[float]] = None,
+    out_name: str = "prior_ablation_results.json",
+) -> None:
     config = DataConfig()
     processed = Path(config.data_dir) / "processed"
 
@@ -202,7 +205,7 @@ def main() -> None:
     T = config.cold_start_horizon_T
     K_EVAL = 5
 
-    WARM_FRACTIONS = [0.10, 0.20, 0.30, 0.50, 0.70]
+    WARM_FRACTIONS = warm_fractions if warm_fractions is not None else [0.10, 0.20, 0.30, 0.50, 0.70]
     NOISE_LEVELS = [0.0, 0.5]
 
     pool_sizes = [len(ratings_by_user[u]) for u in cold_users]
@@ -342,7 +345,7 @@ def main() -> None:
 
     # ── save ─────────────────────────────────────────────────────────
 
-    out_path = _REPO_ROOT / "results" / "prior_ablation_results.json"
+    out_path = _REPO_ROOT / "results" / out_name
     out_path.parent.mkdir(exist_ok=True)
     with open(out_path, "w") as fh:
         json.dump(all_results, fh, indent=2)
@@ -350,4 +353,16 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+
+    p = argparse.ArgumentParser(description="Prior quality ablation.")
+    p.add_argument(
+        "--warm_fractions", type=float, nargs="+", default=None,
+        help="Warm fractions to test (default: 0.1 0.2 0.3 0.5 0.7).",
+    )
+    p.add_argument(
+        "--out_name", type=str, default="prior_ablation_results.json",
+        help="Output JSON filename under results/.",
+    )
+    args = p.parse_args()
+    main(warm_fractions=args.warm_fractions, out_name=args.out_name)
