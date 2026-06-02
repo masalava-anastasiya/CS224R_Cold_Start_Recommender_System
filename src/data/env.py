@@ -72,6 +72,10 @@ class ColdStartEnv:
         T steps, so it selects T items from a much larger pool. This makes
         exploration genuinely valuable: the agent must discover which items
         are good rather than exhaustively selecting everything.
+    reward_noise_std:
+        Std dev of Gaussian noise added to rewards. 0.0 means deterministic
+        (original behavior). When > 0, rewards are clipped to [1, 5] after
+        noise is added to keep them in the valid rating range.
     """
 
     def __init__(
@@ -84,6 +88,7 @@ class ColdStartEnv:
         warm_users: Optional[Set[int]] = None,
         rng: Optional[np.random.Generator] = None,
         use_full_candidate_pool: bool = False,
+        reward_noise_std: float = 0.0,
     ) -> None:
         self.ratings_by_user = ratings_by_user
         self.item_emb = item_emb          # (n_items, emb_dim)
@@ -92,6 +97,7 @@ class ColdStartEnv:
         self.user_pool = list(user_pool)
         self.warm_users = warm_users
         self.use_full_candidate_pool = use_full_candidate_pool
+        self.reward_noise_std = reward_noise_std
         self.rng = rng if rng is not None else np.random.default_rng(config.random_seed)
 
         self.emb_dim: int = item_emb.shape[1]
@@ -235,7 +241,11 @@ class ColdStartEnv:
     def _compute_reward(self, raw_rating: float) -> float:
         if self.config.reward_mode == "binary":
             return 1.0 if raw_rating >= self.config.rating_threshold else 0.0
-        return float(raw_rating)  # "raw": return the 1-5 rating directly
+        reward = float(raw_rating)
+        if self.reward_noise_std > 0.0:
+            reward += float(self.rng.normal(0.0, self.reward_noise_std))
+            reward = float(np.clip(reward, 1.0, 5.0))
+        return reward
 
     def _build_state(self) -> Dict[str, Any]:
         """Construct the state dict exposed to the policy.
