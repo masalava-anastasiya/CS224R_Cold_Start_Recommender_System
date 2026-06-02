@@ -1,0 +1,78 @@
+{
+  "rl2": {
+    "config": {
+      "hidden_dim": 256,
+      "gamma": 1.0,
+      "lr": 0.0003,
+      "batch_size": 32,
+      "entropy_coef": 0.01,
+      "n_epochs": 100,
+      "dcg_shaping": true,
+      "explore": false,
+      "reward_mode": "raw",
+      "T": 20,
+      "n_cold_users": 1688,
+      "n_warm_users": 3936,
+      "explore_mode": false,
+      "checkpoint_epoch": 100
+    },
+    "metrics": {
+      "avg_cum_reward": 75.43009478672985,
+      "std_cum_reward": 8.872175179068382,
+      "avg_reward_per_step": 3.7715047393364927,
+      "std_reward_per_step": 0.44360875895341906,
+      "avg_reward_step1": 4.3364928909952605,
+      "std_reward_step1": 0.9005238200199903,
+      "avg_reward_5": 4.209123222748815,
+      "std_reward_5": 0.5366096739363965,
+      "ndcg_5": 0.870126847668936,
+      "std_ndcg_5": 0.09652486723314226,
+      "hit_5": 0.9964454976303317
+    }
+  },
+  "hybrid_ts": {
+    "metrics": {
+      "avg_cum_reward": 75.43009478672985,
+      "std_cum_reward": 8.872175179068382,
+      "avg_reward_per_step": 3.7715047393364927,
+      "std_reward_per_step": 0.44360875895341906,
+      "avg_reward_step1": 4.256516587677726,
+      "std_reward_step1": 0.9439029583323414,
+      "avg_reward_5": 4.209004739336493,
+      "std_reward_5": 0.5328226321427331,
+      "ndcg_5": 0.8658461778393733,
+      "std_ndcg_5": 0.09929283802521069,
+      "hit_5": 0.9964454976303317
+    }
+  },
+  "greedy_cf": {
+    "metrics": {
+      "avg_cum_reward": 75.43009478672985,
+      "std_cum_reward": 8.872175179068382,
+      "avg_reward_per_step": 3.7715047393364927,
+      "std_reward_per_step": 0.44360875895341906,
+      "avg_reward_step1": 4.3969194312796205,
+      "std_reward_step1": 0.8755715739940434,
+      "avg_reward_5": 4.268720379146919,
+      "std_reward_5": 0.5253008819704268,
+      "ndcg_5": 0.8819919133718157,
+      "std_ndcg_5": 0.09415804271719608,
+      "hit_5": 0.9958530805687204
+    }
+  },
+  "random": {
+    "metrics": {
+      "avg_cum_reward": 75.43009478672985,
+      "std_cum_reward": 8.872175179068382,
+      "avg_reward_per_step": 3.7715047393364927,
+      "std_reward_per_step": 0.44360875895341906,
+      "avg_reward_step1": 3.786137440758294,
+      "std_reward_step1": 1.1379378788761396,
+      "avg_reward_5": 3.7601895734597157,
+      "std_reward_5": 0.6395184518978538,
+      "ndcg_5": 0.7717792053905161,
+      "std_ndcg_5": 0.12415083058430074,
+      "hit_5": 0.9739336492890995
+    }
+  }
+}
