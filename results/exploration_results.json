@@ -36,6 +36,21 @@
       "hit_5": 0.995260663507109
     }
   },
+  "Constrained": {
+    "metrics": {
+      "avg_cum_reward": 83.23222748815166,
+      "std_cum_reward": 7.417035870524508,
+      "avg_reward_per_step": 4.161611374407583,
+      "std_reward_per_step": 0.3708517935262254,
+      "avg_reward_step1": 4.492890995260663,
+      "std_reward_step1": 0.7856513477686321,
+      "avg_reward_5": 4.341469194312796,
+      "std_reward_5": 0.46179715161592655,
+      "ndcg_5": 0.8826777961751046,
+      "std_ndcg_5": 0.08734111501932958,
+      "hit_5": 0.9988151658767772
+    }
+  },
   "GreedyCF": {
     "metrics": {
       "avg_cum_reward": 85.51303317535545,

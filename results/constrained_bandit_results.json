@@ -1,0 +1,30 @@
+{
+  "model": "constrained_linucb",
+  "config": {
+    "lambda_reg": 1.0,
+    "sigma2": 1.0,
+    "beta": 1.0,
+    "beta_safe": 2.0,
+    "alpha": 0.9,
+    "constraint_mode": "cumulative",
+    "shrinkage": 10.0,
+    "reward_mode": "raw",
+    "T": 20,
+    "n_cold_users": 1688,
+    "n_warm_users": 3936
+  },
+  "metrics": {
+    "avg_cum_reward": 75.43009478672985,
+    "std_cum_reward": 8.872175179068382,
+    "avg_reward_per_step": 3.7715047393364927,
+    "std_reward_per_step": 0.44360875895341906,
+    "avg_reward_step1": 4.396327014218009,
+    "std_reward_step1": 0.8761780247052497,
+    "avg_reward_5": 4.21718009478673,
+    "std_reward_5": 0.5067446619353685,
+    "ndcg_5": 0.8737721998968313,
+    "std_ndcg_5": 0.0913882321329355,
+    "hit_5": 0.9958530805687204,
+    "fallback_rate": 0.37766587677725116
+  }
+}
