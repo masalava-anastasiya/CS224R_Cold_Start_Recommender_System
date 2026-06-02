@@ -37,6 +37,8 @@ from src.methods.neural_linear_ts import NeuralLinearTS, compute_warm_prior
 from src.methods.hybrid_neural_linear_ts import HybridNeuralLinearTS
 from src.baselines.greedy_cf import GreedyCFBaseline
 from src.baselines.random_baseline import RandomBaseline
+from src.baselines.nonpersonalized_baseline import NonPersonalizedBaseline
+from src.methods.constrained_bandit import ConstrainedLinearUCBBandit
 
 
 # --- metrics ---
@@ -60,7 +62,7 @@ def run_episodes(policy, env, cold_users, label):
     all_rewards = []
     for user_idx in tqdm(cold_users, desc=label, ncols=72):
         state = env.reset(user_idx=user_idx)
-        policy.reset()
+        policy.reset(user_idx=user_idx)
         ep_rewards = []
         done = False
         while not done:
@@ -166,16 +168,34 @@ def main() -> None:
 
     random_bl = RandomBaseline(seed=42)
 
+    # constrained LinUCB bandit (same warm prior as NLTS content, lambda=1.0)
+    print(f"Computing warm prior for constrained bandit (lambda=1.0)...")
+    mu_0_cb, _ = compute_warm_prior(ratings_by_user, warm_users, item_emb, reg=1.0)
+    nonpers_cb = NonPersonalizedBaseline(
+        ratings_by_user=ratings_by_user, warm_users=warm_users,
+        n_items=n_items, shrinkage=10.0,
+    )
+    constrained = ConstrainedLinearUCBBandit(
+        item_emb=item_emb,
+        baseline_policy=nonpers_cb,
+        lambda_reg=1.0, sigma2=1.0,
+        beta=1.0, beta_safe=2.0,
+        alpha=0.90,
+        prior_mean=mu_0_cb,
+        constraint_mode="cumulative",
+    )
+
     # -- run episodes --
     print(f"\n{'='*90}")
     print(f"  NON-EXHAUSTIVE EVALUATION: {T} selections from ~{int(np.mean(pool_sizes))} candidates")
     print(f"{'='*90}\n")
 
     policies = [
-        (hybrid,    "HybridTS(CF)"),
-        (nlts,      "NLTS(content)"),
-        (greedy_cf, "GreedyCF"),
-        (random_bl, "Random"),
+        (hybrid,      "HybridTS(CF)"),
+        (nlts,        "NLTS(content)"),
+        (constrained, "Constrained"),
+        (greedy_cf,   "GreedyCF"),
+        (random_bl,   "Random"),
     ]
 
     all_metrics = {}
