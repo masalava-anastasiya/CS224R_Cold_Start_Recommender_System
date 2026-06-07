@@ -57,6 +57,8 @@ METHOD_STYLE = {
     "GreedyCF":      {"color": CARDINAL,  "marker": "o", "label": "Greedy CF"},
     "HybridTS(CF)":  {"color": SKY,       "marker": "s", "label": "Hybrid TS"},
     "NLTS(content)": {"color": PALO_ALTO, "marker": "^", "label": "NLTS"},
+    "Constrained":   {"color": PURPLE,    "marker": "P", "label": "Constrained"},
+    "RL2":           {"color": POPPY,     "marker": "v", "label": "RL$^2$"},
     "Random":        {"color": COOL_GREY, "marker": "D", "label": "Random"},
 }
 METHOD_ORDER = ["GreedyCF", "HybridTS(CF)", "NLTS(content)", "Random"]
@@ -299,6 +301,112 @@ def plot_method_upgrades(neural_factor: dict, demographic: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+# 12: Per-step reward curve over the longer horizon
+# ---------------------------------------------------------------------------
+
+def plot_longer_horizon_stepwise(horizon: dict) -> None:
+    t_max = horizon["experiment"]["t_max"]
+    methods = horizon["experiment"]["methods"]
+    curves = horizon["per_step_curves"]
+    n_users = horizon["experiment"]["n_cold_users"]
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+    steps = np.arange(1, t_max + 1)
+
+    for method in methods:
+        if method not in curves:
+            continue
+        means = np.array(curves[method]["mean"])
+        stds = np.array(curves[method]["std"])
+        style = METHOD_STYLE.get(method, {"color": POPPY, "marker": "v", "label": method})
+        color = style["color"]
+        label = style.get("label", method)
+
+        # Plot line with light shading for +/- 1 std
+        ax.plot(steps, means, color=color, linewidth=2, label=label)
+        ax.fill_between(
+            steps, means - stds, means + stds,
+            color=color, alpha=0.10,
+        )
+
+    # Mark the standard T=20 horizon
+    ax.axvline(20, color=COOL_GREY, linestyle=":", linewidth=1.5, alpha=0.7)
+    ax.text(21, ax.get_ylim()[0] + 0.02, "T=20\n(standard)",
+            fontsize=9, color=COOL_GREY, va="bottom")
+
+    ax.set_xlabel("Step $t$")
+    ax.set_ylabel("Mean reward at step $t$")
+    ax.set_title(
+        f"Per-step reward over {t_max} steps  "
+        f"(selection, {n_users} cold users)"
+    )
+    ax.legend(loc="lower right", framealpha=0.9, fontsize=11)
+    ax.grid(True, alpha=0.3)
+
+    fig.tight_layout()
+    path = OUT_DIR / "12_longer_horizon_stepwise.png"
+    fig.savefig(path, bbox_inches="tight")
+    plt.close(fig)
+    print(f"  wrote {path.relative_to(_REPO_ROOT)}")
+
+
+# ---------------------------------------------------------------------------
+# 13: Cumulative reward vs horizon T
+# ---------------------------------------------------------------------------
+
+def plot_longer_horizon_cumulative(horizon: dict) -> None:
+    checkpoints = horizon["experiment"]["checkpoints"]
+    methods = horizon["experiment"]["methods"]
+    checkpoint_metrics = horizon["checkpoint_metrics"]
+    n_users = horizon["experiment"]["n_cold_users"]
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+
+    for method in methods:
+        style = METHOD_STYLE.get(method, {"color": POPPY, "marker": "v", "label": method})
+        color = style["color"]
+        marker = style["marker"]
+        label = style.get("label", method)
+
+        cum_rewards = []
+        cum_stds = []
+        for T in checkpoints:
+            metrics = checkpoint_metrics[str(T)][method]
+            cum_rewards.append(metrics["avg_cum_reward"])
+            cum_stds.append(metrics["std_cum_reward"])
+
+        cum_rewards = np.array(cum_rewards)
+        cum_stds = np.array(cum_stds)
+
+        ax.plot(checkpoints, cum_rewards, marker=marker, color=color,
+                label=label, linewidth=2, markersize=7)
+        ax.fill_between(
+            checkpoints,
+            cum_rewards - cum_stds,
+            cum_rewards + cum_stds,
+            color=color, alpha=0.08,
+        )
+
+    # Mark T=20
+    ax.axvline(20, color=COOL_GREY, linestyle=":", linewidth=1.5, alpha=0.7)
+
+    ax.set_xlabel("Horizon $T$ (number of steps)")
+    ax.set_ylabel("Cumulative reward")
+    ax.set_title(
+        f"Cumulative reward vs. episode length  "
+        f"(selection, {n_users} cold users)"
+    )
+    ax.legend(loc="upper left", framealpha=0.9, fontsize=11)
+    ax.grid(True, alpha=0.3)
+
+    fig.tight_layout()
+    path = OUT_DIR / "13_longer_horizon_cumulative.png"
+    fig.savefig(path, bbox_inches="tight")
+    plt.close(fig)
+    print(f"  wrote {path.relative_to(_REPO_ROOT)}")
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -313,6 +421,8 @@ def main() -> None:
     rl2_rank    = _load("rl2_results.json")
     rl2_sel     = _load("rl2_results_explore.json")
 
+    horizon     = _load("longer_horizon_results.json")
+
     print("Building figures...")
     if noisy is not None:
         plot_noise_sweep(noisy, rl2_rank, rl2_sel)
@@ -323,6 +433,9 @@ def main() -> None:
         plot_mismatch(mismatch)
     if neural_fac is not None and demographic is not None:
         plot_method_upgrades(neural_fac, demographic)
+    if horizon is not None:
+        plot_longer_horizon_stepwise(horizon)
+        plot_longer_horizon_cumulative(horizon)
 
     print("Done.")
 
