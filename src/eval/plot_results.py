@@ -421,7 +421,7 @@ def main() -> None:
     rl2_rank    = _load("rl2_results.json")
     rl2_sel     = _load("rl2_results_explore.json")
 
-    horizon     = _load("longer_horizon_results.json")
+    horizon     = _load("longer_horizon_results_with_rl2.json")
 
     print("Building figures...")
     if noisy is not None:
