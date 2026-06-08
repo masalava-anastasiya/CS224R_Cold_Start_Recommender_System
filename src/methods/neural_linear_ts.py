@@ -1,9 +1,7 @@
 """Neural Linear Thompson Sampling on frozen item embeddings."""
 
 from __future__ import annotations
-
 from typing import Dict, List, Optional, Set
-
 import numpy as np
 import torch
 
