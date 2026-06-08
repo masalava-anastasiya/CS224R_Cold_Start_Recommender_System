@@ -1,15 +1,4 @@
-"""Item feature encoder φ(x).
-
-Builds a (n_items, emb_dim) tensor of L2-normalised item embeddings by:
-  1. Encoding a text string per item with a sentence-transformers model.
-  2. Optionally concatenating a multi-hot genre vector.
-  3. L2-normalising the final vector.
-
-The result is cached by preprocess.py to data/processed/item_emb.pt and
-shared across all three methods (Neural Linear, Meta-RL, Constrained Bandit).
-Swapping encoder_name and re-running preprocess.py is the only change needed
-for the ablation on "how much representation quality affects sample efficiency."
-"""
+"""Item and user feature encoders."""
 
 from __future__ import annotations
 
@@ -20,8 +9,6 @@ import numpy as np
 import pandas as pd
 import torch
 
-
-# Fixed MovieLens-1M genre vocabulary (order matters for the multi-hot vector)
 GENRE_VOCAB: List[str] = [
     "Action",
     "Adventure",
@@ -44,30 +31,25 @@ GENRE_VOCAB: List[str] = [
 ]
 GENRE_TO_IDX: Dict[str, int] = {g: i for i, g in enumerate(GENRE_VOCAB)}
 
-# MovieLens-1M user demographic vocabularies (order matters for one-hot vectors)
 GENDER_VOCAB: List[str] = ["M", "F"]
 GENDER_TO_IDX: Dict[str, int] = {g: i for i, g in enumerate(GENDER_VOCAB)}
 
-# Age field stores bucket codes, not literal ages (see data/raw/README)
 AGE_BUCKETS: List[int] = [1, 18, 25, 35, 45, 50, 56]
 AGE_TO_IDX: Dict[int, int] = {code: i for i, code in enumerate(AGE_BUCKETS)}
 
 OCCUPATION_VOCAB: List[int] = list(range(21))
 
-USER_FEATURE_DIM: int = len(GENDER_VOCAB) + len(AGE_BUCKETS) + len(OCCUPATION_VOCAB)  # 30
+USER_FEATURE_DIM: int = len(GENDER_VOCAB) + len(AGE_BUCKETS) + len(OCCUPATION_VOCAB)
 
 
 def _parse_year(title: str) -> str:
-    """Extract the 4-digit year from MovieLens title format 'Movie Name (1995)'."""
     match = re.search(r"\((\d{4})\)\s*$", title)
     return match.group(1) if match else "unknown"
 
 
 def _build_text(row: pd.Series) -> str:
-    """Construct a descriptive text string for a single movie row."""
     title = row["Title"]
     year = _parse_year(title)
-    # Strip the trailing year from the title for a cleaner sentence
     clean_title = re.sub(r"\s*\(\d{4}\)\s*$", "", title).strip()
     genres = row["Genres"].replace("|", ", ")
     return f"{clean_title} ({year}). Genres: {genres}"
@@ -84,30 +66,15 @@ def _build_genre_multihot(genres_str: str) -> np.ndarray:
 def build_item_embeddings(
     movies_df: pd.DataFrame,
     item_id_map: Dict[int, int],
-    config,  # DataConfig; avoid circular import by not annotating here
+    config,
 ) -> torch.Tensor:
-    """Encode all items in movies_df and return a (n_items, final_dim) tensor.
-
-    Items absent from movies_df (e.g. filtered out) receive a zero vector.
-    The tensor is indexed by item_idx (contiguous), not raw MovieID.
-
-    Args:
-        movies_df:   DataFrame with columns [MovieID, Title, Genres, item_idx].
-        item_id_map: raw MovieID -> item_idx mapping.
-        config:      DataConfig instance.
-
-    Returns:
-        Tensor of shape (n_items, final_dim) where final_dim = embedding_dim
-        (+ len(GENRE_VOCAB) if use_genre_features is True).
-    """
+    """Encode all items and return an L2-normalised (n_items, emb_dim) tensor."""
     from sentence_transformers import SentenceTransformer
 
     n_items = len(item_id_map)
-
-    # Only encode movies that have a valid item_idx (survived filtering)
     valid_movies = movies_df[movies_df["item_idx"] >= 0].copy()
 
-    print(f"  Encoding {len(valid_movies)} items with '{config.encoder_name}'...")
+    print(f"Encoding {len(valid_movies)} items with '{config.encoder_name}'...")
     model = SentenceTransformer(config.encoder_name)
 
     texts = valid_movies.apply(_build_text, axis=1).tolist()
@@ -116,44 +83,39 @@ def build_item_embeddings(
         batch_size=256,
         show_progress_bar=True,
         convert_to_numpy=True,
-        normalize_embeddings=False,  # we normalise after optional concatenation
-    )  # (n_valid, encoder_dim)
+        normalize_embeddings=False,
+    )
 
     actual_dim = text_embs.shape[1]
     assert actual_dim == config.embedding_dim, (
         f"Encoder '{config.encoder_name}' produced dim={actual_dim}, "
-        f"but config.embedding_dim={config.embedding_dim}. "
-        f"Update config.embedding_dim to match."
+        f"expected {config.embedding_dim}"
     )
 
     if config.use_genre_features:
         genre_vecs = np.stack(
             [_build_genre_multihot(row["Genres"]) for _, row in valid_movies.iterrows()],
             axis=0,
-        )  # (n_valid, n_genres)
+        )
         combined = np.concatenate([text_embs, genre_vecs], axis=1)
     else:
-        combined = text_embs  # (n_valid, embedding_dim)
+        combined = text_embs
 
     final_dim = combined.shape[1]
-
-    # Place each item's embedding at its contiguous index
     emb_matrix = np.zeros((n_items, final_dim), dtype=np.float32)
     for emb, (_, row) in zip(combined, valid_movies.iterrows()):
         emb_matrix[int(row["item_idx"])] = emb
 
-    # L2-normalise each row (zero-vectors stay zero)
     norms = np.linalg.norm(emb_matrix, axis=1, keepdims=True)
     norms = np.where(norms == 0, 1.0, norms)
     emb_matrix = emb_matrix / norms
 
     result = torch.tensor(emb_matrix, dtype=torch.float32)
-    print(f"  Item embedding shape: {tuple(result.shape)}")
+    print(f"Item embedding shape: {tuple(result.shape)}")
     return result
 
 
 def _encode_user_row(row: pd.Series) -> np.ndarray:
-    """One-hot encode Gender, Age bucket, and Occupation for a single user."""
     vec = np.zeros(USER_FEATURE_DIM, dtype=np.float32)
 
     gender = row["Gender"]
@@ -176,21 +138,9 @@ def _encode_user_row(row: pd.Series) -> np.ndarray:
 def build_user_embeddings(
     users_df: pd.DataFrame,
     user_id_map: Dict[int, int],
-    config,  # DataConfig; avoid circular import by not annotating here
+    config,
 ) -> torch.Tensor:
-    """Encode all users in users_df and return a (n_users, USER_FEATURE_DIM) tensor.
-
-    The tensor is indexed by user_idx (contiguous 0 … n_users-1), not raw UserID.
-    ``users_df`` must contain exactly the surviving users in ``user_id_map``.
-
-    Args:
-        users_df:    DataFrame with columns [UserID, Gender, Age, Occupation, user_idx].
-        user_id_map: raw UserID -> user_idx mapping (surviving users only).
-        config:      DataConfig instance.
-
-    Returns:
-        L2-normalised tensor of shape (n_users, USER_FEATURE_DIM).
-    """
+    """Encode all users and return an L2-normalised (n_users, USER_FEATURE_DIM) tensor."""
     n_users = len(user_id_map)
     if not config.use_user_features:
         return torch.zeros(n_users, USER_FEATURE_DIM, dtype=torch.float32)
@@ -200,7 +150,7 @@ def build_user_embeddings(
         f"Expected {n_users} users in users_df, found {len(valid_users)}"
     )
 
-    print(f"  Encoding {n_users} users (Gender + Age + Occupation)...")
+    print(f"Encoding {n_users} users...")
     emb_matrix = np.zeros((n_users, USER_FEATURE_DIM), dtype=np.float32)
     for _, row in valid_users.iterrows():
         emb_matrix[int(row["user_idx"])] = _encode_user_row(row)
@@ -210,5 +160,5 @@ def build_user_embeddings(
     emb_matrix = emb_matrix / norms
 
     result = torch.tensor(emb_matrix, dtype=torch.float32)
-    print(f"  User embedding shape: {tuple(result.shape)}")
+    print(f"User embedding shape: {tuple(result.shape)}")
     return result
