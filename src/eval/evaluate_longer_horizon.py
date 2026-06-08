@@ -1,19 +1,4 @@
-"""Longer-horizon evaluation: does exploration compound over more steps?
-
-At T=20, Greedy CF dominates because the SVD prior is well-calibrated
-and 20 steps is not enough for exploration to pay off. This script
-extends the horizon to T_max (default 100) and records per-step rewards,
-letting us see whether exploration methods catch up or overtake greedy
-as their posteriors sharpen with more feedback.
-
-Uses the selection protocol (full candidate pool, ~176 items per user)
-so exploration has genuine value. Only cold users with >= T_max ratings
-are included, ensuring every episode can run to completion.
-
-Run from repo root:
-    python -m src.eval.evaluate_longer_horizon
-    python -m src.eval.evaluate_longer_horizon --t_max 100 --include_rl2
-"""
+"""Longer-horizon evaluation with a full candidate pool."""
 
 from __future__ import annotations
 
@@ -21,9 +6,8 @@ import argparse
 import json
 import sys
 import time
-from copy import deepcopy
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import numpy as np
 import torch
@@ -39,16 +23,11 @@ from src.methods.neural_linear_ts import NeuralLinearTS, compute_warm_prior
 from src.methods.hybrid_neural_linear_ts import HybridNeuralLinearTS
 from src.baselines.greedy_cf import GreedyCFBaseline
 from src.baselines.random_baseline import RandomBaseline
-from src.baselines.nonpersonalized_baseline import NonPersonalizedBaseline
+from src.baselines.popularity_baseline import PopularityBaseline
 from src.methods.constrained_bandit import ConstrainedLinearUCBBandit
 
 
-# ---------------------------------------------------------------------------
-# Metrics
-# ---------------------------------------------------------------------------
-
 def dcg_at_k(rewards: List[float], k: int) -> float:
-    """Discounted cumulative gain at position k."""
     k = min(k, len(rewards))
     gains = np.asarray(rewards[:k], dtype=np.float64)
     discounts = np.log2(np.arange(2, k + 2))
@@ -56,7 +35,6 @@ def dcg_at_k(rewards: List[float], k: int) -> float:
 
 
 def ndcg_at_k(rewards: List[float], k: int) -> float:
-    """Normalized DCG at position k."""
     ideal = sorted(rewards, reverse=True)
     ideal_dcg = dcg_at_k(ideal, k)
     if ideal_dcg <= 0.0:
@@ -65,7 +43,6 @@ def ndcg_at_k(rewards: List[float], k: int) -> float:
 
 
 def compute_metrics_at_horizon(all_step_rewards: List[List[float]], T: int, k: int = 5) -> Dict:
-    """Compute summary metrics using only the first T steps of each episode."""
     clipped = [rewards[:T] for rewards in all_step_rewards]
     cumulative = [sum(r) for r in clipped]
     avg_per_step = [float(np.mean(r)) for r in clipped]
@@ -85,7 +62,6 @@ def compute_metrics_at_horizon(all_step_rewards: List[List[float]], T: int, k: i
 
 
 def compute_per_step_curve(all_step_rewards: List[List[float]], t_max: int) -> Dict:
-    """Compute mean and std of reward at each step t = 1..t_max."""
     step_means = []
     step_stds = []
     for t in range(t_max):
@@ -95,12 +71,7 @@ def compute_per_step_curve(all_step_rewards: List[List[float]], t_max: int) -> D
     return {"mean": step_means, "std": step_stds}
 
 
-# ---------------------------------------------------------------------------
-# Episode runner (records per-step rewards)
-# ---------------------------------------------------------------------------
-
 def run_episodes(policy, env, cold_users: List[int], label: str) -> List[List[float]]:
-    """Run one episode per cold user, returning per-step reward lists."""
     all_step_rewards = []
     for user_idx in tqdm(cold_users, desc=label, ncols=72):
         state = env.reset(user_idx=user_idx)
@@ -116,21 +87,14 @@ def run_episodes(policy, env, cold_users: List[int], label: str) -> List[List[fl
     return all_step_rewards
 
 
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
-
 def main() -> None:
     args = parse_args()
     t_max = args.t_max
     k_eval = 5
 
-    # Checkpoint horizons for summary metrics
     checkpoints = [t for t in [5, 10, 20, 30, 50, 60, 70, 80, 90, 100] if t <= t_max]
 
-    # --- Load data ---
     config = DataConfig()
-    # Override the horizon so the environment runs for t_max steps
     config.cold_start_horizon_T = t_max
     processed = Path(config.data_dir) / "processed"
 
@@ -150,28 +114,21 @@ def main() -> None:
     all_cold_users = user_split["cold"]
     n_items = item_emb.shape[0]
 
-    # Filter cold users to those with enough ratings for the full horizon
     eligible_cold_users = [
         u for u in all_cold_users
         if len(ratings_by_user[u]) >= t_max
     ]
-    print(
-        f"\nCold users with >= {t_max} ratings: "
-        f"{len(eligible_cold_users)} / {len(all_cold_users)}"
-    )
+    print(f"Cold users with >= {t_max} ratings: {len(eligible_cold_users)} / {len(all_cold_users)}")
     if len(eligible_cold_users) == 0:
         print("No cold users have enough ratings for this horizon. Try a smaller --t_max.")
         sys.exit(1)
 
-    # Report candidate pool stats for eligible users
     pool_sizes = [len(ratings_by_user[u]) for u in eligible_cold_users]
     print(
-        f"Candidate pool stats: mean={np.mean(pool_sizes):.0f}, "
-        f"median={np.median(pool_sizes):.0f}, "
-        f"min={min(pool_sizes)}, max={max(pool_sizes)}"
+        f"Candidate pool: mean={np.mean(pool_sizes):.0f}, "
+        f"median={np.median(pool_sizes):.0f}, min={min(pool_sizes)}, max={max(pool_sizes)}"
     )
 
-    # --- Build the environment (selection protocol, full candidate pool) ---
     env = ColdStartEnv(
         ratings_by_user=ratings_by_user,
         item_emb=item_emb,
@@ -182,15 +139,13 @@ def main() -> None:
         use_full_candidate_pool=True,
     )
 
-    # --- Build policies ---
     K_FACTORS = 50
     LAMBDA_NLTS = 50.0
     SIGMA_NLTS = 0.5
 
-    print(f"\nFitting policies...")
+    print("Fitting policies...")
     start_time = time.time()
 
-    # Greedy CF
     greedy_cf = GreedyCFBaseline(
         ratings_by_user=ratings_by_user,
         warm_users=warm_users,
@@ -199,7 +154,6 @@ def main() -> None:
         reg=1.0,
     )
 
-    # Hybrid Thompson Sampling (CF features)
     hybrid_ts = HybridNeuralLinearTS(
         ratings_by_user=ratings_by_user,
         warm_users=warm_users,
@@ -209,7 +163,6 @@ def main() -> None:
         sigma_noise=1.0,
     )
 
-    # Content-based NLTS
     mu_0, Lambda_0 = compute_warm_prior(
         ratings_by_user, warm_users, item_emb, reg=LAMBDA_NLTS,
     )
@@ -221,9 +174,8 @@ def main() -> None:
         Lambda_0=Lambda_0,
     )
 
-    # Constrained LinUCB
     mu_0_cb, _ = compute_warm_prior(ratings_by_user, warm_users, item_emb, reg=1.0)
-    nonpers = NonPersonalizedBaseline(
+    popularity = PopularityBaseline(
         ratings_by_user=ratings_by_user,
         warm_users=warm_users,
         n_items=n_items,
@@ -231,7 +183,7 @@ def main() -> None:
     )
     constrained = ConstrainedLinearUCBBandit(
         item_emb=item_emb,
-        baseline_policy=nonpers,
+        baseline_policy=popularity,
         lambda_reg=1.0,
         sigma2=1.0,
         beta=1.0,
@@ -241,20 +193,16 @@ def main() -> None:
         constraint_mode="cumulative",
     )
 
-    # Random baseline
     random_bl = RandomBaseline(seed=42)
 
     print(f"Policies fitted in {time.time() - start_time:.1f}s")
 
-    # Optionally load RL2 (trained at T=t_max)
     rl2_policy = None
     if args.include_rl2:
         rl2_path = Path(args.rl2_checkpoint).resolve()
         if not rl2_path.exists():
-            print(f"\n  WARNING: RL2 checkpoint not found at {rl2_path}")
-            print("  Skipping RL2. Train first with:")
-            print(f"    python -m src.train.train_rl2 --explore --horizon {t_max} "
-                  f"--n_epochs 50 --device mps --save_path results/rl2_checkpoint_t{t_max}.pt")
+            print(f"RL2 checkpoint not found: {rl2_path}")
+            print(f"Train with: python -m src.train.train_rl2 --explore --horizon {t_max}")
         else:
             from src.methods.rl2_policy import RL2Policy
             device = torch.device(args.device)
@@ -268,10 +216,8 @@ def main() -> None:
             rl2_policy.load_state_dict(ckpt["state_dict"])
             rl2_policy.eval()
             trained_horizon = hparams.get("horizon", 20)
-            print(f"\n  Loaded RL2 checkpoint: epoch {ckpt.get('epoch', '?')}, "
-                  f"trained at T={trained_horizon}")
+            print(f"Loaded RL2 checkpoint: epoch {ckpt.get('epoch', '?')}, trained at T={trained_horizon}")
 
-    # --- Build the list of (policy, label) pairs ---
     policies = [
         (greedy_cf, "GreedyCF"),
         (hybrid_ts, "HybridTS(CF)"),
@@ -282,69 +228,41 @@ def main() -> None:
     if rl2_policy is not None:
         policies.append((rl2_policy, "RL2"))
 
-    # --- Run episodes ---
-    print(f"\n{'=' * 80}")
-    print(f"  LONGER HORIZON EVALUATION")
-    print(f"  T_max = {t_max} steps | {len(eligible_cold_users)} cold users")
-    print(f"  Selection protocol (full candidate pool)")
-    print(f"{'=' * 80}\n")
+    print(f"\nLonger horizon eval: T_max={t_max}, users={len(eligible_cold_users)}, full candidate pool")
 
     method_rewards = {}
     for policy, label in policies:
         start = time.time()
-        step_rewards = run_episodes(
-            policy, env, eligible_cold_users, label=f"{label:<14}"
-        )
+        step_rewards = run_episodes(policy, env, eligible_cold_users, label=label)
         elapsed = time.time() - start
         method_rewards[label] = step_rewards
         avg_cum = np.mean([sum(r) for r in step_rewards])
-        print(f"  {label}: cum_reward={avg_cum:.2f}, {elapsed:.1f}s\n")
-
-    # --- Compute and print results at each checkpoint ---
-    print(f"\n{'=' * 100}")
-    print(f"  RESULTS BY HORIZON")
-    print(f"{'=' * 100}")
+        print(f"{label}: cum_reward={avg_cum:.2f}, {elapsed:.1f}s")
 
     method_labels = [label for _, label in policies]
-    header = f"  {'T':<6}" + "".join(f"  {l:<16}" for l in method_labels)
-    print(header)
-    print("  " + "-" * (6 + 18 * len(method_labels)))
-
-    # Table: avg reward per step at each checkpoint
     all_checkpoint_metrics = {}
+
+    print("\nAvg reward per step by horizon")
     for T in checkpoints:
-        row_parts = [f"  {T:<6}"]
-        all_checkpoint_metrics[T] = {}
+        parts = []
         for label in method_labels:
             metrics = compute_metrics_at_horizon(method_rewards[label], T, k=k_eval)
-            all_checkpoint_metrics[T][label] = metrics
-            row_parts.append(f"  {metrics['avg_reward_per_step']:.4f}          ")
-        print("".join(row_parts))
+            all_checkpoint_metrics.setdefault(T, {})[label] = metrics
+            parts.append(f"{label}: {metrics['avg_reward_per_step']:.4f}")
+        print(f"T={T}: {', '.join(parts)}")
 
-    print("  " + "-" * (6 + 18 * len(method_labels)))
-    print("  (Values shown: avg reward per step)")
-    print(f"{'=' * 100}\n")
-
-    # Also print NDCG@5 table
-    print(f"  NDCG@5 at each horizon checkpoint:")
-    print(f"  {'T':<6}" + "".join(f"  {l:<16}" for l in method_labels))
-    print("  " + "-" * (6 + 18 * len(method_labels)))
+    print("\nNDCG@5 by horizon")
     for T in checkpoints:
-        row_parts = [f"  {T:<6}"]
+        parts = []
         for label in method_labels:
             ndcg = all_checkpoint_metrics[T][label][f"ndcg_{k_eval}"]
-            row_parts.append(f"  {ndcg:.4f}          ")
-        print("".join(row_parts))
-    print()
+            parts.append(f"{label}: {ndcg:.4f}")
+        print(f"T={T}: {', '.join(parts)}")
 
-    # --- Per-step reward curves ---
     per_step_curves = {}
     for label in method_labels:
-        per_step_curves[label] = compute_per_step_curve(
-            method_rewards[label], t_max
-        )
+        per_step_curves[label] = compute_per_step_curve(method_rewards[label], t_max)
 
-    # --- Save results ---
     results = {
         "experiment": {
             "t_max": t_max,
@@ -366,38 +284,20 @@ def main() -> None:
     out_path.parent.mkdir(exist_ok=True)
     with open(out_path, "w") as fh:
         json.dump(results, fh, indent=2)
-    print(f"Results saved -> {out_path.relative_to(_REPO_ROOT)}")
+    print(f"Results saved to {out_path.relative_to(_REPO_ROOT)}")
 
-
-# ---------------------------------------------------------------------------
-# CLI
-# ---------------------------------------------------------------------------
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Longer-horizon evaluation: does exploration compound?"
-    )
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--t_max", type=int, default=100)
+    parser.add_argument("--include_rl2", action="store_true")
     parser.add_argument(
-        "--t_max", type=int, default=100,
-        help="Maximum episode horizon (default: 100).",
-    )
-    parser.add_argument(
-        "--include_rl2", action="store_true",
-        help="Include RL2 policy (requires a checkpoint trained at the target horizon).",
-    )
-    parser.add_argument(
-        "--rl2_checkpoint", type=str,
+        "--rl2_checkpoint",
+        type=str,
         default=str(_REPO_ROOT / "results" / "rl2_checkpoint_t100.pt"),
-        help="Path to RL2 checkpoint trained at the target horizon.",
     )
-    parser.add_argument(
-        "--device", type=str, default="cpu",
-        help="Device for RL2 inference (cpu / mps).",
-    )
-    parser.add_argument(
-        "--out_name", type=str, default="longer_horizon_results.json",
-        help="Output filename within results/.",
-    )
+    parser.add_argument("--device", type=str, default="cpu")
+    parser.add_argument("--out_name", type=str, default="longer_horizon_results.json")
     return parser.parse_args()
 
 

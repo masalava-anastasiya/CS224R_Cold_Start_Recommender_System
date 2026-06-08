@@ -1,23 +1,13 @@
-"""Prior quality ablation: when does exploration beat exploitation?
-
-Varies the number of warm users available for training the prior (10-70%
-of total users) while keeping the cold evaluation set fixed. Tests whether
-Thompson Sampling overtakes Greedy CF when the prior degrades.
-
-Evaluated under both exhaustive and non-exhaustive protocols, at noise
-levels 0.0 and 0.5.
-
-Run from repo root:
-    python -m src.eval.evaluate_prior_ablation
-"""
+"""Prior quality ablation across warm-user fractions."""
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import torch
@@ -35,18 +25,18 @@ from src.baselines.greedy_cf import GreedyCFBaseline
 from src.baselines.random_baseline import RandomBaseline
 
 
-# ── metrics ──────────────────────────────────────────────────────────
-
 def dcg_at_k(rewards: List[float], k: int) -> float:
     k = min(k, len(rewards))
     gains = np.asarray(rewards[:k], dtype=np.float64)
     discounts = np.log2(np.arange(2, k + 2))
     return float((gains / discounts).sum())
 
+
 def ndcg_at_k(rewards: List[float], k: int) -> float:
     ideal = sorted(rewards, reverse=True)
     idcg = dcg_at_k(ideal, k)
     return dcg_at_k(rewards, k) / idcg if idcg > 0.0 else 0.0
+
 
 def hit_at_k(rewards: List[float], k: int, threshold: float = 4.0) -> float:
     return float(any(r >= threshold for r in rewards[:k]))
@@ -70,28 +60,26 @@ def run_episodes(policy, env: ColdStartEnv, cold_users: List[int], label: str) -
 
 
 def compute_metrics(all_rewards: List[List[float]], k: int) -> Dict[str, float]:
-    cum   = [sum(r) for r in all_rewards]
+    cum = [sum(r) for r in all_rewards]
     step1 = [r[0] if r else 0.0 for r in all_rewards]
     avg_k = [float(np.mean(r[:k])) for r in all_rewards]
-    ndcg  = [ndcg_at_k(r, k) for r in all_rewards]
-    hit   = [hit_at_k(r, k) for r in all_rewards]
-    avg   = [float(np.mean(r)) for r in all_rewards]
+    ndcg = [ndcg_at_k(r, k) for r in all_rewards]
+    hit = [hit_at_k(r, k) for r in all_rewards]
+    avg = [float(np.mean(r)) for r in all_rewards]
     return {
-        "avg_cum_reward":      float(np.mean(cum)),
-        "std_cum_reward":      float(np.std(cum)),
+        "avg_cum_reward": float(np.mean(cum)),
+        "std_cum_reward": float(np.std(cum)),
         "avg_reward_per_step": float(np.mean(avg)),
         "std_reward_per_step": float(np.std(avg)),
-        "avg_reward_step1":    float(np.mean(step1)),
-        "std_reward_step1":    float(np.std(step1)),
-        f"avg_reward_{k}":     float(np.mean(avg_k)),
-        f"std_reward_{k}":     float(np.std(avg_k)),
-        f"ndcg_{k}":           float(np.mean(ndcg)),
-        f"std_ndcg_{k}":       float(np.std(ndcg)),
-        f"hit_{k}":            float(np.mean(hit)),
+        "avg_reward_step1": float(np.mean(step1)),
+        "std_reward_step1": float(np.std(step1)),
+        f"avg_reward_{k}": float(np.mean(avg_k)),
+        f"std_reward_{k}": float(np.std(avg_k)),
+        f"ndcg_{k}": float(np.mean(ndcg)),
+        f"std_ndcg_{k}": float(np.std(ndcg)),
+        f"hit_{k}": float(np.mean(hit)),
     }
 
-
-# ── policy builders ──────────────────────────────────────────────────
 
 def build_policies(
     ratings_by_user: Dict,
@@ -99,12 +87,10 @@ def build_policies(
     item_emb: torch.Tensor,
     n_items: int,
 ) -> List[Tuple[str, Any]]:
-    """Build all 4 policies using the given warm user subset."""
-
     mu_0, Lambda_0 = compute_warm_prior(
         ratings_by_user, warm_subset, item_emb, reg=50.0,
     )
-
+    k = min(50, len(warm_subset) - 1)
     nlts = NeuralLinearTS(
         item_emb=item_emb,
         lambda_prior=50.0,
@@ -112,26 +98,22 @@ def build_policies(
         mu_0=mu_0,
         Lambda_0=Lambda_0,
     )
-
     hybrid = HybridNeuralLinearTS(
         ratings_by_user=ratings_by_user,
         warm_users=warm_subset,
         n_items=n_items,
-        k=min(50, len(warm_subset) - 1),
+        k=k,
         lambda_prior=1.0,
         sigma_noise=1.0,
     )
-
     greedy_cf = GreedyCFBaseline(
         ratings_by_user=ratings_by_user,
         warm_users=warm_subset,
         n_items=n_items,
-        k=min(50, len(warm_subset) - 1),
+        k=k,
         reg=1.0,
     )
-
     random_bl = RandomBaseline(seed=42)
-
     return [
         ("HybridTS(CF)", hybrid),
         ("NLTS(content)", nlts),
@@ -140,44 +122,32 @@ def build_policies(
     ]
 
 
-# ── printing ─────────────────────────────────────────────────────────
-
-def print_table(
+def print_results(
     title: str,
     all_metrics: Dict[str, Dict[str, float]],
     labels: List[str],
     k: int,
 ) -> None:
-    print(f"\n{'=' * 100}")
-    print(f"  {title}")
-    print(f"{'=' * 100}")
-    header = f"  {'Metric':<22}" + "".join(f" {l:<22}" for l in labels)
-    print(header)
-    print("  " + "-" * 96)
+    print(f"\n{title}")
 
-    def row(metric_label: str, key: str, fmt: str = ".4f", show_std: bool = True) -> None:
-        std_key = key.replace("avg_", "std_").replace("ndcg_", "std_ndcg_")
+    def row(metric_label, key, show_std=True):
         parts = []
-        for label in labels:
-            m = all_metrics[label]
+        for name in labels:
+            m = all_metrics[name]
+            std_key = key.replace("avg_", "std_").replace("ndcg_", "std_ndcg_")
             if show_std and std_key in m:
-                parts.append(f"{m[key]:{fmt}} +/- {m[std_key]:{fmt}}")
+                parts.append(f"{name}: {m[key]:.4f} ± {m[std_key]:.4f}")
             else:
-                parts.append(f"{m[key]:{fmt}}")
-        line = f"  {metric_label:<22}" + "".join(f" {p:<22}" for p in parts)
-        print(line)
+                parts.append(f"{name}: {m[key]:.4f}")
+        print(f"{metric_label}: {', '.join(parts)}")
 
-    row("Avg reward @ 1",        "avg_reward_step1")
-    row(f"Avg reward @ {k}",     f"avg_reward_{k}")
-    row("Avg reward / step",     "avg_reward_per_step")
-    row(f"NDCG@{k}",             f"ndcg_{k}")
-    row(f"Hit@{k} (>= 4)",       f"hit_{k}", show_std=False)
-    row("Avg cum. reward",       "avg_cum_reward")
-    print("  " + "-" * 96)
-    print(f"{'=' * 100}")
+    row("Avg reward @ 1", "avg_reward_step1")
+    row(f"Avg reward @ {k}", f"avg_reward_{k}")
+    row("Avg reward / step", "avg_reward_per_step")
+    row(f"NDCG@{k}", f"ndcg_{k}")
+    row(f"Hit@{k} (rating >= 4)", f"hit_{k}", show_std=False)
+    row("Avg cum. reward", "avg_cum_reward")
 
-
-# ── main ─────────────────────────────────────────────────────────────
 
 def main(
     warm_fractions: Optional[List[float]] = None,
@@ -194,14 +164,14 @@ def main(
 
     print("Loading artifacts...")
     ratings_by_user = torch.load(processed / "ratings_by_user.pt", weights_only=False)
-    user_split      = torch.load(processed / "user_split.pt",      weights_only=False)
-    item_emb        = torch.load(processed / "item_emb.pt",        weights_only=False)
-    user_emb        = torch.load(processed / "user_emb.pt",        weights_only=False)
+    user_split = torch.load(processed / "user_split.pt", weights_only=False)
+    item_emb = torch.load(processed / "item_emb.pt", weights_only=False)
+    user_emb = torch.load(processed / "user_emb.pt", weights_only=False)
 
-    warm_users_full = user_split["warm"]   # 3936 users (70%)
-    cold_users      = user_split["cold"]   # 1688 users (30%) — always the eval set
-    n_users_total   = len(warm_users_full) + len(cold_users)
-    n_items         = item_emb.shape[0]
+    warm_users_full = user_split["warm"]
+    cold_users = user_split["cold"]
+    n_users_total = len(warm_users_full) + len(cold_users)
+    n_items = item_emb.shape[0]
     T = config.cold_start_horizon_T
     K_EVAL = 5
 
@@ -210,11 +180,12 @@ def main(
 
     pool_sizes = [len(ratings_by_user[u]) for u in cold_users]
     print(
-        f"Total users: {n_users_total} | Cold (fixed eval set): {len(cold_users)} | "
-        f"Items: {n_items} | T: {T}\n"
-        f"Full candidate pool: mean={np.mean(pool_sizes):.0f}\n"
-        f"Warm fractions to test: {WARM_FRACTIONS}\n"
-        f"Noise levels: {NOISE_LEVELS}"
+        f"Total users: {n_users_total}, cold eval set: {len(cold_users)}, "
+        f"items: {n_items}, T: {T}"
+    )
+    print(
+        f"Candidate pool mean={np.mean(pool_sizes):.0f}, "
+        f"warm fractions={WARM_FRACTIONS}, noise levels={NOISE_LEVELS}"
     )
 
     all_results: Dict[str, Any] = {
@@ -227,33 +198,27 @@ def main(
             "n_warm_users_full": len(warm_users_full),
             "n_users_total": n_users_total,
             "mean_candidates_per_user": float(np.mean(pool_sizes)),
-            "design": "subsample warm users while keeping cold eval set fixed",
+            "design": "subsample warm users, fixed cold eval set",
         },
     }
 
     for warm_frac in WARM_FRACTIONS:
-        n_warm = int(n_users_total * warm_frac)
-        n_warm = min(n_warm, len(warm_users_full))
+        n_warm = min(int(n_users_total * warm_frac), len(warm_users_full))
         warm_subset = warm_users_full[:n_warm]
 
         frac_key = f"warm_{warm_frac}"
         all_results[frac_key] = {"n_warm_used": n_warm}
 
-        print(f"\n{'#' * 100}")
-        print(f"  WARM FRACTION = {warm_frac} ({n_warm} warm users)")
-        print(f"{'#' * 100}")
-
-        print(f"  Building policies with {n_warm} warm users...")
+        print(f"\nWarm fraction = {warm_frac} ({n_warm} users)")
         t0 = time.time()
         policies = build_policies(ratings_by_user, warm_subset, item_emb, n_items)
-        labels = [label for label, _ in policies]
-        print(f"  Policies built in {time.time() - t0:.1f}s")
+        labels = [name for name, _ in policies]
+        print(f"Policies built in {time.time() - t0:.1f}s")
 
         for noise_std in NOISE_LEVELS:
             for protocol, use_full_pool in [("exhaustive", False), ("non_exhaustive", True)]:
-                protocol_label = "NON-EXHAUSTIVE" if use_full_pool else "EXHAUSTIVE"
-                desc = f"warm={warm_frac} noise={noise_std} {protocol_label}"
-                print(f"\n  --- {desc} ---")
+                pool_desc = "full pool" if use_full_pool else f"pool={T}"
+                print(f"warm={warm_frac}, noise={noise_std}, {protocol} ({pool_desc})")
 
                 env = ColdStartEnv(
                     ratings_by_user=ratings_by_user,
@@ -267,17 +232,15 @@ def main(
                 )
 
                 metrics_by_policy: Dict[str, Dict[str, float]] = {}
-                for label, policy in policies:
+                for name, policy in policies:
                     rewards = run_episodes(
                         policy, env, cold_users,
-                        label=f"  {label:<14} w={warm_frac}",
+                        label=f"{name} warm={warm_frac}",
                     )
-                    metrics_by_policy[label] = compute_metrics(rewards, k=K_EVAL)
+                    metrics_by_policy[name] = compute_metrics(rewards, k=K_EVAL)
 
-                cand_desc = f"~{int(np.mean(pool_sizes))}" if use_full_pool else str(T)
-                print_table(
-                    f"{protocol_label} | warm_frac={warm_frac} ({n_warm} users) | "
-                    f"noise={noise_std} | T={T} from {cand_desc} candidates",
+                print_results(
+                    f"warm={warm_frac}, noise={noise_std}, {protocol}",
                     metrics_by_policy,
                     labels,
                     K_EVAL,
@@ -287,82 +250,47 @@ def main(
                 if noise_key not in all_results[frac_key]:
                     all_results[frac_key][noise_key] = {}
                 all_results[frac_key][noise_key][protocol] = {
-                    label: {"metrics": m} for label, m in metrics_by_policy.items()
+                    name: {"metrics": m} for name, m in metrics_by_policy.items()
                 }
 
-    # ── summary tables ───────────────────────────────────────────────
-
     policy_labels = ["HybridTS(CF)", "NLTS(content)", "GreedyCF", "Random"]
-
-    print(f"\n\n{'=' * 100}")
-    print(f"  SUMMARY: NDCG@{K_EVAL} across warm fractions")
-    print(f"{'=' * 100}")
-
+    print(f"\nNDCG@{K_EVAL} summary")
     for noise_std in NOISE_LEVELS:
         noise_key = f"noise_{noise_std}"
         for protocol in ["exhaustive", "non_exhaustive"]:
-            protocol_label = "NON-EXHAUSTIVE" if protocol == "non_exhaustive" else "EXHAUSTIVE"
-            print(f"\n  {protocol_label} | noise={noise_std}:")
-            header = f"  {'warm_frac':<12} {'n_warm':<8}" + "".join(f" {l:<18}" for l in policy_labels)
-            print(header)
-            print("  " + "-" * 92)
+            print(f"{protocol}, noise={noise_std}")
             for warm_frac in WARM_FRACTIONS:
                 frac_key = f"warm_{warm_frac}"
                 n_warm = all_results[frac_key]["n_warm_used"]
-                parts = []
-                for label in policy_labels:
-                    val = all_results[frac_key][noise_key][protocol][label]["metrics"][f"ndcg_{K_EVAL}"]
-                    parts.append(f"{val:.4f}")
-                line = f"  {warm_frac:<12} {n_warm:<8}" + "".join(f" {p:<18}" for p in parts)
-                print(line)
-            print("  " + "-" * 92)
+                parts = [
+                    f"{name}: {all_results[frac_key][noise_key][protocol][name]['metrics'][f'ndcg_{K_EVAL}']:.4f}"
+                    for name in policy_labels
+                ]
+                print(f"warm={warm_frac} (n={n_warm}): {', '.join(parts)}")
 
-    # ── gap analysis ─────────────────────────────────────────────────
-
-    print(f"\n\n{'=' * 100}")
-    print(f"  GAP ANALYSIS: GreedyCF minus HybridTS(CF) NDCG@{K_EVAL}")
-    print(f"  (positive = Greedy wins, negative = HybridTS wins)")
-    print(f"{'=' * 100}")
-
+    print("\nGreedyCF - HybridTS NDCG gap (positive = Greedy wins)")
     for noise_std in NOISE_LEVELS:
         noise_key = f"noise_{noise_std}"
         for protocol in ["exhaustive", "non_exhaustive"]:
-            protocol_label = "NON-EXHAUSTIVE" if protocol == "non_exhaustive" else "EXHAUSTIVE"
-            print(f"\n  {protocol_label} | noise={noise_std}:")
-            print(f"  {'warm_frac':<12} {'n_warm':<8} {'gap':<12} {'winner'}")
-            print("  " + "-" * 50)
+            print(f"{protocol}, noise={noise_std}")
             for warm_frac in WARM_FRACTIONS:
                 frac_key = f"warm_{warm_frac}"
-                n_warm = all_results[frac_key]["n_warm_used"]
                 gcf_ndcg = all_results[frac_key][noise_key][protocol]["GreedyCF"]["metrics"][f"ndcg_{K_EVAL}"]
                 hyb_ndcg = all_results[frac_key][noise_key][protocol]["HybridTS(CF)"]["metrics"][f"ndcg_{K_EVAL}"]
                 gap = gcf_ndcg - hyb_ndcg
-                winner = "GreedyCF" if gap > 0.001 else ("HybridTS" if gap < -0.001 else "~TIE")
-                print(f"  {warm_frac:<12} {n_warm:<8} {gap:+.4f}      {winner}")
-            print("  " + "-" * 50)
-
-    print()
-
-    # ── save ─────────────────────────────────────────────────────────
+                winner = "GreedyCF" if gap > 0.001 else ("HybridTS" if gap < -0.001 else "tie")
+                print(f"warm={warm_frac}: gap={gap:+.4f}, winner={winner}")
 
     out_path = _REPO_ROOT / "results" / out_name
     out_path.parent.mkdir(exist_ok=True)
     with open(out_path, "w") as fh:
         json.dump(all_results, fh, indent=2)
-    print(f"Results saved -> {out_path.relative_to(_REPO_ROOT)}")
+    print(f"Results saved to {out_path.relative_to(_REPO_ROOT)}")
 
 
 if __name__ == "__main__":
-    import argparse
-
-    p = argparse.ArgumentParser(description="Prior quality ablation.")
-    p.add_argument(
-        "--warm_fractions", type=float, nargs="+", default=None,
-        help="Warm fractions to test (default: 0.1 0.2 0.3 0.5 0.7).",
-    )
-    p.add_argument(
-        "--out_name", type=str, default="prior_ablation_results.json",
-        help="Output JSON filename under results/.",
-    )
+    p = argparse.ArgumentParser()
+    p.add_argument("--warm_fractions", type=float, nargs="+", default=None)
+    p.add_argument("--out_name", type=str, default="prior_ablation_results.json")
     args = p.parse_args()
     main(warm_fractions=args.warm_fractions, out_name=args.out_name)

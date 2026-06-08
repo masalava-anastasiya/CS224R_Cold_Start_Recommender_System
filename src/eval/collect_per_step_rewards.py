@@ -1,11 +1,4 @@
-"""Collect per-step rewards for all methods in explore mode.
-
-Runs each cold user through T=20 steps for each policy and saves a JSON with
-shape {method: [[r_t for t in 1..T] for each cold user]}.
-
-Run from repo root:
-    python -m src.eval.collect_per_step_rewards [--checkpoint results/rl2_explore_checkpoint.pt]
-"""
+"""Collect per-step rewards for explore-mode evaluation."""
 
 from __future__ import annotations
 
@@ -15,7 +8,6 @@ import sys
 import time
 from pathlib import Path
 
-import numpy as np
 import torch
 from tqdm import tqdm
 
@@ -49,19 +41,19 @@ def run_episodes(policy, env, cold_users, label: str):
 
 
 def main(args):
-    config    = DataConfig()
+    config = DataConfig()
     processed = Path(config.data_dir) / "processed"
 
     print("Loading artifacts...")
     ratings_by_user = torch.load(processed / "ratings_by_user.pt", weights_only=False)
-    user_split      = torch.load(processed / "user_split.pt",      weights_only=False)
-    item_emb        = torch.load(processed / "item_emb.pt",        weights_only=False)
-    user_emb        = torch.load(processed / "user_emb.pt",        weights_only=False)
+    user_split = torch.load(processed / "user_split.pt", weights_only=False)
+    item_emb = torch.load(processed / "item_emb.pt", weights_only=False)
+    user_emb = torch.load(processed / "user_emb.pt", weights_only=False)
 
     warm_users = user_split["warm"]
     cold_users = user_split["cold"]
 
-    device   = torch.device(args.device)
+    device = torch.device(args.device)
     item_emb = item_emb.to(device)
 
     env = ColdStartEnv(
@@ -74,7 +66,6 @@ def main(args):
         use_full_candidate_pool=True,
     )
 
-    # ---- RL² ----
     ckpt_path = Path(args.checkpoint).resolve()
     if not ckpt_path.exists():
         sys.exit(f"Checkpoint not found: {ckpt_path}")
@@ -83,12 +74,11 @@ def main(args):
     rl2 = RL2Policy(item_emb=item_emb, hidden_dim=hidden_dim).to(device)
     rl2.load_state_dict(ckpt["state_dict"])
     rl2.eval()
-    print(f"Loaded RL² checkpoint: epoch {ckpt.get('epoch')}, hidden={hidden_dim}")
+    print(f"Loaded RL2 checkpoint: epoch {ckpt.get('epoch')}, hidden={hidden_dim}")
 
-    # ---- Comparison policies ----
-    K_FACTORS    = 50
+    K_FACTORS = 50
     LAMBDA_PRIOR = 50.0
-    SIGMA_NOISE  = 0.5
+    SIGMA_NOISE = 0.5
     print("Fitting comparison policies...")
     t0 = time.time()
     hybrid = HybridNeuralLinearTS(
@@ -120,28 +110,30 @@ def main(args):
         Lambda_0=Lambda_0,
     )
     random_bl = RandomBaseline(seed=42)
-    print(f"  Done in {time.time() - t0:.1f}s")
+    print(f"Done in {time.time() - t0:.1f}s")
 
-    print()
     results = {
-        "RL²":       run_episodes(rl2,       env, cold_users, "RL²      "),
-        "Hybrid TS": run_episodes(hybrid,    env, cold_users, "HybridTS "),
-        "NLTS":      run_episodes(nlts,      env, cold_users, "NLTS     "),
-        "Greedy CF": run_episodes(greedy_cf, env, cold_users, "GreedyCF "),
-        "Random":    run_episodes(random_bl, env, cold_users, "Random   "),
+        "RL²": run_episodes(rl2, env, cold_users, "RL2"),
+        "Hybrid TS": run_episodes(hybrid, env, cold_users, "Hybrid TS"),
+        "NLTS": run_episodes(nlts, env, cold_users, "NLTS"),
+        "Greedy CF": run_episodes(greedy_cf, env, cold_users, "Greedy CF"),
+        "Random": run_episodes(random_bl, env, cold_users, "Random"),
     }
 
     out_path = _REPO_ROOT / "results" / "per_step_rewards_explore.json"
     with open(out_path, "w") as fh:
         json.dump(results, fh)
-    print(f"\nSaved → {out_path}")
+    print(f"Saved to {out_path}")
 
 
 def parse_args():
     p = argparse.ArgumentParser()
-    p.add_argument("--checkpoint", type=str,
-                   default=str(_REPO_ROOT / "results" / "rl2_explore_checkpoint.pt"))
-    p.add_argument("--device",     type=str, default="cpu")
+    p.add_argument(
+        "--checkpoint",
+        type=str,
+        default=str(_REPO_ROOT / "results" / "rl2_explore_checkpoint.pt"),
+    )
+    p.add_argument("--device", type=str, default="cpu")
     return p.parse_args()
 
 
