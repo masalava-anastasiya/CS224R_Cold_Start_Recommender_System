@@ -73,7 +73,7 @@ def compute_per_step_curve(all_step_rewards: List[List[float]], t_max: int) -> D
 
 def run_episodes(policy, env, cold_users: List[int], label: str) -> List[List[float]]:
     all_step_rewards = []
-    for user_idx in tqdm(cold_users, desc=label, ncols=72):
+    for user_idx in tqdm(cold_users, desc=label):
         state = env.reset(user_idx=user_idx)
         policy.reset(user_idx=user_idx)
         episode_rewards = []

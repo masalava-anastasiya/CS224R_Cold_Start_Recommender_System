@@ -334,7 +334,6 @@ def plot_longer_horizon_cumulative(horizon: dict) -> None:
 
 
 def main() -> None:
-    print("Loading result files...")
     noisy = _load("noisy_rewards_results.json")
     ablation = _load("prior_ablation_results.json")
     ablation_lo = _load("prior_ablation_lowwarm_results.json")
@@ -345,7 +344,6 @@ def main() -> None:
     rl2_sel = _load("rl2_results_explore.json")
     horizon = _load("longer_horizon_results_with_rl2.json")
 
-    print("Building figures...")
     if noisy is not None:
         plot_noise_sweep(noisy, rl2_rank, rl2_sel)
     if ablation is not None:
@@ -358,8 +356,6 @@ def main() -> None:
     if horizon is not None:
         plot_longer_horizon_stepwise(horizon)
         plot_longer_horizon_cumulative(horizon)
-
-    print("Done.")
 
 
 if __name__ == "__main__":

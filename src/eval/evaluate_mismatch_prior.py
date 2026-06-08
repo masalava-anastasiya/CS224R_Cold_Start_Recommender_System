@@ -47,7 +47,7 @@ def hit_at_k(rewards: List[float], k: int, threshold: float = 4.0) -> float:
 
 def run_episodes(policy, env: ColdStartEnv, users: List[int], label: str) -> List[List[float]]:
     all_rewards: List[List[float]] = []
-    for user_idx in tqdm(users, desc=label, ncols=72):
+    for user_idx in tqdm(users, desc=label):
         state = env.reset(user_idx=user_idx)
         policy.reset()
         ep: List[float] = []
@@ -238,8 +238,7 @@ def main() -> None:
                     name: {"metrics": m} for name, m in metrics.items()
                 }
 
-    print("\nNDCG@5 gap (GreedyCF - HybridTS), selection protocol")
-    print("positive = Greedy wins, negative = exploration wins")
+    print("\nNDCG@5 gap (GreedyCF - HybridTS), selection")
     for target in ["old", "young"]:
         tk = f"target_{target}"
 

@@ -44,7 +44,7 @@ def hit_at_k(rewards: List[float], k: int, threshold: float = 4.0) -> float:
 
 def run_episodes(policy, env: ColdStartEnv, cold_users: List[int], label: str) -> List[List[float]]:
     all_rewards: List[List[float]] = []
-    for user_idx in tqdm(cold_users, desc=label, ncols=72):
+    for user_idx in tqdm(cold_users, desc=label):
         state = env.reset(user_idx=user_idx)
         policy.reset()
         ep_rewards: List[float] = []
@@ -268,7 +268,7 @@ def main(
                 ]
                 print(f"warm={warm_frac} (n={n_warm}): {', '.join(parts)}")
 
-    print("\nGreedyCF - HybridTS NDCG gap (positive = Greedy wins)")
+    print("\nGreedyCF - HybridTS NDCG gap")
     for noise_std in NOISE_LEVELS:
         noise_key = f"noise_{noise_std}"
         for protocol in ["exhaustive", "non_exhaustive"]:
@@ -278,8 +278,7 @@ def main(
                 gcf_ndcg = all_results[frac_key][noise_key][protocol]["GreedyCF"]["metrics"][f"ndcg_{K_EVAL}"]
                 hyb_ndcg = all_results[frac_key][noise_key][protocol]["HybridTS(CF)"]["metrics"][f"ndcg_{K_EVAL}"]
                 gap = gcf_ndcg - hyb_ndcg
-                winner = "GreedyCF" if gap > 0.001 else ("HybridTS" if gap < -0.001 else "tie")
-                print(f"warm={warm_frac}: gap={gap:+.4f}, winner={winner}")
+                print(f"warm={warm_frac}: gap={gap:+.4f}")
 
     out_path = _REPO_ROOT / "results" / out_name
     out_path.parent.mkdir(exist_ok=True)

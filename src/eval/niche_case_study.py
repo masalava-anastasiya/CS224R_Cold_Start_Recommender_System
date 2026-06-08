@@ -162,14 +162,14 @@ def print_quartile_table(analysis: Dict, method_order: List[str]) -> None:
             for q in range(4)
         ]
         gap = d["per_quartile_mean"][3] - d["per_quartile_mean"][0]
-        print(f"  {method}: {', '.join(parts)}, gap Q4-Q1={gap:+.3f}")
+        print(f"{method}: {', '.join(parts)}, gap Q4-Q1={gap:+.3f}")
 
     print("advantage over Greedy CF at Q4:")
     for method in method_order:
         if method == "Greedy CF":
             continue
         gain = analysis["per_method"][method]["per_quartile_mean"][3] - gcf_means[3]
-        print(f"  {method}: {gain:+.3f}")
+        print(f"{method}: {gain:+.3f}")
     print(f"n per quartile: {n_per_q}")
 
 
@@ -191,8 +191,8 @@ def print_vignette(
         f"\nuser {user_idx}, niche_score={niche_score:.3f}, "
         f"rank {niche_rank + 1}/{n_cold}"
     )
-    print(f"  top genres: {genre_str}")
-    print(f"  ratings: {len(ratings_by_user[user_idx])}")
+    print(f"top genres: {genre_str}")
+    print(f"ratings: {len(ratings_by_user[user_idx])}")
     for method, rewards in rewards_by_method.items():
         if not rewards:
             continue
@@ -200,7 +200,7 @@ def print_vignette(
         step1 = rewards[0]
         avg = float(np.mean(rewards))
         last5 = float(np.mean(rewards[-5:])) if len(rewards) >= 5 else avg
-        print(f"  {method}: cum={cum:.1f}, avg={avg:.3f}, step1={step1:.1f}, last5={last5:.3f}")
+        print(f"{method}: cum={cum:.1f}, avg={avg:.3f}, step1={step1:.1f}, last5={last5:.3f}")
 
 
 def plot_quartile_analysis(
@@ -417,7 +417,7 @@ def plot_recovery_curves(
         ax2.text(
             bar.get_x() + bar.get_width() / 2,
             delta + offset,
-            f"{ea:.2f}→{la:.2f}",
+            f"{ea:.2f}->{la:.2f}",
             ha="center", va=va, fontsize=7,
         )
 

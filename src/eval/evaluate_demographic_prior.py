@@ -42,7 +42,7 @@ def hit_at_k(rewards, k, threshold=4.0):
 
 def run_episodes(policy, env, users, label):
     all_rewards = []
-    for u in tqdm(users, desc=label, ncols=72):
+    for u in tqdm(users, desc=label):
         state = env.reset(user_idx=u)
         policy.reset(user_idx=u)
         ep, done = [], False

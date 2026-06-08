@@ -55,7 +55,7 @@ def run_episodes(
     all_rewards: List[List[float]] = []
     fallback_rates: List[float] = []
 
-    for user_idx in tqdm(cold_users, desc=label, ncols=72):
+    for user_idx in tqdm(cold_users, desc=label):
         state = env.reset(user_idx=user_idx)
         policy.reset(user_idx=user_idx)
         episode_rewards: List[float] = []

@@ -42,7 +42,7 @@ def hit_at_k(rewards: List[float], k: int, threshold: float = 4.0) -> float:
 
 def run_episodes(policy, env, cold_users, label):
     all_rewards = []
-    for user_idx in tqdm(cold_users, desc=label, ncols=72):
+    for user_idx in tqdm(cold_users, desc=label):
         state = env.reset(user_idx=user_idx)
         policy.reset()
         ep_rewards = []
