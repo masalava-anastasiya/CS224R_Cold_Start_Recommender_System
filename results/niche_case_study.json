@@ -1,0 +1,7440 @@
+{
+  "experiment": {
+    "T": 20,
+    "n_cold_users": 1688,
+    "n_warm_users": 3936,
+    "mode": "non_exhaustive",
+    "k_svd": 50
+  },
+  "niche_scores": {
+    "mean": 0.5929129966160053,
+    "std": 0.17026942476100232,
+    "quartile_boundaries": [
+      0.47329049548834734,
+      0.5823934964888025,
+      0.7054795778883107
+    ],
+    "per_user": [
+      {
+        "user_idx": 0,
+        "niche_score": 1.0437832607643929
+      },
+      {
+        "user_idx": 2,
+        "niche_score": 0.695656108597285
+      },
+      {
+        "user_idx": 5,
+        "niche_score": 0.5088709677419354
+      },
+      {
+        "user_idx": 6,
+        "niche_score": 0.5563787479333304
+      },
+      {
+        "user_idx": 7,
+        "niche_score": 0.43552913318386777
+      },
+      {
+        "user_idx": 14,
+        "niche_score": 0.45906797307137104
+      },
+      {
+        "user_idx": 20,
+        "niche_score": 0.6661520422122338
+      },
+      {
+        "user_idx": 22,
+        "niche_score": 0.39303647974805356
+      },
+      {
+        "user_idx": 23,
+        "niche_score": 0.5943984012225945
+      },
+      {
+        "user_idx": 25,
+        "niche_score": 0.795379039565086
+      },
+      {
+        "user_idx": 27,
+        "niche_score": 0.7887537993920972
+      },
+      {
+        "user_idx": 33,
+        "niche_score": 0.4314791479147916
+      },
+      {
+        "user_idx": 35,
+        "niche_score": 0.4309820944112859
+      },
+      {
+        "user_idx": 36,
+        "niche_score": 0.5523076923076923
+      },
+      {
+        "user_idx": 40,
+        "niche_score": 1.322822299651568
+      },
+      {
+        "user_idx": 44,
+        "niche_score": 0.9538461538461538
+      },
+      {
+        "user_idx": 46,
+        "niche_score": 0.47611238824744584
+      },
+      {
+        "user_idx": 49,
+        "niche_score": 0.8660707159390214
+      },
+      {
+        "user_idx": 52,
+        "niche_score": 0.7023328473752052
+      },
+      {
+        "user_idx": 58,
+        "niche_score": 0.8036038477171116
+      },
+      {
+        "user_idx": 61,
+        "niche_score": 0.9068107273779664
+      },
+      {
+        "user_idx": 62,
+        "niche_score": 0.9336101398601399
+      },
+      {
+        "user_idx": 65,
+        "niche_score": 0.7044699486559951
+      },
+      {
+        "user_idx": 71,
+        "niche_score": 0.6410399947519188
+      },
+      {
+        "user_idx": 74,
+        "niche_score": 0.5969149488183405
+      },
+      {
+        "user_idx": 76,
+        "niche_score": 0.4853555967841683
+      },
+      {
+        "user_idx": 79,
+        "niche_score": 0.8564915327833261
+      },
+      {
+        "user_idx": 81,
+        "niche_score": 0.6339275489559874
+      },
+      {
+        "user_idx": 85,
+        "niche_score": 0.3964849010779713
+      },
+      {
+        "user_idx": 93,
+        "niche_score": 0.6396117730608379
+      },
+      {
+        "user_idx": 95,
+        "niche_score": 0.5858276044420943
+      },
+      {
+        "user_idx": 97,
+        "niche_score": 0.5701869665356999
+      },
+      {
+        "user_idx": 104,
+        "niche_score": 0.5972750862294309
+      },
+      {
+        "user_idx": 105,
+        "niche_score": 0.37903490535069484
+      },
+      {
+        "user_idx": 107,
+        "niche_score": 0.5945033944388227
+      },
+      {
+        "user_idx": 110,
+        "niche_score": 0.5791570660522273
+      },
+      {
+        "user_idx": 111,
+        "niche_score": 0.5006752845842176
+      },
+      {
+        "user_idx": 112,
+        "niche_score": 0.5519834067928442
+      },
+      {
+        "user_idx": 118,
+        "niche_score": 0.49110818456735916
+      },
+      {
+        "user_idx": 121,
+        "niche_score": 0.8190936792032291
+      },
+      {
+        "user_idx": 124,
+        "niche_score": 0.9475520486347526
+      },
+      {
+        "user_idx": 128,
+        "niche_score": 0.6544733044733044
+      },
+      {
+        "user_idx": 136,
+        "niche_score": 0.4807675845952355
+      },
+      {
+        "user_idx": 145,
+        "niche_score": 0.6769014285792809
+      },
+      {
+        "user_idx": 149,
+        "niche_score": 0.6886910263057051
+      },
+      {
+        "user_idx": 159,
+        "niche_score": 0.8149400986610289
+      },
+      {
+        "user_idx": 160,
+        "niche_score": 0.7864278387122228
+      },
+      {
+        "user_idx": 171,
+        "niche_score": 0.6725806451612903
+      },
+      {
+        "user_idx": 179,
+        "niche_score": 0.47615917542316655
+      },
+      {
+        "user_idx": 182,
+        "niche_score": 0.692206750747248
+      },
+      {
+        "user_idx": 183,
+        "niche_score": 0.5305949052861774
+      },
+      {
+        "user_idx": 187,
+        "niche_score": 0.7853170189098999
+      },
+      {
+        "user_idx": 188,
+        "niche_score": 0.5508138930091888
+      },
+      {
+        "user_idx": 189,
+        "niche_score": 0.666923076923077
+      },
+      {
+        "user_idx": 190,
+        "niche_score": 0.47901178910353215
+      },
+      {
+        "user_idx": 193,
+        "niche_score": 0.35507342379862394
+      },
+      {
+        "user_idx": 194,
+        "niche_score": 0.6517952635599695
+      },
+      {
+        "user_idx": 197,
+        "niche_score": 0.47335907335907335
+      },
+      {
+        "user_idx": 200,
+        "niche_score": 0.5153070792311298
+      },
+      {
+        "user_idx": 201,
+        "niche_score": 0.712054388876173
+      },
+      {
+        "user_idx": 202,
+        "niche_score": 0.6613311093991845
+      },
+      {
+        "user_idx": 204,
+        "niche_score": 0.5221674876847291
+      },
+      {
+        "user_idx": 205,
+        "niche_score": 0.3302419354838708
+      },
+      {
+        "user_idx": 206,
+        "niche_score": 0.5481194418590593
+      },
+      {
+        "user_idx": 217,
+        "niche_score": 0.5691339177254671
+      },
+      {
+        "user_idx": 218,
+        "niche_score": 0.5199637023593466
+      },
+      {
+        "user_idx": 224,
+        "niche_score": 0.9092741935483871
+      },
+      {
+        "user_idx": 226,
+        "niche_score": 0.8270135022428601
+      },
+      {
+        "user_idx": 227,
+        "niche_score": 0.5965074663704799
+      },
+      {
+        "user_idx": 229,
+        "niche_score": 0.853410740203193
+      },
+      {
+        "user_idx": 235,
+        "niche_score": 0.40985074381658826
+      },
+      {
+        "user_idx": 243,
+        "niche_score": 0.688390332138687
+      },
+      {
+        "user_idx": 247,
+        "niche_score": 0.43606073337265816
+      },
+      {
+        "user_idx": 256,
+        "niche_score": 1.0763125763125763
+      },
+      {
+        "user_idx": 259,
+        "niche_score": 0.48882512836001213
+      },
+      {
+        "user_idx": 261,
+        "niche_score": 0.7014354066985646
+      },
+      {
+        "user_idx": 262,
+        "niche_score": 0.4166753054424289
+      },
+      {
+        "user_idx": 270,
+        "niche_score": 0.6663772557030984
+      },
+      {
+        "user_idx": 277,
+        "niche_score": 0.5885225885225885
+      },
+      {
+        "user_idx": 279,
+        "niche_score": 0.6414821590726991
+      },
+      {
+        "user_idx": 284,
+        "niche_score": 0.5622893440497796
+      },
+      {
+        "user_idx": 287,
+        "niche_score": 0.5234502339765499
+      },
+      {
+        "user_idx": 294,
+        "niche_score": 0.7141948979749285
+      },
+      {
+        "user_idx": 295,
+        "niche_score": 0.6732634308225338
+      },
+      {
+        "user_idx": 297,
+        "niche_score": 0.49452680250735204
+      },
+      {
+        "user_idx": 299,
+        "niche_score": 0.40122611084099846
+      },
+      {
+        "user_idx": 301,
+        "niche_score": 0.6601958680178673
+      },
+      {
+        "user_idx": 302,
+        "niche_score": 0.6072448439978848
+      },
+      {
+        "user_idx": 306,
+        "niche_score": 0.3981211852226989
+      },
+      {
+        "user_idx": 307,
+        "niche_score": 0.6824925255704171
+      },
+      {
+        "user_idx": 308,
+        "niche_score": 0.6654377089942554
+      },
+      {
+        "user_idx": 314,
+        "niche_score": 0.7103030303030304
+      },
+      {
+        "user_idx": 315,
+        "niche_score": 0.5239123912391239
+      },
+      {
+        "user_idx": 316,
+        "niche_score": 0.31898566563199227
+      },
+      {
+        "user_idx": 323,
+        "niche_score": 1.0212553861984695
+      },
+      {
+        "user_idx": 325,
+        "niche_score": 0.8101604278074865
+      },
+      {
+        "user_idx": 327,
+        "niche_score": 0.494083694083694
+      },
+      {
+        "user_idx": 328,
+        "niche_score": 0.555723346421021
+      },
+      {
+        "user_idx": 329,
+        "niche_score": 0.5867542419266557
+      },
+      {
+        "user_idx": 333,
+        "niche_score": 0.41247802712917125
+      },
+      {
+        "user_idx": 334,
+        "niche_score": 0.6068200043741343
+      },
+      {
+        "user_idx": 335,
+        "niche_score": 0.39138649624895794
+      },
+      {
+        "user_idx": 340,
+        "niche_score": 0.5807239819004526
+      },
+      {
+        "user_idx": 345,
+        "niche_score": 0.49145526485825
+      },
+      {
+        "user_idx": 346,
+        "niche_score": 0.5277310924369748
+      },
+      {
+        "user_idx": 351,
+        "niche_score": 0.4769725306838105
+      },
+      {
+        "user_idx": 356,
+        "niche_score": 0.6955646057015921
+      },
+      {
+        "user_idx": 358,
+        "niche_score": 0.3504688709550319
+      },
+      {
+        "user_idx": 360,
+        "niche_score": 0.5452433628318584
+      },
+      {
+        "user_idx": 363,
+        "niche_score": 0.2646720368239357
+      },
+      {
+        "user_idx": 364,
+        "niche_score": 0.3380145481406198
+      },
+      {
+        "user_idx": 374,
+        "niche_score": 0.6154285825551671
+      },
+      {
+        "user_idx": 375,
+        "niche_score": 0.47046382189239333
+      },
+      {
+        "user_idx": 380,
+        "niche_score": 0.34793792334733775
+      },
+      {
+        "user_idx": 382,
+        "niche_score": 0.7480342275670675
+      },
+      {
+        "user_idx": 386,
+        "niche_score": 0.4718214901023171
+      },
+      {
+        "user_idx": 388,
+        "niche_score": 0.5839135654261705
+      },
+      {
+        "user_idx": 389,
+        "niche_score": 0.4785058154735995
+      },
+      {
+        "user_idx": 391,
+        "niche_score": 0.29008808342614156
+      },
+      {
+        "user_idx": 394,
+        "niche_score": 0.6093325279371791
+      },
+      {
+        "user_idx": 397,
+        "niche_score": 0.567745240331256
+      },
+      {
+        "user_idx": 399,
+        "niche_score": 0.640013562874713
+      },
+      {
+        "user_idx": 401,
+        "niche_score": 0.7250231267345051
+      },
+      {
+        "user_idx": 403,
+        "niche_score": 0.7107715813598167
+      },
+      {
+        "user_idx": 410,
+        "niche_score": 0.8061057363688943
+      },
+      {
+        "user_idx": 414,
+        "niche_score": 0.6746153846153846
+      },
+      {
+        "user_idx": 417,
+        "niche_score": 0.43370582905466626
+      },
+      {
+        "user_idx": 423,
+        "niche_score": 0.6273114136763858
+      },
+      {
+        "user_idx": 426,
+        "niche_score": 0.8817683595177201
+      },
+      {
+        "user_idx": 432,
+        "niche_score": 0.7995918367346939
+      },
+      {
+        "user_idx": 437,
+        "niche_score": 0.6318840579710145
+      },
+      {
+        "user_idx": 438,
+        "niche_score": 0.7654352302229119
+      },
+      {
+        "user_idx": 440,
+        "niche_score": 0.8124378236359462
+      },
+      {
+        "user_idx": 442,
+        "niche_score": 0.9266009852216749
+      },
+      {
+        "user_idx": 445,
+        "niche_score": 0.7912955465587044
+      },
+      {
+        "user_idx": 446,
+        "niche_score": 0.5131332533013205
+      },
+      {
+        "user_idx": 447,
+        "niche_score": 0.4376923076923077
+      },
+      {
+        "user_idx": 450,
+        "niche_score": 0.5857771260997068
+      },
+      {
+        "user_idx": 459,
+        "niche_score": 0.3226600985221676
+      },
+      {
+        "user_idx": 460,
+        "niche_score": 0.4558003944096717
+      },
+      {
+        "user_idx": 467,
+        "niche_score": 0.528083028083028
+      },
+      {
+        "user_idx": 468,
+        "niche_score": 0.524656235182551
+      },
+      {
+        "user_idx": 471,
+        "niche_score": 0.6823039935870023
+      },
+      {
+        "user_idx": 474,
+        "niche_score": 0.5176976395737094
+      },
+      {
+        "user_idx": 478,
+        "niche_score": 0.5035528622842904
+      },
+      {
+        "user_idx": 482,
+        "niche_score": 0.30311606016795345
+      },
+      {
+        "user_idx": 484,
+        "niche_score": 0.5174175863206777
+      },
+      {
+        "user_idx": 485,
+        "niche_score": 0.6000112351753514
+      },
+      {
+        "user_idx": 489,
+        "niche_score": 0.4475627309319128
+      },
+      {
+        "user_idx": 491,
+        "niche_score": 0.7489278992396977
+      },
+      {
+        "user_idx": 493,
+        "niche_score": 0.6110508033000435
+      },
+      {
+        "user_idx": 494,
+        "niche_score": 0.7885553578602996
+      },
+      {
+        "user_idx": 501,
+        "niche_score": 0.35935039980164885
+      },
+      {
+        "user_idx": 503,
+        "niche_score": 0.43957504775052125
+      },
+      {
+        "user_idx": 508,
+        "niche_score": 0.8635531135531136
+      },
+      {
+        "user_idx": 515,
+        "niche_score": 0.4061776061776061
+      },
+      {
+        "user_idx": 520,
+        "niche_score": 0.45064227832724135
+      },
+      {
+        "user_idx": 521,
+        "niche_score": 0.46694321178210807
+      },
+      {
+        "user_idx": 524,
+        "niche_score": 0.5173602159164459
+      },
+      {
+        "user_idx": 528,
+        "niche_score": 0.6657376199118485
+      },
+      {
+        "user_idx": 533,
+        "niche_score": 0.49250976986539297
+      },
+      {
+        "user_idx": 534,
+        "niche_score": 0.8438144134346666
+      },
+      {
+        "user_idx": 542,
+        "niche_score": 0.7149162791612831
+      },
+      {
+        "user_idx": 549,
+        "niche_score": 0.4877995404311194
+      },
+      {
+        "user_idx": 550,
+        "niche_score": 0.6050061050061051
+      },
+      {
+        "user_idx": 553,
+        "niche_score": 0.6766033026113671
+      },
+      {
+        "user_idx": 555,
+        "niche_score": 0.6424008908833161
+      },
+      {
+        "user_idx": 558,
+        "niche_score": 1.0336282753524955
+      },
+      {
+        "user_idx": 561,
+        "niche_score": 0.6511768665243958
+      },
+      {
+        "user_idx": 562,
+        "niche_score": 0.33882352941176463
+      },
+      {
+        "user_idx": 566,
+        "niche_score": 0.2217054263565893
+      },
+      {
+        "user_idx": 570,
+        "niche_score": 0.5385662431941922
+      },
+      {
+        "user_idx": 571,
+        "niche_score": 0.39649500145039307
+      },
+      {
+        "user_idx": 574,
+        "niche_score": 0.5587176024181618
+      },
+      {
+        "user_idx": 576,
+        "niche_score": 0.5848202851532486
+      },
+      {
+        "user_idx": 577,
+        "niche_score": 0.8015726779877366
+      },
+      {
+        "user_idx": 579,
+        "niche_score": 0.5677473549123283
+      },
+      {
+        "user_idx": 583,
+        "niche_score": 0.7338299198421079
+      },
+      {
+        "user_idx": 584,
+        "niche_score": 0.7969432520401906
+      },
+      {
+        "user_idx": 588,
+        "niche_score": 0.5967890529738519
+      },
+      {
+        "user_idx": 589,
+        "niche_score": 1.0225885225885225
+      },
+      {
+        "user_idx": 590,
+        "niche_score": 0.4721896596973143
+      },
+      {
+        "user_idx": 595,
+        "niche_score": 0.3796354806876612
+      },
+      {
+        "user_idx": 597,
+        "niche_score": 0.5258781048254733
+      },
+      {
+        "user_idx": 599,
+        "niche_score": 0.42046824208334865
+      },
+      {
+        "user_idx": 605,
+        "niche_score": 0.7633839009985799
+      },
+      {
+        "user_idx": 606,
+        "niche_score": 0.44129641004641007
+      },
+      {
+        "user_idx": 610,
+        "niche_score": 0.7287524777176551
+      },
+      {
+        "user_idx": 613,
+        "niche_score": 0.5323037323037323
+      },
+      {
+        "user_idx": 618,
+        "niche_score": 0.5930262575533507
+      },
+      {
+        "user_idx": 620,
+        "niche_score": 0.35766955676201273
+      },
+      {
+        "user_idx": 627,
+        "niche_score": 0.7161593172119488
+      },
+      {
+        "user_idx": 630,
+        "niche_score": 0.6659640069099735
+      },
+      {
+        "user_idx": 634,
+        "niche_score": 0.5379377621695444
+      },
+      {
+        "user_idx": 636,
+        "niche_score": 0.9903791240170452
+      },
+      {
+        "user_idx": 642,
+        "niche_score": 0.68605222734255
+      },
+      {
+        "user_idx": 644,
+        "niche_score": 0.441808398845978
+      },
+      {
+        "user_idx": 645,
+        "niche_score": 0.7954545454545454
+      },
+      {
+        "user_idx": 646,
+        "niche_score": 0.8612444357375301
+      },
+      {
+        "user_idx": 647,
+        "niche_score": 0.4446500947755523
+      },
+      {
+        "user_idx": 648,
+        "niche_score": 0.4703739355794151
+      },
+      {
+        "user_idx": 650,
+        "niche_score": 0.6816416869989543
+      },
+      {
+        "user_idx": 664,
+        "niche_score": 0.7255721052296449
+      },
+      {
+        "user_idx": 667,
+        "niche_score": 0.7648825654923216
+      },
+      {
+        "user_idx": 669,
+        "niche_score": 0.8119828993392927
+      },
+      {
+        "user_idx": 671,
+        "niche_score": 0.5276006670972593
+      },
+      {
+        "user_idx": 673,
+        "niche_score": 0.6164784955666188
+      },
+      {
+        "user_idx": 675,
+        "niche_score": 0.706724212860975
+      },
+      {
+        "user_idx": 678,
+        "niche_score": 0.505514266620765
+      },
+      {
+        "user_idx": 688,
+        "niche_score": 0.45498020324147326
+      },
+      {
+        "user_idx": 689,
+        "niche_score": 0.625
+      },
+      {
+        "user_idx": 690,
+        "niche_score": 0.3763324299909665
+      },
+      {
+        "user_idx": 694,
+        "niche_score": 0.5183250482798083
+      },
+      {
+        "user_idx": 698,
+        "niche_score": 0.7943977591036414
+      },
+      {
+        "user_idx": 700,
+        "niche_score": 0.3758620689655173
+      },
+      {
+        "user_idx": 704,
+        "niche_score": 0.45333333333333337
+      },
+      {
+        "user_idx": 707,
+        "niche_score": 0.5297178538390379
+      },
+      {
+        "user_idx": 711,
+        "niche_score": 0.5122628719221585
+      },
+      {
+        "user_idx": 714,
+        "niche_score": 0.5741836734693877
+      },
+      {
+        "user_idx": 716,
+        "niche_score": 0.6105412291877169
+      },
+      {
+        "user_idx": 717,
+        "niche_score": 0.7501391441412835
+      },
+      {
+        "user_idx": 718,
+        "niche_score": 0.3032403943671339
+      },
+      {
+        "user_idx": 721,
+        "niche_score": 0.35640814912114316
+      },
+      {
+        "user_idx": 722,
+        "niche_score": 0.5957057399230878
+      },
+      {
+        "user_idx": 725,
+        "niche_score": 0.776833717357911
+      },
+      {
+        "user_idx": 727,
+        "niche_score": 0.7465706157511813
+      },
+      {
+        "user_idx": 731,
+        "niche_score": 0.7706191386283834
+      },
+      {
+        "user_idx": 732,
+        "niche_score": 0.8119903352461492
+      },
+      {
+        "user_idx": 736,
+        "niche_score": 0.6266162809373914
+      },
+      {
+        "user_idx": 741,
+        "niche_score": 0.6402288056006147
+      },
+      {
+        "user_idx": 746,
+        "niche_score": 0.4690701364646144
+      },
+      {
+        "user_idx": 749,
+        "niche_score": 0.38745629370629375
+      },
+      {
+        "user_idx": 750,
+        "niche_score": 0.6940955257925805
+      },
+      {
+        "user_idx": 752,
+        "niche_score": 0.5109395109395108
+      },
+      {
+        "user_idx": 753,
+        "niche_score": 0.39261083743842373
+      },
+      {
+        "user_idx": 754,
+        "niche_score": 0.6545339785398696
+      },
+      {
+        "user_idx": 755,
+        "niche_score": 0.5213372024798906
+      },
+      {
+        "user_idx": 758,
+        "niche_score": 0.6219353462071908
+      },
+      {
+        "user_idx": 760,
+        "niche_score": 0.7698618073431784
+      },
+      {
+        "user_idx": 764,
+        "niche_score": 0.5948946579341907
+      },
+      {
+        "user_idx": 781,
+        "niche_score": 0.5022549058838
+      },
+      {
+        "user_idx": 790,
+        "niche_score": 0.37669773010502006
+      },
+      {
+        "user_idx": 794,
+        "niche_score": 0.4115502660394301
+      },
+      {
+        "user_idx": 801,
+        "niche_score": 0.4522522522522522
+      },
+      {
+        "user_idx": 805,
+        "niche_score": 0.43268983268983263
+      },
+      {
+        "user_idx": 808,
+        "niche_score": 0.7663027713119336
+      },
+      {
+        "user_idx": 809,
+        "niche_score": 0.40120415982484947
+      },
+      {
+        "user_idx": 811,
+        "niche_score": 0.635898560898561
+      },
+      {
+        "user_idx": 814,
+        "niche_score": 0.6662288930581612
+      },
+      {
+        "user_idx": 817,
+        "niche_score": 0.5198149951314508
+      },
+      {
+        "user_idx": 822,
+        "niche_score": 0.5289202387411829
+      },
+      {
+        "user_idx": 824,
+        "niche_score": 0.44986902852035704
+      },
+      {
+        "user_idx": 827,
+        "niche_score": 0.7135217723453018
+      },
+      {
+        "user_idx": 830,
+        "niche_score": 0.682967032967033
+      },
+      {
+        "user_idx": 831,
+        "niche_score": 0.8459249084249084
+      },
+      {
+        "user_idx": 833,
+        "niche_score": 0.44490773680435813
+      },
+      {
+        "user_idx": 836,
+        "niche_score": 0.37230769230769234
+      },
+      {
+        "user_idx": 838,
+        "niche_score": 0.8113126558019278
+      },
+      {
+        "user_idx": 840,
+        "niche_score": 0.3953441295546558
+      },
+      {
+        "user_idx": 842,
+        "niche_score": 0.6317799169811739
+      },
+      {
+        "user_idx": 850,
+        "niche_score": 0.7943493288320874
+      },
+      {
+        "user_idx": 852,
+        "niche_score": 0.4467178391229024
+      },
+      {
+        "user_idx": 856,
+        "niche_score": 0.7277661032434901
+      },
+      {
+        "user_idx": 858,
+        "niche_score": 0.6110823139125026
+      },
+      {
+        "user_idx": 861,
+        "niche_score": 0.5584376953014987
+      },
+      {
+        "user_idx": 867,
+        "niche_score": 0.6566517558381176
+      },
+      {
+        "user_idx": 868,
+        "niche_score": 0.45296608444165665
+      },
+      {
+        "user_idx": 875,
+        "niche_score": 0.1906455862977603
+      },
+      {
+        "user_idx": 881,
+        "niche_score": 0.713363392231408
+      },
+      {
+        "user_idx": 882,
+        "niche_score": 0.7492294566202741
+      },
+      {
+        "user_idx": 886,
+        "niche_score": 0.44925766900791053
+      },
+      {
+        "user_idx": 887,
+        "niche_score": 0.4200261957317082
+      },
+      {
+        "user_idx": 888,
+        "niche_score": 0.7756375474769398
+      },
+      {
+        "user_idx": 891,
+        "niche_score": 0.41864253393665163
+      },
+      {
+        "user_idx": 899,
+        "niche_score": 0.5389537350288816
+      },
+      {
+        "user_idx": 901,
+        "niche_score": 0.26890756302521
+      },
+      {
+        "user_idx": 905,
+        "niche_score": 0.5502164502164502
+      },
+      {
+        "user_idx": 906,
+        "niche_score": 0.7621981284397299
+      },
+      {
+        "user_idx": 908,
+        "niche_score": 1.0156238430211033
+      },
+      {
+        "user_idx": 912,
+        "niche_score": 0.7856700261763553
+      },
+      {
+        "user_idx": 923,
+        "niche_score": 0.47561224489795917
+      },
+      {
+        "user_idx": 924,
+        "niche_score": 0.5228880652609467
+      },
+      {
+        "user_idx": 926,
+        "niche_score": 0.7955760413618183
+      },
+      {
+        "user_idx": 931,
+        "niche_score": 0.613793103448276
+      },
+      {
+        "user_idx": 934,
+        "niche_score": 0.2800563777307964
+      },
+      {
+        "user_idx": 939,
+        "niche_score": 0.43243243243243246
+      },
+      {
+        "user_idx": 948,
+        "niche_score": 0.6144024514811031
+      },
+      {
+        "user_idx": 950,
+        "niche_score": 0.5629066931449008
+      },
+      {
+        "user_idx": 952,
+        "niche_score": 0.7772576260948354
+      },
+      {
+        "user_idx": 958,
+        "niche_score": 0.46818825449396395
+      },
+      {
+        "user_idx": 959,
+        "niche_score": 0.6947052947052947
+      },
+      {
+        "user_idx": 962,
+        "niche_score": 0.5327133776973996
+      },
+      {
+        "user_idx": 966,
+        "niche_score": 0.7179653287035836
+      },
+      {
+        "user_idx": 967,
+        "niche_score": 0.421455938697318
+      },
+      {
+        "user_idx": 968,
+        "niche_score": 0.45247580828976186
+      },
+      {
+        "user_idx": 970,
+        "niche_score": 0.7508563899868248
+      },
+      {
+        "user_idx": 973,
+        "niche_score": 0.8238501659554291
+      },
+      {
+        "user_idx": 976,
+        "niche_score": 0.46567944250871074
+      },
+      {
+        "user_idx": 978,
+        "niche_score": 0.4706239571812648
+      },
+      {
+        "user_idx": 979,
+        "niche_score": 0.4295987304454215
+      },
+      {
+        "user_idx": 981,
+        "niche_score": 0.3129425583800416
+      },
+      {
+        "user_idx": 987,
+        "niche_score": 0.5307391751712289
+      },
+      {
+        "user_idx": 988,
+        "niche_score": 0.4983356774496014
+      },
+      {
+        "user_idx": 989,
+        "niche_score": 0.7428054298642535
+      },
+      {
+        "user_idx": 997,
+        "niche_score": 0.6474007765314927
+      },
+      {
+        "user_idx": 998,
+        "niche_score": 0.7774959782002036
+      },
+      {
+        "user_idx": 999,
+        "niche_score": 0.6934687953555878
+      },
+      {
+        "user_idx": 1002,
+        "niche_score": 0.6405923344947735
+      },
+      {
+        "user_idx": 1006,
+        "niche_score": 0.38422977916271517
+      },
+      {
+        "user_idx": 1007,
+        "niche_score": 0.48027444253859364
+      },
+      {
+        "user_idx": 1013,
+        "niche_score": 0.4798085121683121
+      },
+      {
+        "user_idx": 1015,
+        "niche_score": 0.3661674421933492
+      },
+      {
+        "user_idx": 1016,
+        "niche_score": 0.6938709884880057
+      },
+      {
+        "user_idx": 1019,
+        "niche_score": 0.7572850678733032
+      },
+      {
+        "user_idx": 1023,
+        "niche_score": 0.4043385262401913
+      },
+      {
+        "user_idx": 1024,
+        "niche_score": 0.6337384402792048
+      },
+      {
+        "user_idx": 1028,
+        "niche_score": 0.5001950553543224
+      },
+      {
+        "user_idx": 1037,
+        "niche_score": 0.7348979591836735
+      },
+      {
+        "user_idx": 1039,
+        "niche_score": 0.23082655925247586
+      },
+      {
+        "user_idx": 1041,
+        "niche_score": 0.7112906644721255
+      },
+      {
+        "user_idx": 1042,
+        "niche_score": 0.5138912056343248
+      },
+      {
+        "user_idx": 1046,
+        "niche_score": 0.43875119504496873
+      },
+      {
+        "user_idx": 1056,
+        "niche_score": 0.5543325708097118
+      },
+      {
+        "user_idx": 1058,
+        "niche_score": 0.4722291496943599
+      },
+      {
+        "user_idx": 1061,
+        "niche_score": 0.6250038323392835
+      },
+      {
+        "user_idx": 1068,
+        "niche_score": 0.4277553346720039
+      },
+      {
+        "user_idx": 1076,
+        "niche_score": 0.4725176471168059
+      },
+      {
+        "user_idx": 1079,
+        "niche_score": 0.43037987282168055
+      },
+      {
+        "user_idx": 1080,
+        "niche_score": 0.8658113061933244
+      },
+      {
+        "user_idx": 1081,
+        "niche_score": 0.9965659340659341
+      },
+      {
+        "user_idx": 1090,
+        "niche_score": 0.9200244947948562
+      },
+      {
+        "user_idx": 1091,
+        "niche_score": 0.46481426668639936
+      },
+      {
+        "user_idx": 1094,
+        "niche_score": 0.42583470169677073
+      },
+      {
+        "user_idx": 1098,
+        "niche_score": 0.8882669666291714
+      },
+      {
+        "user_idx": 1102,
+        "niche_score": 0.5315315315315317
+      },
+      {
+        "user_idx": 1108,
+        "niche_score": 0.8369584092632821
+      },
+      {
+        "user_idx": 1111,
+        "niche_score": 0.9846153846153847
+      },
+      {
+        "user_idx": 1114,
+        "niche_score": 0.8123152709359607
+      },
+      {
+        "user_idx": 1115,
+        "niche_score": 0.5404745936844508
+      },
+      {
+        "user_idx": 1117,
+        "niche_score": 0.698901247965274
+      },
+      {
+        "user_idx": 1123,
+        "niche_score": 0.49571633031187257
+      },
+      {
+        "user_idx": 1125,
+        "niche_score": 0.564243118171843
+      },
+      {
+        "user_idx": 1126,
+        "niche_score": 0.6497361735391831
+      },
+      {
+        "user_idx": 1130,
+        "niche_score": 0.6070508188155248
+      },
+      {
+        "user_idx": 1134,
+        "niche_score": 0.27110699969164354
+      },
+      {
+        "user_idx": 1136,
+        "niche_score": 0.4923343623724361
+      },
+      {
+        "user_idx": 1137,
+        "niche_score": 0.4463348416289593
+      },
+      {
+        "user_idx": 1139,
+        "niche_score": 0.4509011317531496
+      },
+      {
+        "user_idx": 1142,
+        "niche_score": 0.2989273580944384
+      },
+      {
+        "user_idx": 1146,
+        "niche_score": 0.7660284054970962
+      },
+      {
+        "user_idx": 1153,
+        "niche_score": 0.963265306122449
+      },
+      {
+        "user_idx": 1154,
+        "niche_score": 0.71412680756396
+      },
+      {
+        "user_idx": 1156,
+        "niche_score": 0.6513507801768166
+      },
+      {
+        "user_idx": 1159,
+        "niche_score": 0.8103741576050546
+      },
+      {
+        "user_idx": 1162,
+        "niche_score": 0.6061776061776061
+      },
+      {
+        "user_idx": 1169,
+        "niche_score": 0.5581340244353945
+      },
+      {
+        "user_idx": 1173,
+        "niche_score": 0.6069387755102041
+      },
+      {
+        "user_idx": 1179,
+        "niche_score": 0.4866845693951751
+      },
+      {
+        "user_idx": 1181,
+        "niche_score": 0.33279419478929895
+      },
+      {
+        "user_idx": 1182,
+        "niche_score": 0.3704652567596862
+      },
+      {
+        "user_idx": 1184,
+        "niche_score": 0.605543710021322
+      },
+      {
+        "user_idx": 1189,
+        "niche_score": 0.49078865262617155
+      },
+      {
+        "user_idx": 1192,
+        "niche_score": 0.7192018507807982
+      },
+      {
+        "user_idx": 1193,
+        "niche_score": 0.5889046941678522
+      },
+      {
+        "user_idx": 1194,
+        "niche_score": 0.7532923617208077
+      },
+      {
+        "user_idx": 1197,
+        "niche_score": 0.748018648018648
+      },
+      {
+        "user_idx": 1200,
+        "niche_score": 0.5190037002848611
+      },
+      {
+        "user_idx": 1201,
+        "niche_score": 0.6362178875443754
+      },
+      {
+        "user_idx": 1202,
+        "niche_score": 0.3778636708449229
+      },
+      {
+        "user_idx": 1210,
+        "niche_score": 0.6292682926829267
+      },
+      {
+        "user_idx": 1214,
+        "niche_score": 0.6270702359461375
+      },
+      {
+        "user_idx": 1216,
+        "niche_score": 0.6161263459921177
+      },
+      {
+        "user_idx": 1219,
+        "niche_score": 0.7085147311936824
+      },
+      {
+        "user_idx": 1229,
+        "niche_score": 1.251231527093596
+      },
+      {
+        "user_idx": 1232,
+        "niche_score": 0.7110798633481401
+      },
+      {
+        "user_idx": 1233,
+        "niche_score": 0.5744270499783443
+      },
+      {
+        "user_idx": 1234,
+        "niche_score": 0.4502653214819896
+      },
+      {
+        "user_idx": 1240,
+        "niche_score": 0.6220166512488436
+      },
+      {
+        "user_idx": 1242,
+        "niche_score": 0.6008064516129032
+      },
+      {
+        "user_idx": 1245,
+        "niche_score": 0.4648657212366736
+      },
+      {
+        "user_idx": 1249,
+        "niche_score": 0.48922800420780377
+      },
+      {
+        "user_idx": 1252,
+        "niche_score": 0.4983467603797147
+      },
+      {
+        "user_idx": 1253,
+        "niche_score": 0.5202844950213372
+      },
+      {
+        "user_idx": 1258,
+        "niche_score": 0.6673210510419813
+      },
+      {
+        "user_idx": 1259,
+        "niche_score": 0.8507704923634127
+      },
+      {
+        "user_idx": 1275,
+        "niche_score": 0.7687103594080338
+      },
+      {
+        "user_idx": 1281,
+        "niche_score": 0.7372710099723234
+      },
+      {
+        "user_idx": 1285,
+        "niche_score": 0.500046141068627
+      },
+      {
+        "user_idx": 1287,
+        "niche_score": 0.5825415597753838
+      },
+      {
+        "user_idx": 1288,
+        "niche_score": 0.48670076726342704
+      },
+      {
+        "user_idx": 1292,
+        "niche_score": 0.6285590924043839
+      },
+      {
+        "user_idx": 1294,
+        "niche_score": 0.4013717027539492
+      },
+      {
+        "user_idx": 1295,
+        "niche_score": 0.45951492916729375
+      },
+      {
+        "user_idx": 1296,
+        "niche_score": 0.5702297702297703
+      },
+      {
+        "user_idx": 1298,
+        "niche_score": 0.6460290983226762
+      },
+      {
+        "user_idx": 1300,
+        "niche_score": 0.5358186239143268
+      },
+      {
+        "user_idx": 1301,
+        "niche_score": 0.6166115744863374
+      },
+      {
+        "user_idx": 1310,
+        "niche_score": 0.4791831357048749
+      },
+      {
+        "user_idx": 1311,
+        "niche_score": 0.673515597707247
+      },
+      {
+        "user_idx": 1315,
+        "niche_score": 0.5711030841900526
+      },
+      {
+        "user_idx": 1316,
+        "niche_score": 0.6903112088245328
+      },
+      {
+        "user_idx": 1317,
+        "niche_score": 0.37790447982228814
+      },
+      {
+        "user_idx": 1319,
+        "niche_score": 0.24876847290640414
+      },
+      {
+        "user_idx": 1320,
+        "niche_score": 0.4064120731643197
+      },
+      {
+        "user_idx": 1322,
+        "niche_score": 0.47334648410304014
+      },
+      {
+        "user_idx": 1327,
+        "niche_score": 0.3380543568379136
+      },
+      {
+        "user_idx": 1336,
+        "niche_score": 0.5858678634798038
+      },
+      {
+        "user_idx": 1343,
+        "niche_score": 0.4636022514071294
+      },
+      {
+        "user_idx": 1344,
+        "niche_score": 0.12660098522167507
+      },
+      {
+        "user_idx": 1347,
+        "niche_score": 0.4592555724194467
+      },
+      {
+        "user_idx": 1349,
+        "niche_score": 0.33313404092853016
+      },
+      {
+        "user_idx": 1351,
+        "niche_score": 0.46480006799444706
+      },
+      {
+        "user_idx": 1360,
+        "niche_score": 0.7317537892861566
+      },
+      {
+        "user_idx": 1363,
+        "niche_score": 0.6229791130992215
+      },
+      {
+        "user_idx": 1365,
+        "niche_score": 0.31854838709677424
+      },
+      {
+        "user_idx": 1366,
+        "niche_score": 0.7011733359216914
+      },
+      {
+        "user_idx": 1368,
+        "niche_score": 0.4667837342471055
+      },
+      {
+        "user_idx": 1369,
+        "niche_score": 0.3583126443167417
+      },
+      {
+        "user_idx": 1370,
+        "niche_score": 0.8316104275628508
+      },
+      {
+        "user_idx": 1371,
+        "niche_score": 0.4393378773125608
+      },
+      {
+        "user_idx": 1377,
+        "niche_score": 0.7070147014701471
+      },
+      {
+        "user_idx": 1379,
+        "niche_score": 0.5495126316771417
+      },
+      {
+        "user_idx": 1381,
+        "niche_score": 0.31752062527138514
+      },
+      {
+        "user_idx": 1383,
+        "niche_score": 0.3319323203484349
+      },
+      {
+        "user_idx": 1387,
+        "niche_score": 0.32483471364178285
+      },
+      {
+        "user_idx": 1393,
+        "niche_score": 0.5130198058865304
+      },
+      {
+        "user_idx": 1394,
+        "niche_score": 0.6303928036574102
+      },
+      {
+        "user_idx": 1398,
+        "niche_score": 0.5475913043689182
+      },
+      {
+        "user_idx": 1408,
+        "niche_score": 0.4842690601634041
+      },
+      {
+        "user_idx": 1410,
+        "niche_score": 0.5930769230769231
+      },
+      {
+        "user_idx": 1420,
+        "niche_score": 0.7728587319243605
+      },
+      {
+        "user_idx": 1423,
+        "niche_score": 0.693549306336708
+      },
+      {
+        "user_idx": 1424,
+        "niche_score": 0.6173257467994311
+      },
+      {
+        "user_idx": 1425,
+        "niche_score": 0.5330049261083745
+      },
+      {
+        "user_idx": 1426,
+        "niche_score": 0.41003861003861
+      },
+      {
+        "user_idx": 1432,
+        "niche_score": 0.4750644285017761
+      },
+      {
+        "user_idx": 1442,
+        "niche_score": 0.942464512231954
+      },
+      {
+        "user_idx": 1447,
+        "niche_score": 0.3781196581196581
+      },
+      {
+        "user_idx": 1448,
+        "niche_score": 0.7264253393665159
+      },
+      {
+        "user_idx": 1453,
+        "niche_score": 0.27145869394177824
+      },
+      {
+        "user_idx": 1454,
+        "niche_score": 0.666049953746531
+      },
+      {
+        "user_idx": 1474,
+        "niche_score": 0.4587363791677642
+      },
+      {
+        "user_idx": 1479,
+        "niche_score": 0.5484336864985754
+      },
+      {
+        "user_idx": 1480,
+        "niche_score": 0.5862993201481193
+      },
+      {
+        "user_idx": 1482,
+        "niche_score": 0.529432468552657
+      },
+      {
+        "user_idx": 1484,
+        "niche_score": 0.26248386661786527
+      },
+      {
+        "user_idx": 1486,
+        "niche_score": 0.3666472593786495
+      },
+      {
+        "user_idx": 1488,
+        "niche_score": 0.41711229946524075
+      },
+      {
+        "user_idx": 1492,
+        "niche_score": 0.8339435795722092
+      },
+      {
+        "user_idx": 1497,
+        "niche_score": 0.2801256412761015
+      },
+      {
+        "user_idx": 1499,
+        "niche_score": 0.5734883116360048
+      },
+      {
+        "user_idx": 1500,
+        "niche_score": 0.5667966349322704
+      },
+      {
+        "user_idx": 1501,
+        "niche_score": 0.8719700589265806
+      },
+      {
+        "user_idx": 1505,
+        "niche_score": 0.6769311521301724
+      },
+      {
+        "user_idx": 1506,
+        "niche_score": 0.4949755624827258
+      },
+      {
+        "user_idx": 1508,
+        "niche_score": 0.480056315269035
+      },
+      {
+        "user_idx": 1510,
+        "niche_score": 0.41274741806146953
+      },
+      {
+        "user_idx": 1513,
+        "niche_score": 0.50128870818526
+      },
+      {
+        "user_idx": 1515,
+        "niche_score": 0.31016042780748665
+      },
+      {
+        "user_idx": 1516,
+        "niche_score": 0.5499861450487442
+      },
+      {
+        "user_idx": 1521,
+        "niche_score": 0.6042821890490162
+      },
+      {
+        "user_idx": 1522,
+        "niche_score": 0.41198815274902223
+      },
+      {
+        "user_idx": 1523,
+        "niche_score": 0.3667884579531763
+      },
+      {
+        "user_idx": 1524,
+        "niche_score": 0.4171195853387636
+      },
+      {
+        "user_idx": 1526,
+        "niche_score": 0.23849326964828488
+      },
+      {
+        "user_idx": 1530,
+        "niche_score": 0.6352838744785053
+      },
+      {
+        "user_idx": 1532,
+        "niche_score": 0.4280463241448338
+      },
+      {
+        "user_idx": 1536,
+        "niche_score": 0.9860083256244219
+      },
+      {
+        "user_idx": 1540,
+        "niche_score": 0.9344314420723911
+      },
+      {
+        "user_idx": 1541,
+        "niche_score": 0.849624060150376
+      },
+      {
+        "user_idx": 1544,
+        "niche_score": 0.2761538461538463
+      },
+      {
+        "user_idx": 1545,
+        "niche_score": 0.44872032069071854
+      },
+      {
+        "user_idx": 1547,
+        "niche_score": 0.5181920594499864
+      },
+      {
+        "user_idx": 1549,
+        "niche_score": 0.5078817733990149
+      },
+      {
+        "user_idx": 1550,
+        "niche_score": 0.4302558398220244
+      },
+      {
+        "user_idx": 1553,
+        "niche_score": 0.3008097165991902
+      },
+      {
+        "user_idx": 1555,
+        "niche_score": 0.3761713305207607
+      },
+      {
+        "user_idx": 1556,
+        "niche_score": 0.41040430908020253
+      },
+      {
+        "user_idx": 1559,
+        "niche_score": 0.3895473492887539
+      },
+      {
+        "user_idx": 1560,
+        "niche_score": 0.6338604672010526
+      },
+      {
+        "user_idx": 1562,
+        "niche_score": 0.8565323565323566
+      },
+      {
+        "user_idx": 1564,
+        "niche_score": 0.6051723703759664
+      },
+      {
+        "user_idx": 1565,
+        "niche_score": 0.7494668176479
+      },
+      {
+        "user_idx": 1567,
+        "niche_score": 0.5765911084083339
+      },
+      {
+        "user_idx": 1569,
+        "niche_score": 0.645091329426845
+      },
+      {
+        "user_idx": 1571,
+        "niche_score": 0.5141896758703481
+      },
+      {
+        "user_idx": 1573,
+        "niche_score": 0.40683367857542063
+      },
+      {
+        "user_idx": 1574,
+        "niche_score": 0.5604835221352116
+      },
+      {
+        "user_idx": 1576,
+        "niche_score": 0.42987322195315536
+      },
+      {
+        "user_idx": 1577,
+        "niche_score": 0.8763545695356176
+      },
+      {
+        "user_idx": 1578,
+        "niche_score": 0.4720722298061589
+      },
+      {
+        "user_idx": 1579,
+        "niche_score": 0.49498275477671194
+      },
+      {
+        "user_idx": 1581,
+        "niche_score": 0.5601660005630572
+      },
+      {
+        "user_idx": 1584,
+        "niche_score": 0.593050193050193
+      },
+      {
+        "user_idx": 1591,
+        "niche_score": 0.5430842242719006
+      },
+      {
+        "user_idx": 1595,
+        "niche_score": 0.524312466054266
+      },
+      {
+        "user_idx": 1596,
+        "niche_score": 0.5505865102639297
+      },
+      {
+        "user_idx": 1600,
+        "niche_score": 0.5311314506137885
+      },
+      {
+        "user_idx": 1602,
+        "niche_score": 0.5055140912347743
+      },
+      {
+        "user_idx": 1603,
+        "niche_score": 0.366023166023166
+      },
+      {
+        "user_idx": 1608,
+        "niche_score": 0.7494369584303546
+      },
+      {
+        "user_idx": 1610,
+        "niche_score": 0.36690542497176715
+      },
+      {
+        "user_idx": 1614,
+        "niche_score": 0.47728744041680526
+      },
+      {
+        "user_idx": 1616,
+        "niche_score": 0.48435109194602877
+      },
+      {
+        "user_idx": 1619,
+        "niche_score": 0.6815448658649399
+      },
+      {
+        "user_idx": 1621,
+        "niche_score": 0.5290284489733441
+      },
+      {
+        "user_idx": 1623,
+        "niche_score": 0.8127143234432028
+      },
+      {
+        "user_idx": 1625,
+        "niche_score": 0.5050164464508142
+      },
+      {
+        "user_idx": 1626,
+        "niche_score": 0.8461811452496169
+      },
+      {
+        "user_idx": 1629,
+        "niche_score": 0.7113647853271761
+      },
+      {
+        "user_idx": 1630,
+        "niche_score": 0.8709359605911331
+      },
+      {
+        "user_idx": 1631,
+        "niche_score": 0.33903407005874353
+      },
+      {
+        "user_idx": 1640,
+        "niche_score": 0.7548506987217096
+      },
+      {
+        "user_idx": 1649,
+        "niche_score": 0.6041275797373358
+      },
+      {
+        "user_idx": 1656,
+        "niche_score": 0.5280197496032446
+      },
+      {
+        "user_idx": 1658,
+        "niche_score": 0.47434474515495606
+      },
+      {
+        "user_idx": 1661,
+        "niche_score": 0.19047619047619058
+      },
+      {
+        "user_idx": 1669,
+        "niche_score": 0.3961538461538462
+      },
+      {
+        "user_idx": 1671,
+        "niche_score": 0.7082445141065831
+      },
+      {
+        "user_idx": 1672,
+        "niche_score": 0.3818740521988985
+      },
+      {
+        "user_idx": 1674,
+        "niche_score": 0.3602694435883418
+      },
+      {
+        "user_idx": 1676,
+        "niche_score": 0.5049336375328407
+      },
+      {
+        "user_idx": 1679,
+        "niche_score": 0.770008969268775
+      },
+      {
+        "user_idx": 1683,
+        "niche_score": 0.5947467166979362
+      },
+      {
+        "user_idx": 1687,
+        "niche_score": 0.45020242914979747
+      },
+      {
+        "user_idx": 1697,
+        "niche_score": 0.8958556988497735
+      },
+      {
+        "user_idx": 1709,
+        "niche_score": 0.45504319718828046
+      },
+      {
+        "user_idx": 1710,
+        "niche_score": 1.0305250305250304
+      },
+      {
+        "user_idx": 1721,
+        "niche_score": 0.5526981685572349
+      },
+      {
+        "user_idx": 1724,
+        "niche_score": 0.6362972106884126
+      },
+      {
+        "user_idx": 1729,
+        "niche_score": 0.5026339197378469
+      },
+      {
+        "user_idx": 1732,
+        "niche_score": 0.622262051129689
+      },
+      {
+        "user_idx": 1734,
+        "niche_score": 0.8246235944349152
+      },
+      {
+        "user_idx": 1735,
+        "niche_score": 0.6793977510958644
+      },
+      {
+        "user_idx": 1736,
+        "niche_score": 0.6366695614415979
+      },
+      {
+        "user_idx": 1737,
+        "niche_score": 0.6472962262629705
+      },
+      {
+        "user_idx": 1739,
+        "niche_score": 0.6032754010695187
+      },
+      {
+        "user_idx": 1740,
+        "niche_score": 0.7368607380851342
+      },
+      {
+        "user_idx": 1741,
+        "niche_score": 0.5040750915750916
+      },
+      {
+        "user_idx": 1742,
+        "niche_score": 0.42527412371853257
+      },
+      {
+        "user_idx": 1746,
+        "niche_score": 0.6344967980094095
+      },
+      {
+        "user_idx": 1751,
+        "niche_score": 0.49569094464405994
+      },
+      {
+        "user_idx": 1753,
+        "niche_score": 0.4321367521367523
+      },
+      {
+        "user_idx": 1754,
+        "niche_score": 0.6083440860215055
+      },
+      {
+        "user_idx": 1755,
+        "niche_score": 0.6728800611153553
+      },
+      {
+        "user_idx": 1756,
+        "niche_score": 0.5322128163970861
+      },
+      {
+        "user_idx": 1764,
+        "niche_score": 0.25230769230769234
+      },
+      {
+        "user_idx": 1768,
+        "niche_score": 0.38233406435379114
+      },
+      {
+        "user_idx": 1775,
+        "niche_score": 0.865021770682148
+      },
+      {
+        "user_idx": 1787,
+        "niche_score": 0.7946035190339167
+      },
+      {
+        "user_idx": 1790,
+        "niche_score": 0.45465136342511825
+      },
+      {
+        "user_idx": 1795,
+        "niche_score": 1.0420467185761957
+      },
+      {
+        "user_idx": 1797,
+        "niche_score": 0.6187824910024916
+      },
+      {
+        "user_idx": 1800,
+        "niche_score": 0.5179444693237796
+      },
+      {
+        "user_idx": 1802,
+        "niche_score": 0.7158882783882785
+      },
+      {
+        "user_idx": 1805,
+        "niche_score": 0.5078707044832556
+      },
+      {
+        "user_idx": 1807,
+        "niche_score": 0.690269036159447
+      },
+      {
+        "user_idx": 1809,
+        "niche_score": 0.495232302473007
+      },
+      {
+        "user_idx": 1810,
+        "niche_score": 0.32280418007346456
+      },
+      {
+        "user_idx": 1814,
+        "niche_score": 0.6598330487573516
+      },
+      {
+        "user_idx": 1815,
+        "niche_score": 0.7086325439266616
+      },
+      {
+        "user_idx": 1817,
+        "niche_score": 0.24390243902439024
+      },
+      {
+        "user_idx": 1824,
+        "niche_score": 0.494656387157577
+      },
+      {
+        "user_idx": 1827,
+        "niche_score": 0.48033826638477795
+      },
+      {
+        "user_idx": 1829,
+        "niche_score": 0.5471537970300959
+      },
+      {
+        "user_idx": 1831,
+        "niche_score": 0.7279411764705882
+      },
+      {
+        "user_idx": 1832,
+        "niche_score": 0.7293984299567609
+      },
+      {
+        "user_idx": 1835,
+        "niche_score": 0.6551020408163266
+      },
+      {
+        "user_idx": 1836,
+        "niche_score": 0.5810385523210071
+      },
+      {
+        "user_idx": 1838,
+        "niche_score": 0.5167697577564749
+      },
+      {
+        "user_idx": 1841,
+        "niche_score": 0.4381834144784099
+      },
+      {
+        "user_idx": 1845,
+        "niche_score": 0.6697937419430446
+      },
+      {
+        "user_idx": 1846,
+        "niche_score": 0.8574236817761332
+      },
+      {
+        "user_idx": 1848,
+        "niche_score": 0.39499389499389503
+      },
+      {
+        "user_idx": 1851,
+        "niche_score": 0.6000000000000001
+      },
+      {
+        "user_idx": 1858,
+        "niche_score": 0.7693877551020408
+      },
+      {
+        "user_idx": 1861,
+        "niche_score": 0.618339356871467
+      },
+      {
+        "user_idx": 1863,
+        "niche_score": 0.6773519163763065
+      },
+      {
+        "user_idx": 1871,
+        "niche_score": 0.6951781970649895
+      },
+      {
+        "user_idx": 1876,
+        "niche_score": 0.44400305576776167
+      },
+      {
+        "user_idx": 1878,
+        "niche_score": 0.7824015962270996
+      },
+      {
+        "user_idx": 1882,
+        "niche_score": 0.6264563452499643
+      },
+      {
+        "user_idx": 1883,
+        "niche_score": 0.550188831791154
+      },
+      {
+        "user_idx": 1885,
+        "niche_score": 0.4566544566544567
+      },
+      {
+        "user_idx": 1886,
+        "niche_score": 0.43902361455078187
+      },
+      {
+        "user_idx": 1887,
+        "niche_score": 0.4370254671799305
+      },
+      {
+        "user_idx": 1893,
+        "niche_score": 0.5665646853146853
+      },
+      {
+        "user_idx": 1897,
+        "niche_score": 0.5387425553758556
+      },
+      {
+        "user_idx": 1900,
+        "niche_score": 0.48923076923076925
+      },
+      {
+        "user_idx": 1901,
+        "niche_score": 1.346923076923077
+      },
+      {
+        "user_idx": 1902,
+        "niche_score": 0.5552033919650728
+      },
+      {
+        "user_idx": 1907,
+        "niche_score": 0.3169506260429885
+      },
+      {
+        "user_idx": 1908,
+        "niche_score": 0.6691879866518353
+      },
+      {
+        "user_idx": 1911,
+        "niche_score": 0.5949190504784367
+      },
+      {
+        "user_idx": 1913,
+        "niche_score": 0.5332167832167831
+      },
+      {
+        "user_idx": 1923,
+        "niche_score": 0.7706973886328725
+      },
+      {
+        "user_idx": 1928,
+        "niche_score": 0.5959454485854796
+      },
+      {
+        "user_idx": 1931,
+        "niche_score": 0.4363376852357165
+      },
+      {
+        "user_idx": 1932,
+        "niche_score": 0.4108966134544235
+      },
+      {
+        "user_idx": 1937,
+        "niche_score": 1.017404426559356
+      },
+      {
+        "user_idx": 1941,
+        "niche_score": 0.3368186874304784
+      },
+      {
+        "user_idx": 1942,
+        "niche_score": 0.23584905660377364
+      },
+      {
+        "user_idx": 1950,
+        "niche_score": 0.615049786628734
+      },
+      {
+        "user_idx": 1952,
+        "niche_score": 0.4310236624049659
+      },
+      {
+        "user_idx": 1954,
+        "niche_score": 0.5961389961389961
+      },
+      {
+        "user_idx": 1955,
+        "niche_score": 0.5017038241477696
+      },
+      {
+        "user_idx": 1956,
+        "niche_score": 0.4393427327389593
+      },
+      {
+        "user_idx": 1963,
+        "niche_score": 0.4299412978445415
+      },
+      {
+        "user_idx": 1967,
+        "niche_score": 0.5138112805013556
+      },
+      {
+        "user_idx": 1970,
+        "niche_score": 0.31699044094973794
+      },
+      {
+        "user_idx": 1971,
+        "niche_score": 0.6000218706714296
+      },
+      {
+        "user_idx": 1974,
+        "niche_score": 0.5986824882887849
+      },
+      {
+        "user_idx": 1977,
+        "niche_score": 0.6399375329982102
+      },
+      {
+        "user_idx": 1979,
+        "niche_score": 0.6132279705313414
+      },
+      {
+        "user_idx": 1987,
+        "niche_score": 0.5291427399507793
+      },
+      {
+        "user_idx": 1990,
+        "niche_score": 0.8598613126915013
+      },
+      {
+        "user_idx": 1995,
+        "niche_score": 0.8889458357600466
+      },
+      {
+        "user_idx": 1997,
+        "niche_score": 0.6017381863828872
+      },
+      {
+        "user_idx": 2007,
+        "niche_score": 0.5085493656922229
+      },
+      {
+        "user_idx": 2010,
+        "niche_score": 0.6998888811723036
+      },
+      {
+        "user_idx": 2012,
+        "niche_score": 0.6081389039609333
+      },
+      {
+        "user_idx": 2020,
+        "niche_score": 0.8060570762958649
+      },
+      {
+        "user_idx": 2024,
+        "niche_score": 0.7176843518472478
+      },
+      {
+        "user_idx": 2025,
+        "niche_score": 0.5852656246730692
+      },
+      {
+        "user_idx": 2035,
+        "niche_score": 0.6654283420762783
+      },
+      {
+        "user_idx": 2038,
+        "niche_score": 0.5124417921861557
+      },
+      {
+        "user_idx": 2043,
+        "niche_score": 0.8271457465195589
+      },
+      {
+        "user_idx": 2044,
+        "niche_score": 0.45250965250965247
+      },
+      {
+        "user_idx": 2046,
+        "niche_score": 0.7562455104158352
+      },
+      {
+        "user_idx": 2050,
+        "niche_score": 0.583232729711603
+      },
+      {
+        "user_idx": 2055,
+        "niche_score": 0.3866563922671171
+      },
+      {
+        "user_idx": 2062,
+        "niche_score": 0.4115085802100231
+      },
+      {
+        "user_idx": 2066,
+        "niche_score": 0.32315270935960605
+      },
+      {
+        "user_idx": 2070,
+        "niche_score": 0.8495459021774812
+      },
+      {
+        "user_idx": 2075,
+        "niche_score": 0.5135627530364373
+      },
+      {
+        "user_idx": 2078,
+        "niche_score": 0.530364012143627
+      },
+      {
+        "user_idx": 2080,
+        "niche_score": 0.9361827863476051
+      },
+      {
+        "user_idx": 2083,
+        "niche_score": 0.7077771124652178
+      },
+      {
+        "user_idx": 2085,
+        "niche_score": 0.9356462585034013
+      },
+      {
+        "user_idx": 2088,
+        "niche_score": 0.5528757988330091
+      },
+      {
+        "user_idx": 2099,
+        "niche_score": 0.5538289296909986
+      },
+      {
+        "user_idx": 2101,
+        "niche_score": 0.7260504201680672
+      },
+      {
+        "user_idx": 2102,
+        "niche_score": 0.3779641297392894
+      },
+      {
+        "user_idx": 2103,
+        "niche_score": 0.5543833001908606
+      },
+      {
+        "user_idx": 2104,
+        "niche_score": 0.9730769230769231
+      },
+      {
+        "user_idx": 2106,
+        "niche_score": 0.7743340712704421
+      },
+      {
+        "user_idx": 2116,
+        "niche_score": 0.7108987256874582
+      },
+      {
+        "user_idx": 2117,
+        "niche_score": 0.722326454033771
+      },
+      {
+        "user_idx": 2119,
+        "niche_score": 0.5588899368372917
+      },
+      {
+        "user_idx": 2121,
+        "niche_score": 0.5535956580732699
+      },
+      {
+        "user_idx": 2122,
+        "niche_score": 0.4284389367286664
+      },
+      {
+        "user_idx": 2130,
+        "niche_score": 0.6166056166056166
+      },
+      {
+        "user_idx": 2132,
+        "niche_score": 0.7937411095305833
+      },
+      {
+        "user_idx": 2137,
+        "niche_score": 0.4778325123152709
+      },
+      {
+        "user_idx": 2138,
+        "niche_score": 0.7495340734138238
+      },
+      {
+        "user_idx": 2141,
+        "niche_score": 0.5575855886621702
+      },
+      {
+        "user_idx": 2142,
+        "niche_score": 0.5894305472551866
+      },
+      {
+        "user_idx": 2152,
+        "niche_score": 0.819047619047619
+      },
+      {
+        "user_idx": 2153,
+        "niche_score": 0.36393838719420113
+      },
+      {
+        "user_idx": 2156,
+        "niche_score": 0.5938609893718253
+      },
+      {
+        "user_idx": 2157,
+        "niche_score": 0.3631940772078267
+      },
+      {
+        "user_idx": 2163,
+        "niche_score": 0.7859038142620232
+      },
+      {
+        "user_idx": 2165,
+        "niche_score": 0.4958949096880132
+      },
+      {
+        "user_idx": 2168,
+        "niche_score": 0.7414634146341463
+      },
+      {
+        "user_idx": 2169,
+        "niche_score": 0.9326454033771107
+      },
+      {
+        "user_idx": 2170,
+        "niche_score": 0.5983262726578236
+      },
+      {
+        "user_idx": 2175,
+        "niche_score": 0.6636597938144331
+      },
+      {
+        "user_idx": 2187,
+        "niche_score": 0.5128656554712894
+      },
+      {
+        "user_idx": 2189,
+        "niche_score": 0.6101149273738106
+      },
+      {
+        "user_idx": 2191,
+        "niche_score": 0.735510937968235
+      },
+      {
+        "user_idx": 2192,
+        "niche_score": 0.861576354679803
+      },
+      {
+        "user_idx": 2199,
+        "niche_score": 0.9236453201970444
+      },
+      {
+        "user_idx": 2201,
+        "niche_score": 0.6214285714285713
+      },
+      {
+        "user_idx": 2207,
+        "niche_score": 0.588933601609658
+      },
+      {
+        "user_idx": 2208,
+        "niche_score": 0.667414019584428
+      },
+      {
+        "user_idx": 2213,
+        "niche_score": 0.4786324786324787
+      },
+      {
+        "user_idx": 2215,
+        "niche_score": 0.542570068746695
+      },
+      {
+        "user_idx": 2218,
+        "niche_score": 0.6813547954393024
+      },
+      {
+        "user_idx": 2219,
+        "niche_score": 0.5540026692855884
+      },
+      {
+        "user_idx": 2224,
+        "niche_score": 0.6938316800503858
+      },
+      {
+        "user_idx": 2225,
+        "niche_score": 0.6282696177062375
+      },
+      {
+        "user_idx": 2226,
+        "niche_score": 0.7254665812513346
+      },
+      {
+        "user_idx": 2229,
+        "niche_score": 0.6788528812516819
+      },
+      {
+        "user_idx": 2236,
+        "niche_score": 0.8104890489048905
+      },
+      {
+        "user_idx": 2237,
+        "niche_score": 0.5972498445178002
+      },
+      {
+        "user_idx": 2239,
+        "niche_score": 0.7113854287459943
+      },
+      {
+        "user_idx": 2241,
+        "niche_score": 0.460493828229518
+      },
+      {
+        "user_idx": 2245,
+        "niche_score": 0.38352638352638346
+      },
+      {
+        "user_idx": 2248,
+        "niche_score": 0.8205859476276899
+      },
+      {
+        "user_idx": 2250,
+        "niche_score": 0.6554116558741905
+      },
+      {
+        "user_idx": 2252,
+        "niche_score": 0.4842389758179232
+      },
+      {
+        "user_idx": 2255,
+        "niche_score": 0.5472329472329472
+      },
+      {
+        "user_idx": 2258,
+        "niche_score": 0.388030721966206
+      },
+      {
+        "user_idx": 2260,
+        "niche_score": 0.5073504273504275
+      },
+      {
+        "user_idx": 2263,
+        "niche_score": 0.5354718338353639
+      },
+      {
+        "user_idx": 2265,
+        "niche_score": 0.36382789077060196
+      },
+      {
+        "user_idx": 2267,
+        "niche_score": 0.6131456558422851
+      },
+      {
+        "user_idx": 2268,
+        "niche_score": 0.7844932844932845
+      },
+      {
+        "user_idx": 2275,
+        "niche_score": 0.5895038874490929
+      },
+      {
+        "user_idx": 2276,
+        "niche_score": 0.5011965811965813
+      },
+      {
+        "user_idx": 2279,
+        "niche_score": 0.7567659865107146
+      },
+      {
+        "user_idx": 2281,
+        "niche_score": 0.6774491210314404
+      },
+      {
+        "user_idx": 2290,
+        "niche_score": 0.5076612067178106
+      },
+      {
+        "user_idx": 2291,
+        "niche_score": 0.47058823529411764
+      },
+      {
+        "user_idx": 2294,
+        "niche_score": 0.83915821812596
+      },
+      {
+        "user_idx": 2297,
+        "niche_score": 0.5441409570247873
+      },
+      {
+        "user_idx": 2299,
+        "niche_score": 0.5494868035190617
+      },
+      {
+        "user_idx": 2303,
+        "niche_score": 0.7169466712149639
+      },
+      {
+        "user_idx": 2306,
+        "niche_score": 0.5124574100066267
+      },
+      {
+        "user_idx": 2312,
+        "niche_score": 0.7631578947368421
+      },
+      {
+        "user_idx": 2313,
+        "niche_score": 0.6621236861354325
+      },
+      {
+        "user_idx": 2314,
+        "niche_score": 0.33144731779429326
+      },
+      {
+        "user_idx": 2315,
+        "niche_score": 0.5235444330949948
+      },
+      {
+        "user_idx": 2318,
+        "niche_score": 0.7866396761133603
+      },
+      {
+        "user_idx": 2319,
+        "niche_score": 0.4189545081731324
+      },
+      {
+        "user_idx": 2320,
+        "niche_score": 0.775138870071806
+      },
+      {
+        "user_idx": 2324,
+        "niche_score": 0.5326949384404925
+      },
+      {
+        "user_idx": 2329,
+        "niche_score": 0.5402527001655246
+      },
+      {
+        "user_idx": 2331,
+        "niche_score": 0.6942508710801394
+      },
+      {
+        "user_idx": 2334,
+        "niche_score": 0.572983870967742
+      },
+      {
+        "user_idx": 2335,
+        "niche_score": 0.605364784469262
+      },
+      {
+        "user_idx": 2336,
+        "niche_score": 0.5713709677419354
+      },
+      {
+        "user_idx": 2344,
+        "niche_score": 0.6448265031613158
+      },
+      {
+        "user_idx": 2354,
+        "niche_score": 0.7629266256131928
+      },
+      {
+        "user_idx": 2356,
+        "niche_score": 0.35836636997355353
+      },
+      {
+        "user_idx": 2358,
+        "niche_score": 0.6172473867595818
+      },
+      {
+        "user_idx": 2359,
+        "niche_score": 0.506067446370137
+      },
+      {
+        "user_idx": 2361,
+        "niche_score": 0.9946153846153846
+      },
+      {
+        "user_idx": 2364,
+        "niche_score": 0.7199208236097567
+      },
+      {
+        "user_idx": 2366,
+        "niche_score": 0.617487163998792
+      },
+      {
+        "user_idx": 2369,
+        "niche_score": 0.9075714955461791
+      },
+      {
+        "user_idx": 2371,
+        "niche_score": 0.508471018119475
+      },
+      {
+        "user_idx": 2377,
+        "niche_score": 0.6905725853094274
+      },
+      {
+        "user_idx": 2378,
+        "niche_score": 0.5446156430748552
+      },
+      {
+        "user_idx": 2380,
+        "niche_score": 0.7799916660879228
+      },
+      {
+        "user_idx": 2383,
+        "niche_score": 0.5157969162243046
+      },
+      {
+        "user_idx": 2387,
+        "niche_score": 0.7852044127190136
+      },
+      {
+        "user_idx": 2396,
+        "niche_score": 1.1086560533135876
+      },
+      {
+        "user_idx": 2401,
+        "niche_score": 0.38266129032258067
+      },
+      {
+        "user_idx": 2403,
+        "niche_score": 0.5330512989409226
+      },
+      {
+        "user_idx": 2407,
+        "niche_score": 0.8939506702924479
+      },
+      {
+        "user_idx": 2412,
+        "niche_score": 0.6941391941391941
+      },
+      {
+        "user_idx": 2414,
+        "niche_score": 0.6571110049370918
+      },
+      {
+        "user_idx": 2416,
+        "niche_score": 0.5635467980295568
+      },
+      {
+        "user_idx": 2420,
+        "niche_score": 0.8589675870348139
+      },
+      {
+        "user_idx": 2421,
+        "niche_score": 0.6295988517035582
+      },
+      {
+        "user_idx": 2423,
+        "niche_score": 0.7378883760003087
+      },
+      {
+        "user_idx": 2426,
+        "niche_score": 0.419057686499547
+      },
+      {
+        "user_idx": 2430,
+        "niche_score": 0.7999912930856217
+      },
+      {
+        "user_idx": 2440,
+        "niche_score": 0.6426606149458759
+      },
+      {
+        "user_idx": 2449,
+        "niche_score": 0.42173615857826385
+      },
+      {
+        "user_idx": 2450,
+        "niche_score": 0.37998425119346435
+      },
+      {
+        "user_idx": 2452,
+        "niche_score": 0.5583243570924927
+      },
+      {
+        "user_idx": 2453,
+        "niche_score": 0.5747820254862508
+      },
+      {
+        "user_idx": 2455,
+        "niche_score": 0.5213981984604481
+      },
+      {
+        "user_idx": 2457,
+        "niche_score": 0.49781931464174456
+      },
+      {
+        "user_idx": 2459,
+        "niche_score": 0.6551724137931034
+      },
+      {
+        "user_idx": 2462,
+        "niche_score": 0.5233603360336034
+      },
+      {
+        "user_idx": 2464,
+        "niche_score": 0.7841724366433085
+      },
+      {
+        "user_idx": 2476,
+        "niche_score": 0.4234356505957547
+      },
+      {
+        "user_idx": 2478,
+        "niche_score": 0.6540118162759672
+      },
+      {
+        "user_idx": 2488,
+        "niche_score": 0.6430880123970681
+      },
+      {
+        "user_idx": 2489,
+        "niche_score": 0.5703360106024427
+      },
+      {
+        "user_idx": 2490,
+        "niche_score": 0.7170333654742647
+      },
+      {
+        "user_idx": 2491,
+        "niche_score": 0.6177055896985659
+      },
+      {
+        "user_idx": 2494,
+        "niche_score": 0.6616291973715382
+      },
+      {
+        "user_idx": 2495,
+        "niche_score": 0.7823100042936884
+      },
+      {
+        "user_idx": 2496,
+        "niche_score": 0.32912084378416606
+      },
+      {
+        "user_idx": 2499,
+        "niche_score": 0.6784959226819691
+      },
+      {
+        "user_idx": 2500,
+        "niche_score": 0.8798919891989199
+      },
+      {
+        "user_idx": 2501,
+        "niche_score": 0.42672575711605865
+      },
+      {
+        "user_idx": 2510,
+        "niche_score": 0.24094539884013577
+      },
+      {
+        "user_idx": 2512,
+        "niche_score": 1.1830769230769231
+      },
+      {
+        "user_idx": 2513,
+        "niche_score": 0.8968752766221121
+      },
+      {
+        "user_idx": 2520,
+        "niche_score": 0.6726469891769163
+      },
+      {
+        "user_idx": 2522,
+        "niche_score": 0.9108636225574567
+      },
+      {
+        "user_idx": 2525,
+        "niche_score": 0.633835486451789
+      },
+      {
+        "user_idx": 2526,
+        "niche_score": 0.5670345649452526
+      },
+      {
+        "user_idx": 2528,
+        "niche_score": 0.6209523809523809
+      },
+      {
+        "user_idx": 2529,
+        "niche_score": 0.7951090638124916
+      },
+      {
+        "user_idx": 2534,
+        "niche_score": 0.54328058573453
+      },
+      {
+        "user_idx": 2535,
+        "niche_score": 0.47058823529411764
+      },
+      {
+        "user_idx": 2536,
+        "niche_score": 0.3554831518477237
+      },
+      {
+        "user_idx": 2540,
+        "niche_score": 0.7523334197562872
+      },
+      {
+        "user_idx": 2541,
+        "niche_score": 0.683949238125028
+      },
+      {
+        "user_idx": 2545,
+        "niche_score": 0.8544687949834509
+      },
+      {
+        "user_idx": 2546,
+        "niche_score": 0.5878427115803151
+      },
+      {
+        "user_idx": 2549,
+        "niche_score": 0.4933458739144193
+      },
+      {
+        "user_idx": 2552,
+        "niche_score": 0.46677100431347107
+      },
+      {
+        "user_idx": 2556,
+        "niche_score": 0.5665735904841831
+      },
+      {
+        "user_idx": 2560,
+        "niche_score": 0.49512423816221285
+      },
+      {
+        "user_idx": 2562,
+        "niche_score": 0.5033533765032377
+      },
+      {
+        "user_idx": 2568,
+        "niche_score": 0.4600147639689187
+      },
+      {
+        "user_idx": 2570,
+        "niche_score": 0.7871426052346525
+      },
+      {
+        "user_idx": 2572,
+        "niche_score": 0.5617260787992495
+      },
+      {
+        "user_idx": 2577,
+        "niche_score": 0.47455955132148464
+      },
+      {
+        "user_idx": 2583,
+        "niche_score": 0.7386018237082067
+      },
+      {
+        "user_idx": 2585,
+        "niche_score": 0.49793289582951084
+      },
+      {
+        "user_idx": 2588,
+        "niche_score": 0.5618579393092329
+      },
+      {
+        "user_idx": 2591,
+        "niche_score": 0.7041567128523649
+      },
+      {
+        "user_idx": 2598,
+        "niche_score": 0.6435622358694125
+      },
+      {
+        "user_idx": 2604,
+        "niche_score": 0.7580706028907982
+      },
+      {
+        "user_idx": 2606,
+        "niche_score": 0.4777701592276967
+      },
+      {
+        "user_idx": 2607,
+        "niche_score": 0.5721837755626819
+      },
+      {
+        "user_idx": 2608,
+        "niche_score": 0.589591195909948
+      },
+      {
+        "user_idx": 2612,
+        "niche_score": 0.6887051929803581
+      },
+      {
+        "user_idx": 2616,
+        "niche_score": 0.6267802762311975
+      },
+      {
+        "user_idx": 2617,
+        "niche_score": 0.6619980304190831
+      },
+      {
+        "user_idx": 2622,
+        "niche_score": 0.5891235364919576
+      },
+      {
+        "user_idx": 2623,
+        "niche_score": 0.41428795990642375
+      },
+      {
+        "user_idx": 2628,
+        "niche_score": 0.39295199182839624
+      },
+      {
+        "user_idx": 2632,
+        "niche_score": 0.4923014288864638
+      },
+      {
+        "user_idx": 2634,
+        "niche_score": 0.7719411933755205
+      },
+      {
+        "user_idx": 2635,
+        "niche_score": 0.5824691437594665
+      },
+      {
+        "user_idx": 2642,
+        "niche_score": 0.5968581917527533
+      },
+      {
+        "user_idx": 2645,
+        "niche_score": 0.5373236347313332
+      },
+      {
+        "user_idx": 2648,
+        "niche_score": 0.6173687438086702
+      },
+      {
+        "user_idx": 2649,
+        "niche_score": 1.0688381363425197
+      },
+      {
+        "user_idx": 2653,
+        "niche_score": 0.7077175697865353
+      },
+      {
+        "user_idx": 2662,
+        "niche_score": 0.5790409706640073
+      },
+      {
+        "user_idx": 2665,
+        "niche_score": 0.7061538461538461
+      },
+      {
+        "user_idx": 2666,
+        "niche_score": 0.46964692671004404
+      },
+      {
+        "user_idx": 2669,
+        "niche_score": 0.41204063123526213
+      },
+      {
+        "user_idx": 2671,
+        "niche_score": 0.806553911205074
+      },
+      {
+        "user_idx": 2673,
+        "niche_score": 0.636287149387663
+      },
+      {
+        "user_idx": 2677,
+        "niche_score": 0.6685565933574051
+      },
+      {
+        "user_idx": 2680,
+        "niche_score": 0.6301738786511587
+      },
+      {
+        "user_idx": 2685,
+        "niche_score": 0.655037699183832
+      },
+      {
+        "user_idx": 2686,
+        "niche_score": 0.6185225530930369
+      },
+      {
+        "user_idx": 2689,
+        "niche_score": 0.733982683982684
+      },
+      {
+        "user_idx": 2693,
+        "niche_score": 0.5940860215053764
+      },
+      {
+        "user_idx": 2694,
+        "niche_score": 0.7505285412262157
+      },
+      {
+        "user_idx": 2695,
+        "niche_score": 0.7522149381119619
+      },
+      {
+        "user_idx": 2696,
+        "niche_score": 0.6196218406328381
+      },
+      {
+        "user_idx": 2697,
+        "niche_score": 0.47613994469097687
+      },
+      {
+        "user_idx": 2698,
+        "niche_score": 0.7572583797239709
+      },
+      {
+        "user_idx": 2700,
+        "niche_score": 0.40617405566604514
+      },
+      {
+        "user_idx": 2706,
+        "niche_score": 0.5277182422811473
+      },
+      {
+        "user_idx": 2710,
+        "niche_score": 0.4342793081358103
+      },
+      {
+        "user_idx": 2715,
+        "niche_score": 0.6244588744588744
+      },
+      {
+        "user_idx": 2720,
+        "niche_score": 0.476147015037633
+      },
+      {
+        "user_idx": 2724,
+        "niche_score": 0.5812879337328702
+      },
+      {
+        "user_idx": 2737,
+        "niche_score": 0.32286318332829966
+      },
+      {
+        "user_idx": 2743,
+        "niche_score": 0.4345419018671298
+      },
+      {
+        "user_idx": 2752,
+        "niche_score": 0.5069628062753393
+      },
+      {
+        "user_idx": 2753,
+        "niche_score": 0.5329598741148702
+      },
+      {
+        "user_idx": 2754,
+        "niche_score": 0.8153375337533754
+      },
+      {
+        "user_idx": 2756,
+        "niche_score": 0.636568226170555
+      },
+      {
+        "user_idx": 2762,
+        "niche_score": 0.5258811584641689
+      },
+      {
+        "user_idx": 2769,
+        "niche_score": 0.43054447756181524
+      },
+      {
+        "user_idx": 2775,
+        "niche_score": 0.39330309238123107
+      },
+      {
+        "user_idx": 2778,
+        "niche_score": 0.47831490982175906
+      },
+      {
+        "user_idx": 2785,
+        "niche_score": 0.5148717948717949
+      },
+      {
+        "user_idx": 2788,
+        "niche_score": 0.41868289050901264
+      },
+      {
+        "user_idx": 2792,
+        "niche_score": 0.21933797909407649
+      },
+      {
+        "user_idx": 2793,
+        "niche_score": 0.5704909058782655
+      },
+      {
+        "user_idx": 2798,
+        "niche_score": 0.4566996550074286
+      },
+      {
+        "user_idx": 2800,
+        "niche_score": 0.6323939334485835
+      },
+      {
+        "user_idx": 2801,
+        "niche_score": 0.37088884891725815
+      },
+      {
+        "user_idx": 2803,
+        "niche_score": 0.4198020413953548
+      },
+      {
+        "user_idx": 2804,
+        "niche_score": 0.7897435897435898
+      },
+      {
+        "user_idx": 2805,
+        "niche_score": 0.5674435817743272
+      },
+      {
+        "user_idx": 2807,
+        "niche_score": 0.4480111404698993
+      },
+      {
+        "user_idx": 2810,
+        "niche_score": 0.6463998769845847
+      },
+      {
+        "user_idx": 2812,
+        "niche_score": 0.5516709943429783
+      },
+      {
+        "user_idx": 2814,
+        "niche_score": 0.465999949618359
+      },
+      {
+        "user_idx": 2817,
+        "niche_score": 0.726112900332311
+      },
+      {
+        "user_idx": 2818,
+        "niche_score": 0.6974609179786553
+      },
+      {
+        "user_idx": 2827,
+        "niche_score": 0.3586297769445077
+      },
+      {
+        "user_idx": 2830,
+        "niche_score": 0.6106136415919025
+      },
+      {
+        "user_idx": 2832,
+        "niche_score": 0.5014799154334038
+      },
+      {
+        "user_idx": 2836,
+        "niche_score": 0.6585622710622712
+      },
+      {
+        "user_idx": 2839,
+        "niche_score": 0.8747582006008973
+      },
+      {
+        "user_idx": 2846,
+        "niche_score": 0.4758052855146052
+      },
+      {
+        "user_idx": 2853,
+        "niche_score": 0.2768077393019869
+      },
+      {
+        "user_idx": 2856,
+        "niche_score": 0.48839818911145216
+      },
+      {
+        "user_idx": 2857,
+        "niche_score": 0.75841706034999
+      },
+      {
+        "user_idx": 2863,
+        "niche_score": 0.7761651346557007
+      },
+      {
+        "user_idx": 2866,
+        "niche_score": 0.8328642615108631
+      },
+      {
+        "user_idx": 2868,
+        "niche_score": 0.24164746543778792
+      },
+      {
+        "user_idx": 2869,
+        "niche_score": 0.541374474053296
+      },
+      {
+        "user_idx": 2871,
+        "niche_score": 0.5806637806637807
+      },
+      {
+        "user_idx": 2873,
+        "niche_score": 0.6551566080977846
+      },
+      {
+        "user_idx": 2875,
+        "niche_score": 0.31379310344827593
+      },
+      {
+        "user_idx": 2877,
+        "niche_score": 0.5659426651906707
+      },
+      {
+        "user_idx": 2878,
+        "niche_score": 0.44723133320470765
+      },
+      {
+        "user_idx": 2882,
+        "niche_score": 0.7729095200629426
+      },
+      {
+        "user_idx": 2885,
+        "niche_score": 0.6432199875596102
+      },
+      {
+        "user_idx": 2891,
+        "niche_score": 0.3584637268847797
+      },
+      {
+        "user_idx": 2894,
+        "niche_score": 0.5097869872063421
+      },
+      {
+        "user_idx": 2897,
+        "niche_score": 0.6002484191508581
+      },
+      {
+        "user_idx": 2903,
+        "niche_score": 0.5834701696770662
+      },
+      {
+        "user_idx": 2908,
+        "niche_score": 0.5136153593293644
+      },
+      {
+        "user_idx": 2909,
+        "niche_score": 0.5230274693161894
+      },
+      {
+        "user_idx": 2910,
+        "niche_score": 0.6562947579235101
+      },
+      {
+        "user_idx": 2912,
+        "niche_score": 0.5943575479536177
+      },
+      {
+        "user_idx": 2913,
+        "niche_score": 0.6176590977502321
+      },
+      {
+        "user_idx": 2917,
+        "niche_score": 0.48054061649697877
+      },
+      {
+        "user_idx": 2919,
+        "niche_score": 0.39560439560439553
+      },
+      {
+        "user_idx": 2921,
+        "niche_score": 0.9934767689488542
+      },
+      {
+        "user_idx": 2922,
+        "niche_score": 0.942741935483871
+      },
+      {
+        "user_idx": 2923,
+        "niche_score": 0.7506694855532066
+      },
+      {
+        "user_idx": 2929,
+        "niche_score": 0.5168327592675754
+      },
+      {
+        "user_idx": 2937,
+        "niche_score": 0.3005640612409347
+      },
+      {
+        "user_idx": 2941,
+        "niche_score": 0.7359081256228706
+      },
+      {
+        "user_idx": 2942,
+        "niche_score": 0.423371154743872
+      },
+      {
+        "user_idx": 2944,
+        "niche_score": 0.6540242035430488
+      },
+      {
+        "user_idx": 2948,
+        "niche_score": 0.56
+      },
+      {
+        "user_idx": 2957,
+        "niche_score": 0.5304370757678161
+      },
+      {
+        "user_idx": 2958,
+        "niche_score": 0.8074646074646075
+      },
+      {
+        "user_idx": 2960,
+        "niche_score": 0.6594284190408461
+      },
+      {
+        "user_idx": 2961,
+        "niche_score": 0.4564587734607023
+      },
+      {
+        "user_idx": 2964,
+        "niche_score": 0.75125996041212
+      },
+      {
+        "user_idx": 2965,
+        "niche_score": 0.5753542292829541
+      },
+      {
+        "user_idx": 2966,
+        "niche_score": 0.6376425461331122
+      },
+      {
+        "user_idx": 2971,
+        "niche_score": 0.4504086451272368
+      },
+      {
+        "user_idx": 2983,
+        "niche_score": 0.7444015444015444
+      },
+      {
+        "user_idx": 2991,
+        "niche_score": 0.5680660025002547
+      },
+      {
+        "user_idx": 2992,
+        "niche_score": 0.592522423288749
+      },
+      {
+        "user_idx": 2994,
+        "niche_score": 0.3778002560414724
+      },
+      {
+        "user_idx": 3000,
+        "niche_score": 0.5165955429113325
+      },
+      {
+        "user_idx": 3001,
+        "niche_score": 0.55278898316873
+      },
+      {
+        "user_idx": 3003,
+        "niche_score": 0.9266197704553869
+      },
+      {
+        "user_idx": 3006,
+        "niche_score": 0.489327584363753
+      },
+      {
+        "user_idx": 3007,
+        "niche_score": 0.38150749952534635
+      },
+      {
+        "user_idx": 3009,
+        "niche_score": 0.5644507187351646
+      },
+      {
+        "user_idx": 3011,
+        "niche_score": 0.5033107218791131
+      },
+      {
+        "user_idx": 3023,
+        "niche_score": 0.4256815940299743
+      },
+      {
+        "user_idx": 3027,
+        "niche_score": 0.44332042340512534
+      },
+      {
+        "user_idx": 3028,
+        "niche_score": 0.5132136632973161
+      },
+      {
+        "user_idx": 3029,
+        "niche_score": 0.5770773163998496
+      },
+      {
+        "user_idx": 3036,
+        "niche_score": 0.6571428571428573
+      },
+      {
+        "user_idx": 3037,
+        "niche_score": 0.5976763411707187
+      },
+      {
+        "user_idx": 3038,
+        "niche_score": 0.7737280296022202
+      },
+      {
+        "user_idx": 3044,
+        "niche_score": 0.33590793176046774
+      },
+      {
+        "user_idx": 3046,
+        "niche_score": 0.7090598290598291
+      },
+      {
+        "user_idx": 3047,
+        "niche_score": 0.30372688477951637
+      },
+      {
+        "user_idx": 3053,
+        "niche_score": 0.64502540356293
+      },
+      {
+        "user_idx": 3056,
+        "niche_score": 0.7274948040006526
+      },
+      {
+        "user_idx": 3057,
+        "niche_score": 0.547478763982115
+      },
+      {
+        "user_idx": 3063,
+        "niche_score": 0.5889592760180995
+      },
+      {
+        "user_idx": 3066,
+        "niche_score": 0.5417981091575621
+      },
+      {
+        "user_idx": 3067,
+        "niche_score": 0.6102077027450161
+      },
+      {
+        "user_idx": 3070,
+        "niche_score": 0.5906334239447204
+      },
+      {
+        "user_idx": 3074,
+        "niche_score": 0.24955931744922566
+      },
+      {
+        "user_idx": 3076,
+        "niche_score": 0.8167700661670816
+      },
+      {
+        "user_idx": 3083,
+        "niche_score": 0.38333952961524165
+      },
+      {
+        "user_idx": 3085,
+        "niche_score": 0.7838827002504629
+      },
+      {
+        "user_idx": 3087,
+        "niche_score": 0.5025586510678481
+      },
+      {
+        "user_idx": 3090,
+        "niche_score": 1.05006105006105
+      },
+      {
+        "user_idx": 3094,
+        "niche_score": 0.36316695352839934
+      },
+      {
+        "user_idx": 3095,
+        "niche_score": 0.48372738926078895
+      },
+      {
+        "user_idx": 3096,
+        "niche_score": 0.6276925758103871
+      },
+      {
+        "user_idx": 3101,
+        "niche_score": 0.8168746814825177
+      },
+      {
+        "user_idx": 3112,
+        "niche_score": 0.6905370843989769
+      },
+      {
+        "user_idx": 3113,
+        "niche_score": 0.6063447430178228
+      },
+      {
+        "user_idx": 3114,
+        "niche_score": 0.43105806877682906
+      },
+      {
+        "user_idx": 3122,
+        "niche_score": 0.6693501707253615
+      },
+      {
+        "user_idx": 3124,
+        "niche_score": 0.40872434017595316
+      },
+      {
+        "user_idx": 3129,
+        "niche_score": 0.5426010882321561
+      },
+      {
+        "user_idx": 3134,
+        "niche_score": 0.511419071226326
+      },
+      {
+        "user_idx": 3135,
+        "niche_score": 0.6807881773399016
+      },
+      {
+        "user_idx": 3139,
+        "niche_score": 0.7693693693693694
+      },
+      {
+        "user_idx": 3141,
+        "niche_score": 0.5526116825657588
+      },
+      {
+        "user_idx": 3142,
+        "niche_score": 0.2955072361826381
+      },
+      {
+        "user_idx": 3146,
+        "niche_score": 0.4815314741658775
+      },
+      {
+        "user_idx": 3148,
+        "niche_score": 0.6129186602870813
+      },
+      {
+        "user_idx": 3154,
+        "niche_score": 0.6521338788485411
+      },
+      {
+        "user_idx": 3159,
+        "niche_score": 0.5861761426978818
+      },
+      {
+        "user_idx": 3161,
+        "niche_score": 0.5941764155983317
+      },
+      {
+        "user_idx": 3166,
+        "niche_score": 0.7238412550583389
+      },
+      {
+        "user_idx": 3172,
+        "niche_score": 0.26335856014107417
+      },
+      {
+        "user_idx": 3179,
+        "niche_score": 0.6061624649859945
+      },
+      {
+        "user_idx": 3185,
+        "niche_score": 0.7207559055118109
+      },
+      {
+        "user_idx": 3186,
+        "niche_score": 0.44626159967771806
+      },
+      {
+        "user_idx": 3187,
+        "niche_score": 0.7117406962785114
+      },
+      {
+        "user_idx": 3195,
+        "niche_score": 0.5747689092516679
+      },
+      {
+        "user_idx": 3196,
+        "niche_score": 0.5722007722007721
+      },
+      {
+        "user_idx": 3198,
+        "niche_score": 0.5046153846153847
+      },
+      {
+        "user_idx": 3213,
+        "niche_score": 0.6667883168796134
+      },
+      {
+        "user_idx": 3216,
+        "niche_score": 0.7742840444184687
+      },
+      {
+        "user_idx": 3217,
+        "niche_score": 0.476275962843127
+      },
+      {
+        "user_idx": 3219,
+        "niche_score": 0.2804090310823124
+      },
+      {
+        "user_idx": 3221,
+        "niche_score": 0.514093637454982
+      },
+      {
+        "user_idx": 3226,
+        "niche_score": 0.4623632100349553
+      },
+      {
+        "user_idx": 3228,
+        "niche_score": 0.737128040498827
+      },
+      {
+        "user_idx": 3229,
+        "niche_score": 0.957099907493062
+      },
+      {
+        "user_idx": 3232,
+        "niche_score": 0.543668739905788
+      },
+      {
+        "user_idx": 3236,
+        "niche_score": 0.5554550697553269
+      },
+      {
+        "user_idx": 3238,
+        "niche_score": 0.6615375719200856
+      },
+      {
+        "user_idx": 3240,
+        "niche_score": 1.0776209677419355
+      },
+      {
+        "user_idx": 3245,
+        "niche_score": 0.7185106925025102
+      },
+      {
+        "user_idx": 3249,
+        "niche_score": 0.6875
+      },
+      {
+        "user_idx": 3254,
+        "niche_score": 0.31366410925544475
+      },
+      {
+        "user_idx": 3260,
+        "niche_score": 0.2776020680906066
+      },
+      {
+        "user_idx": 3272,
+        "niche_score": 0.602313042762481
+      },
+      {
+        "user_idx": 3273,
+        "niche_score": 0.5467205644590961
+      },
+      {
+        "user_idx": 3276,
+        "niche_score": 0.6129226520357265
+      },
+      {
+        "user_idx": 3279,
+        "niche_score": 0.6953285144028483
+      },
+      {
+        "user_idx": 3281,
+        "niche_score": 0.6300492610837439
+      },
+      {
+        "user_idx": 3282,
+        "niche_score": 0.6415328720647556
+      },
+      {
+        "user_idx": 3284,
+        "niche_score": 0.47028114452923675
+      },
+      {
+        "user_idx": 3285,
+        "niche_score": 0.5766323771587963
+      },
+      {
+        "user_idx": 3288,
+        "niche_score": 0.5217006294676196
+      },
+      {
+        "user_idx": 3289,
+        "niche_score": 0.8433497536945813
+      },
+      {
+        "user_idx": 3290,
+        "niche_score": 0.8697318007662835
+      },
+      {
+        "user_idx": 3292,
+        "niche_score": 0.5363463209727076
+      },
+      {
+        "user_idx": 3299,
+        "niche_score": 0.37958407871198563
+      },
+      {
+        "user_idx": 3303,
+        "niche_score": 0.613639392817475
+      },
+      {
+        "user_idx": 3308,
+        "niche_score": 0.49175431762108823
+      },
+      {
+        "user_idx": 3318,
+        "niche_score": 0.8394791552686289
+      },
+      {
+        "user_idx": 3322,
+        "niche_score": 0.6238442237388029
+      },
+      {
+        "user_idx": 3325,
+        "niche_score": 0.6047890805806859
+      },
+      {
+        "user_idx": 3326,
+        "niche_score": 0.5161290322580645
+      },
+      {
+        "user_idx": 3328,
+        "niche_score": 0.5934868458146046
+      },
+      {
+        "user_idx": 3330,
+        "niche_score": 1.1375717305949864
+      },
+      {
+        "user_idx": 3331,
+        "niche_score": 0.7231742520016856
+      },
+      {
+        "user_idx": 3334,
+        "niche_score": 0.5554440158375076
+      },
+      {
+        "user_idx": 3339,
+        "niche_score": 0.799864951474089
+      },
+      {
+        "user_idx": 3343,
+        "niche_score": 0.5083757699095496
+      },
+      {
+        "user_idx": 3345,
+        "niche_score": 0.5991037313080806
+      },
+      {
+        "user_idx": 3349,
+        "niche_score": 0.7946778711484593
+      },
+      {
+        "user_idx": 3351,
+        "niche_score": 0.4924145184364239
+      },
+      {
+        "user_idx": 3354,
+        "niche_score": 0.8130615258179995
+      },
+      {
+        "user_idx": 3357,
+        "niche_score": 0.572532079707763
+      },
+      {
+        "user_idx": 3358,
+        "niche_score": 0.6597659386656796
+      },
+      {
+        "user_idx": 3364,
+        "niche_score": 0.5579711010269883
+      },
+      {
+        "user_idx": 3368,
+        "niche_score": 0.8182754182754183
+      },
+      {
+        "user_idx": 3375,
+        "niche_score": 0.5178165118463625
+      },
+      {
+        "user_idx": 3377,
+        "niche_score": 0.7501297231001463
+      },
+      {
+        "user_idx": 3378,
+        "niche_score": 0.37609527335554727
+      },
+      {
+        "user_idx": 3384,
+        "niche_score": 0.3669786096256684
+      },
+      {
+        "user_idx": 3390,
+        "niche_score": 0.6677430677430678
+      },
+      {
+        "user_idx": 3396,
+        "niche_score": 0.49514378730330977
+      },
+      {
+        "user_idx": 3397,
+        "niche_score": 0.39761296871635554
+      },
+      {
+        "user_idx": 3398,
+        "niche_score": 0.8263225806451613
+      },
+      {
+        "user_idx": 3402,
+        "niche_score": 0.7977613450981793
+      },
+      {
+        "user_idx": 3403,
+        "niche_score": 0.5302649704237905
+      },
+      {
+        "user_idx": 3406,
+        "niche_score": 0.35033984697655995
+      },
+      {
+        "user_idx": 3414,
+        "niche_score": 0.7061047133867032
+      },
+      {
+        "user_idx": 3420,
+        "niche_score": 0.3734290424178074
+      },
+      {
+        "user_idx": 3423,
+        "niche_score": 0.7200853485064012
+      },
+      {
+        "user_idx": 3425,
+        "niche_score": 0.7272362654729666
+      },
+      {
+        "user_idx": 3426,
+        "niche_score": 0.4952467090301872
+      },
+      {
+        "user_idx": 3443,
+        "niche_score": 0.6154099065491471
+      },
+      {
+        "user_idx": 3447,
+        "niche_score": 0.5883449031786627
+      },
+      {
+        "user_idx": 3452,
+        "niche_score": 0.4839329686272943
+      },
+      {
+        "user_idx": 3454,
+        "niche_score": 0.6994918183654688
+      },
+      {
+        "user_idx": 3465,
+        "niche_score": 0.786401098901099
+      },
+      {
+        "user_idx": 3472,
+        "niche_score": 0.38976920199775567
+      },
+      {
+        "user_idx": 3475,
+        "niche_score": 0.8244134897360704
+      },
+      {
+        "user_idx": 3477,
+        "niche_score": 0.5077419917954089
+      },
+      {
+        "user_idx": 3478,
+        "niche_score": 0.5723563748079878
+      },
+      {
+        "user_idx": 3482,
+        "niche_score": 0.5493380243150103
+      },
+      {
+        "user_idx": 3484,
+        "niche_score": 0.7261730205278593
+      },
+      {
+        "user_idx": 3487,
+        "niche_score": 0.49616765286136477
+      },
+      {
+        "user_idx": 3494,
+        "niche_score": 0.42938775510204086
+      },
+      {
+        "user_idx": 3496,
+        "niche_score": 0.7625550719429248
+      },
+      {
+        "user_idx": 3497,
+        "niche_score": 0.8111671106631146
+      },
+      {
+        "user_idx": 3502,
+        "niche_score": 0.5411046420141622
+      },
+      {
+        "user_idx": 3504,
+        "niche_score": 0.33285369917696417
+      },
+      {
+        "user_idx": 3505,
+        "niche_score": 0.5242543048456202
+      },
+      {
+        "user_idx": 3506,
+        "niche_score": 0.41224813145860195
+      },
+      {
+        "user_idx": 3509,
+        "niche_score": 0.5980112027670224
+      },
+      {
+        "user_idx": 3514,
+        "niche_score": 0.4259514931579823
+      },
+      {
+        "user_idx": 3523,
+        "niche_score": 0.8865007680491551
+      },
+      {
+        "user_idx": 3524,
+        "niche_score": 0.47280689913760776
+      },
+      {
+        "user_idx": 3525,
+        "niche_score": 0.537580561185734
+      },
+      {
+        "user_idx": 3527,
+        "niche_score": 0.3603946441155744
+      },
+      {
+        "user_idx": 3528,
+        "niche_score": 0.4413793103448276
+      },
+      {
+        "user_idx": 3529,
+        "niche_score": 0.7037412071476981
+      },
+      {
+        "user_idx": 3533,
+        "niche_score": 0.9650905432595573
+      },
+      {
+        "user_idx": 3537,
+        "niche_score": 0.770030506972286
+      },
+      {
+        "user_idx": 3538,
+        "niche_score": 0.4072649664916521
+      },
+      {
+        "user_idx": 3545,
+        "niche_score": 0.6846846846846846
+      },
+      {
+        "user_idx": 3549,
+        "niche_score": 0.5774745605920444
+      },
+      {
+        "user_idx": 3551,
+        "niche_score": 0.42977602108036905
+      },
+      {
+        "user_idx": 3557,
+        "niche_score": 0.6332785987958401
+      },
+      {
+        "user_idx": 3558,
+        "niche_score": 0.714128929688702
+      },
+      {
+        "user_idx": 3562,
+        "niche_score": 0.45284365592605935
+      },
+      {
+        "user_idx": 3566,
+        "niche_score": 0.9018155757286193
+      },
+      {
+        "user_idx": 3567,
+        "niche_score": 0.4582928265097249
+      },
+      {
+        "user_idx": 3573,
+        "niche_score": 1.0024423337856174
+      },
+      {
+        "user_idx": 3574,
+        "niche_score": 0.8825596329131286
+      },
+      {
+        "user_idx": 3576,
+        "niche_score": 0.5160353424897209
+      },
+      {
+        "user_idx": 3577,
+        "niche_score": 0.41971280186885485
+      },
+      {
+        "user_idx": 3580,
+        "niche_score": 0.6445082821877861
+      },
+      {
+        "user_idx": 3584,
+        "niche_score": 0.6221961014790871
+      },
+      {
+        "user_idx": 3587,
+        "niche_score": 0.7586811511339814
+      },
+      {
+        "user_idx": 3588,
+        "niche_score": 0.7992621665601127
+      },
+      {
+        "user_idx": 3589,
+        "niche_score": 0.6603552413762248
+      },
+      {
+        "user_idx": 3590,
+        "niche_score": 0.5691050471596226
+      },
+      {
+        "user_idx": 3593,
+        "niche_score": 0.7392307692307692
+      },
+      {
+        "user_idx": 3595,
+        "niche_score": 0.4236453201970444
+      },
+      {
+        "user_idx": 3596,
+        "niche_score": 0.5903849912057846
+      },
+      {
+        "user_idx": 3600,
+        "niche_score": 0.6447863247863248
+      },
+      {
+        "user_idx": 3601,
+        "niche_score": 0.514748587513416
+      },
+      {
+        "user_idx": 3603,
+        "niche_score": 0.4506808980493191
+      },
+      {
+        "user_idx": 3606,
+        "niche_score": 0.44496124031007755
+      },
+      {
+        "user_idx": 3609,
+        "niche_score": 0.42046927663987543
+      },
+      {
+        "user_idx": 3610,
+        "niche_score": 0.7941960252935862
+      },
+      {
+        "user_idx": 3611,
+        "niche_score": 0.5807528883864915
+      },
+      {
+        "user_idx": 3622,
+        "niche_score": 0.7205248387867207
+      },
+      {
+        "user_idx": 3623,
+        "niche_score": 0.7281019450033535
+      },
+      {
+        "user_idx": 3625,
+        "niche_score": 0.5412230634828189
+      },
+      {
+        "user_idx": 3632,
+        "niche_score": 0.435230352303523
+      },
+      {
+        "user_idx": 3634,
+        "niche_score": 0.41654571843251087
+      },
+      {
+        "user_idx": 3637,
+        "niche_score": 0.3199998650117102
+      },
+      {
+        "user_idx": 3640,
+        "niche_score": 0.5553479959186618
+      },
+      {
+        "user_idx": 3641,
+        "niche_score": 0.5687420986093552
+      },
+      {
+        "user_idx": 3648,
+        "niche_score": 0.5178837976059893
+      },
+      {
+        "user_idx": 3649,
+        "niche_score": 0.7269472389403857
+      },
+      {
+        "user_idx": 3651,
+        "niche_score": 0.31441310126039623
+      },
+      {
+        "user_idx": 3657,
+        "niche_score": 0.5151998117811347
+      },
+      {
+        "user_idx": 3658,
+        "niche_score": 0.8867302052785924
+      },
+      {
+        "user_idx": 3660,
+        "niche_score": 0.48065913819022976
+      },
+      {
+        "user_idx": 3662,
+        "niche_score": 0.6804578551153894
+      },
+      {
+        "user_idx": 3663,
+        "niche_score": 0.6274030993750677
+      },
+      {
+        "user_idx": 3670,
+        "niche_score": 0.6605821468867599
+      },
+      {
+        "user_idx": 3672,
+        "niche_score": 0.8379257114746312
+      },
+      {
+        "user_idx": 3681,
+        "niche_score": 0.4425629925629926
+      },
+      {
+        "user_idx": 3687,
+        "niche_score": 0.7158719266226682
+      },
+      {
+        "user_idx": 3688,
+        "niche_score": 1.137591575091575
+      },
+      {
+        "user_idx": 3689,
+        "niche_score": 0.4921677284284408
+      },
+      {
+        "user_idx": 3690,
+        "niche_score": 0.4894371875503951
+      },
+      {
+        "user_idx": 3691,
+        "niche_score": 0.47751094530879357
+      },
+      {
+        "user_idx": 3694,
+        "niche_score": 0.7037841815451682
+      },
+      {
+        "user_idx": 3696,
+        "niche_score": 0.36916706481923867
+      },
+      {
+        "user_idx": 3698,
+        "niche_score": 0.8830972673889925
+      },
+      {
+        "user_idx": 3699,
+        "niche_score": 0.40320396848555595
+      },
+      {
+        "user_idx": 3701,
+        "niche_score": 0.577303772964681
+      },
+      {
+        "user_idx": 3710,
+        "niche_score": 0.5666358310206598
+      },
+      {
+        "user_idx": 3711,
+        "niche_score": 0.5042242969517496
+      },
+      {
+        "user_idx": 3713,
+        "niche_score": 0.4831151065077194
+      },
+      {
+        "user_idx": 3721,
+        "niche_score": 0.3982669595053494
+      },
+      {
+        "user_idx": 3725,
+        "niche_score": 0.48293395675043826
+      },
+      {
+        "user_idx": 3728,
+        "niche_score": 0.8170593239465963
+      },
+      {
+        "user_idx": 3731,
+        "niche_score": 0.43689605102069884
+      },
+      {
+        "user_idx": 3732,
+        "niche_score": 0.4504977375565611
+      },
+      {
+        "user_idx": 3735,
+        "niche_score": 0.7277307206068268
+      },
+      {
+        "user_idx": 3737,
+        "niche_score": 0.6443187407004738
+      },
+      {
+        "user_idx": 3739,
+        "niche_score": 0.49472524011966623
+      },
+      {
+        "user_idx": 3742,
+        "niche_score": 0.5277561425784207
+      },
+      {
+        "user_idx": 3750,
+        "niche_score": 0.6264262053735739
+      },
+      {
+        "user_idx": 3751,
+        "niche_score": 0.8271093627065303
+      },
+      {
+        "user_idx": 3756,
+        "niche_score": 0.6688488462535649
+      },
+      {
+        "user_idx": 3757,
+        "niche_score": 0.41418222722159725
+      },
+      {
+        "user_idx": 3761,
+        "niche_score": 0.5673306634542159
+      },
+      {
+        "user_idx": 3770,
+        "niche_score": 0.6472102287394779
+      },
+      {
+        "user_idx": 3772,
+        "niche_score": 0.42383498854087087
+      },
+      {
+        "user_idx": 3775,
+        "niche_score": 0.27280238537845025
+      },
+      {
+        "user_idx": 3776,
+        "niche_score": 0.49545902177481127
+      },
+      {
+        "user_idx": 3778,
+        "niche_score": 0.7366271409749672
+      },
+      {
+        "user_idx": 3781,
+        "niche_score": 0.5594188401424001
+      },
+      {
+        "user_idx": 3782,
+        "niche_score": 0.6203389830508474
+      },
+      {
+        "user_idx": 3783,
+        "niche_score": 0.4138997139838577
+      },
+      {
+        "user_idx": 3785,
+        "niche_score": 0.27248007501172056
+      },
+      {
+        "user_idx": 3786,
+        "niche_score": 0.46370967741935476
+      },
+      {
+        "user_idx": 3792,
+        "niche_score": 0.9384498480243161
+      },
+      {
+        "user_idx": 3796,
+        "niche_score": 0.5976869149070149
+      },
+      {
+        "user_idx": 3797,
+        "niche_score": 0.43728506787330323
+      },
+      {
+        "user_idx": 3799,
+        "niche_score": 0.4068334328873858
+      },
+      {
+        "user_idx": 3807,
+        "niche_score": 0.3247199402539207
+      },
+      {
+        "user_idx": 3808,
+        "niche_score": 0.5958582545501317
+      },
+      {
+        "user_idx": 3810,
+        "niche_score": 0.5567544746079431
+      },
+      {
+        "user_idx": 3816,
+        "niche_score": 0.8609742747673782
+      },
+      {
+        "user_idx": 3828,
+        "niche_score": 0.7984625668449198
+      },
+      {
+        "user_idx": 3834,
+        "niche_score": 0.7083666857251762
+      },
+      {
+        "user_idx": 3836,
+        "niche_score": 0.3772672947131609
+      },
+      {
+        "user_idx": 3840,
+        "niche_score": 0.45862977602108046
+      },
+      {
+        "user_idx": 3844,
+        "niche_score": 0.24729064039408877
+      },
+      {
+        "user_idx": 3846,
+        "niche_score": 0.7219757258386967
+      },
+      {
+        "user_idx": 3847,
+        "niche_score": 0.37568417921973574
+      },
+      {
+        "user_idx": 3851,
+        "niche_score": 0.5352226720647772
+      },
+      {
+        "user_idx": 3861,
+        "niche_score": 0.41946320846729035
+      },
+      {
+        "user_idx": 3863,
+        "niche_score": 0.5719287624477422
+      },
+      {
+        "user_idx": 3866,
+        "niche_score": 0.7532668688777285
+      },
+      {
+        "user_idx": 3869,
+        "niche_score": 0.3870813397129186
+      },
+      {
+        "user_idx": 3871,
+        "niche_score": 0.3662369346194273
+      },
+      {
+        "user_idx": 3876,
+        "niche_score": 0.4960866150754055
+      },
+      {
+        "user_idx": 3882,
+        "niche_score": 0.8975393028024607
+      },
+      {
+        "user_idx": 3884,
+        "niche_score": 0.40759520983924913
+      },
+      {
+        "user_idx": 3891,
+        "niche_score": 0.451965811965812
+      },
+      {
+        "user_idx": 3894,
+        "niche_score": 0.773166254290047
+      },
+      {
+        "user_idx": 3898,
+        "niche_score": 0.9921367521367521
+      },
+      {
+        "user_idx": 3900,
+        "niche_score": 0.604636806287195
+      },
+      {
+        "user_idx": 3901,
+        "niche_score": 0.4258823529411765
+      },
+      {
+        "user_idx": 3902,
+        "niche_score": 0.38078817733990167
+      },
+      {
+        "user_idx": 3908,
+        "niche_score": 0.6082022818378046
+      },
+      {
+        "user_idx": 3909,
+        "niche_score": 0.7953283996299723
+      },
+      {
+        "user_idx": 3910,
+        "niche_score": 0.48593507614585096
+      },
+      {
+        "user_idx": 3912,
+        "niche_score": 0.41826189078097475
+      },
+      {
+        "user_idx": 3913,
+        "niche_score": 0.43136863136863135
+      },
+      {
+        "user_idx": 3914,
+        "niche_score": 0.8122573158170407
+      },
+      {
+        "user_idx": 3918,
+        "niche_score": 0.609349976448422
+      },
+      {
+        "user_idx": 3921,
+        "niche_score": 0.6286648487642618
+      },
+      {
+        "user_idx": 3926,
+        "niche_score": 0.7033597942754919
+      },
+      {
+        "user_idx": 3929,
+        "niche_score": 0.5987423195084485
+      },
+      {
+        "user_idx": 3931,
+        "niche_score": 0.4463416716468881
+      },
+      {
+        "user_idx": 3936,
+        "niche_score": 0.6746075763243089
+      },
+      {
+        "user_idx": 3946,
+        "niche_score": 0.602735978112175
+      },
+      {
+        "user_idx": 3947,
+        "niche_score": 0.5544743662961824
+      },
+      {
+        "user_idx": 3948,
+        "niche_score": 0.6963227935594491
+      },
+      {
+        "user_idx": 3949,
+        "niche_score": 0.8694903219019567
+      },
+      {
+        "user_idx": 3954,
+        "niche_score": 0.5992895124893873
+      },
+      {
+        "user_idx": 3961,
+        "niche_score": 0.7917793204238217
+      },
+      {
+        "user_idx": 3969,
+        "niche_score": 0.7387096774193548
+      },
+      {
+        "user_idx": 3975,
+        "niche_score": 0.609838081574093
+      },
+      {
+        "user_idx": 3977,
+        "niche_score": 0.9876784769962983
+      },
+      {
+        "user_idx": 3984,
+        "niche_score": 0.48567539538501425
+      },
+      {
+        "user_idx": 3987,
+        "niche_score": 0.3810064014261405
+      },
+      {
+        "user_idx": 3991,
+        "niche_score": 0.6659343200740055
+      },
+      {
+        "user_idx": 3997,
+        "niche_score": 0.38883388051784196
+      },
+      {
+        "user_idx": 4013,
+        "niche_score": 0.598552036199095
+      },
+      {
+        "user_idx": 4014,
+        "niche_score": 0.4275971093044264
+      },
+      {
+        "user_idx": 4017,
+        "niche_score": 0.5972847088692665
+      },
+      {
+        "user_idx": 4022,
+        "niche_score": 0.7863889458826526
+      },
+      {
+        "user_idx": 4023,
+        "niche_score": 1.0752613240418119
+      },
+      {
+        "user_idx": 4026,
+        "niche_score": 0.7613635658866651
+      },
+      {
+        "user_idx": 4027,
+        "niche_score": 0.5823178492181386
+      },
+      {
+        "user_idx": 4035,
+        "niche_score": 0.4059431524547803
+      },
+      {
+        "user_idx": 4037,
+        "niche_score": 0.4055518526033245
+      },
+      {
+        "user_idx": 4042,
+        "niche_score": 0.5016185172293769
+      },
+      {
+        "user_idx": 4045,
+        "niche_score": 0.5608873112633435
+      },
+      {
+        "user_idx": 4050,
+        "niche_score": 0.6599367660343269
+      },
+      {
+        "user_idx": 4051,
+        "niche_score": 0.6460038928077466
+      },
+      {
+        "user_idx": 4053,
+        "niche_score": 0.46527520320623783
+      },
+      {
+        "user_idx": 4054,
+        "niche_score": 0.5231143016032336
+      },
+      {
+        "user_idx": 4055,
+        "niche_score": 0.4924272879549261
+      },
+      {
+        "user_idx": 4060,
+        "niche_score": 0.5475409836065572
+      },
+      {
+        "user_idx": 4062,
+        "niche_score": 0.2023076923076924
+      },
+      {
+        "user_idx": 4064,
+        "niche_score": 0.8311656355455568
+      },
+      {
+        "user_idx": 4068,
+        "niche_score": 0.6534822974036192
+      },
+      {
+        "user_idx": 4074,
+        "niche_score": 0.2002442002442003
+      },
+      {
+        "user_idx": 4075,
+        "niche_score": 0.4966061387312486
+      },
+      {
+        "user_idx": 4080,
+        "niche_score": 0.3890469416785207
+      },
+      {
+        "user_idx": 4084,
+        "niche_score": 0.8615384615384616
+      },
+      {
+        "user_idx": 4088,
+        "niche_score": 0.4751012265405644
+      },
+      {
+        "user_idx": 4090,
+        "niche_score": 0.5217066413938908
+      },
+      {
+        "user_idx": 4092,
+        "niche_score": 0.5376811594202899
+      },
+      {
+        "user_idx": 4093,
+        "niche_score": 0.43946673816985027
+      },
+      {
+        "user_idx": 4103,
+        "niche_score": 0.38809818993305234
+      },
+      {
+        "user_idx": 4105,
+        "niche_score": 0.287827130852341
+      },
+      {
+        "user_idx": 4107,
+        "niche_score": 0.8532533830321691
+      },
+      {
+        "user_idx": 4108,
+        "niche_score": 1.0454545454545454
+      },
+      {
+        "user_idx": 4109,
+        "niche_score": 0.38851248074371814
+      },
+      {
+        "user_idx": 4115,
+        "niche_score": 0.6929419399167844
+      },
+      {
+        "user_idx": 4117,
+        "niche_score": 0.6643508467216673
+      },
+      {
+        "user_idx": 4120,
+        "niche_score": 0.6256781317513116
+      },
+      {
+        "user_idx": 4128,
+        "niche_score": 0.6795637480798771
+      },
+      {
+        "user_idx": 4133,
+        "niche_score": 0.6131436314363143
+      },
+      {
+        "user_idx": 4135,
+        "niche_score": 0.49967793620223666
+      },
+      {
+        "user_idx": 4137,
+        "niche_score": 0.3955291222313372
+      },
+      {
+        "user_idx": 4138,
+        "niche_score": 0.36120048019207684
+      },
+      {
+        "user_idx": 4139,
+        "niche_score": 0.611540614383649
+      },
+      {
+        "user_idx": 4145,
+        "niche_score": 0.7761650114591291
+      },
+      {
+        "user_idx": 4149,
+        "niche_score": 0.5724447918702364
+      },
+      {
+        "user_idx": 4150,
+        "niche_score": 0.5735294117647058
+      },
+      {
+        "user_idx": 4153,
+        "niche_score": 0.8710131832822545
+      },
+      {
+        "user_idx": 4154,
+        "niche_score": 0.6327412175141727
+      },
+      {
+        "user_idx": 4155,
+        "niche_score": 0.32715572715572716
+      },
+      {
+        "user_idx": 4156,
+        "niche_score": 0.4571805006587616
+      },
+      {
+        "user_idx": 4157,
+        "niche_score": 0.4705609795983944
+      },
+      {
+        "user_idx": 4159,
+        "niche_score": 0.49912731726567305
+      },
+      {
+        "user_idx": 4160,
+        "niche_score": 0.7455289304500292
+      },
+      {
+        "user_idx": 4161,
+        "niche_score": 0.4420909556419753
+      },
+      {
+        "user_idx": 4162,
+        "niche_score": 0.5311878320868273
+      },
+      {
+        "user_idx": 4168,
+        "niche_score": 0.5565434843011947
+      },
+      {
+        "user_idx": 4172,
+        "niche_score": 0.8112808460634547
+      },
+      {
+        "user_idx": 4177,
+        "niche_score": 0.36522789291157165
+      },
+      {
+        "user_idx": 4181,
+        "niche_score": 0.5156923274808668
+      },
+      {
+        "user_idx": 4185,
+        "niche_score": 0.7839588237244306
+      },
+      {
+        "user_idx": 4187,
+        "niche_score": 0.6953414352407989
+      },
+      {
+        "user_idx": 4188,
+        "niche_score": 0.37434822530372547
+      },
+      {
+        "user_idx": 4191,
+        "niche_score": 0.6859893161263024
+      },
+      {
+        "user_idx": 4192,
+        "niche_score": 0.72550155242417
+      },
+      {
+        "user_idx": 4208,
+        "niche_score": 0.43693099232095756
+      },
+      {
+        "user_idx": 4210,
+        "niche_score": 0.9765361680062224
+      },
+      {
+        "user_idx": 4213,
+        "niche_score": 0.5231474407944996
+      },
+      {
+        "user_idx": 4222,
+        "niche_score": 0.6531701890989989
+      },
+      {
+        "user_idx": 4233,
+        "niche_score": 0.4887792289357461
+      },
+      {
+        "user_idx": 4234,
+        "niche_score": 0.6920541893018957
+      },
+      {
+        "user_idx": 4235,
+        "niche_score": 0.7665689804992908
+      },
+      {
+        "user_idx": 4238,
+        "niche_score": 0.6741312741312742
+      },
+      {
+        "user_idx": 4247,
+        "niche_score": 0.741608643457383
+      },
+      {
+        "user_idx": 4249,
+        "niche_score": 0.5813788402987574
+      },
+      {
+        "user_idx": 4251,
+        "niche_score": 0.40917149603549063
+      },
+      {
+        "user_idx": 4252,
+        "niche_score": 0.7756174510426196
+      },
+      {
+        "user_idx": 4257,
+        "niche_score": 0.7614812503628026
+      },
+      {
+        "user_idx": 4258,
+        "niche_score": 0.5497310680440537
+      },
+      {
+        "user_idx": 4259,
+        "niche_score": 0.38999295278365054
+      },
+      {
+        "user_idx": 4260,
+        "niche_score": 0.7286077705827937
+      },
+      {
+        "user_idx": 4262,
+        "niche_score": 0.5507803121248499
+      },
+      {
+        "user_idx": 4263,
+        "niche_score": 0.5661066237266655
+      },
+      {
+        "user_idx": 4268,
+        "niche_score": 0.44653055901601657
+      },
+      {
+        "user_idx": 4269,
+        "niche_score": 0.7689447565307201
+      },
+      {
+        "user_idx": 4279,
+        "niche_score": 0.42102529049897464
+      },
+      {
+        "user_idx": 4292,
+        "niche_score": 0.771856877120035
+      },
+      {
+        "user_idx": 4293,
+        "niche_score": 0.43934426229508206
+      },
+      {
+        "user_idx": 4294,
+        "niche_score": 0.46212737127371273
+      },
+      {
+        "user_idx": 4295,
+        "niche_score": 0.7280720725232113
+      },
+      {
+        "user_idx": 4301,
+        "niche_score": 1.1754290876242095
+      },
+      {
+        "user_idx": 4303,
+        "niche_score": 0.6510680151672399
+      },
+      {
+        "user_idx": 4307,
+        "niche_score": 0.3852983864082643
+      },
+      {
+        "user_idx": 4309,
+        "niche_score": 0.3020637898686678
+      },
+      {
+        "user_idx": 4315,
+        "niche_score": 0.7018135725304147
+      },
+      {
+        "user_idx": 4317,
+        "niche_score": 0.43516042780748654
+      },
+      {
+        "user_idx": 4318,
+        "niche_score": 0.6351579455027732
+      },
+      {
+        "user_idx": 4321,
+        "niche_score": 0.46403768581986404
+      },
+      {
+        "user_idx": 4324,
+        "niche_score": 0.32666148731248634
+      },
+      {
+        "user_idx": 4325,
+        "niche_score": 1.0040322580645162
+      },
+      {
+        "user_idx": 4332,
+        "niche_score": 0.5359448517343255
+      },
+      {
+        "user_idx": 4334,
+        "niche_score": 0.9243717401612138
+      },
+      {
+        "user_idx": 4336,
+        "niche_score": 0.4731225296442688
+      },
+      {
+        "user_idx": 4340,
+        "niche_score": 0.8224804031354983
+      },
+      {
+        "user_idx": 4341,
+        "niche_score": 0.6251242224115754
+      },
+      {
+        "user_idx": 4343,
+        "niche_score": 0.43305816312090195
+      },
+      {
+        "user_idx": 4347,
+        "niche_score": 0.6022798503690223
+      },
+      {
+        "user_idx": 4349,
+        "niche_score": 0.5647893772893773
+      },
+      {
+        "user_idx": 4353,
+        "niche_score": 0.5155932857821167
+      },
+      {
+        "user_idx": 4360,
+        "niche_score": 0.8952169076751947
+      },
+      {
+        "user_idx": 4366,
+        "niche_score": 0.7647849462365591
+      },
+      {
+        "user_idx": 4367,
+        "niche_score": 0.6307258632840028
+      },
+      {
+        "user_idx": 4368,
+        "niche_score": 0.5919852465583577
+      },
+      {
+        "user_idx": 4371,
+        "niche_score": 1.0214285714285714
+      },
+      {
+        "user_idx": 4374,
+        "niche_score": 0.9509803921568627
+      },
+      {
+        "user_idx": 4382,
+        "niche_score": 0.6779302676551238
+      },
+      {
+        "user_idx": 4383,
+        "niche_score": 0.6422287390029326
+      },
+      {
+        "user_idx": 4386,
+        "niche_score": 0.4995967741935483
+      },
+      {
+        "user_idx": 4387,
+        "niche_score": 0.7466577540106951
+      },
+      {
+        "user_idx": 4390,
+        "niche_score": 0.5320620815336345
+      },
+      {
+        "user_idx": 4391,
+        "niche_score": 0.6725829725829724
+      },
+      {
+        "user_idx": 4393,
+        "niche_score": 0.6029043801492413
+      },
+      {
+        "user_idx": 4401,
+        "niche_score": 0.7940413307385784
+      },
+      {
+        "user_idx": 4407,
+        "niche_score": 0.8247990815154994
+      },
+      {
+        "user_idx": 4410,
+        "niche_score": 0.4308234517960382
+      },
+      {
+        "user_idx": 4413,
+        "niche_score": 0.9448275862068966
+      },
+      {
+        "user_idx": 4416,
+        "niche_score": 0.7861538461538462
+      },
+      {
+        "user_idx": 4420,
+        "niche_score": 0.6944897959183673
+      },
+      {
+        "user_idx": 4422,
+        "niche_score": 0.3123481781376517
+      },
+      {
+        "user_idx": 4425,
+        "niche_score": 0.44859287054409
+      },
+      {
+        "user_idx": 4429,
+        "niche_score": 0.758762621390443
+      },
+      {
+        "user_idx": 4435,
+        "niche_score": 0.5771946764842444
+      },
+      {
+        "user_idx": 4437,
+        "niche_score": 0.6894262683736369
+      },
+      {
+        "user_idx": 4440,
+        "niche_score": 0.7306178572233618
+      },
+      {
+        "user_idx": 4445,
+        "niche_score": 0.5561536791838506
+      },
+      {
+        "user_idx": 4449,
+        "niche_score": 0.5048269218751669
+      },
+      {
+        "user_idx": 4451,
+        "niche_score": 0.7538447655162483
+      },
+      {
+        "user_idx": 4454,
+        "niche_score": 0.442621189588976
+      },
+      {
+        "user_idx": 4455,
+        "niche_score": 0.8980509745127436
+      },
+      {
+        "user_idx": 4456,
+        "niche_score": 0.594452363442676
+      },
+      {
+        "user_idx": 4460,
+        "niche_score": 0.401552572726828
+      },
+      {
+        "user_idx": 4462,
+        "niche_score": 0.5331575516541788
+      },
+      {
+        "user_idx": 4463,
+        "niche_score": 0.8987671882408724
+      },
+      {
+        "user_idx": 4464,
+        "niche_score": 0.495259019426457
+      },
+      {
+        "user_idx": 4465,
+        "niche_score": 0.3221288515406163
+      },
+      {
+        "user_idx": 4467,
+        "niche_score": 0.7721282924648983
+      },
+      {
+        "user_idx": 4469,
+        "niche_score": 0.5296953280513741
+      },
+      {
+        "user_idx": 4474,
+        "niche_score": 0.4741458071754868
+      },
+      {
+        "user_idx": 4487,
+        "niche_score": 0.4474885844748858
+      },
+      {
+        "user_idx": 4493,
+        "niche_score": 0.5816395663956639
+      },
+      {
+        "user_idx": 4494,
+        "niche_score": 0.5905844280083747
+      },
+      {
+        "user_idx": 4497,
+        "niche_score": 0.6533087442639296
+      },
+      {
+        "user_idx": 4502,
+        "niche_score": 0.5970476300311383
+      },
+      {
+        "user_idx": 4506,
+        "niche_score": 0.7010097112354492
+      },
+      {
+        "user_idx": 4513,
+        "niche_score": 0.5168405177830839
+      },
+      {
+        "user_idx": 4516,
+        "niche_score": 0.2977743030141725
+      },
+      {
+        "user_idx": 4517,
+        "niche_score": 0.8319238900634249
+      },
+      {
+        "user_idx": 4523,
+        "niche_score": 0.604619294147994
+      },
+      {
+        "user_idx": 4524,
+        "niche_score": 0.712773826458037
+      },
+      {
+        "user_idx": 4535,
+        "niche_score": 0.7179099969797644
+      },
+      {
+        "user_idx": 4538,
+        "niche_score": 0.8050900360144058
+      },
+      {
+        "user_idx": 4539,
+        "niche_score": 0.5313766228109913
+      },
+      {
+        "user_idx": 4542,
+        "niche_score": 0.5749932174866557
+      },
+      {
+        "user_idx": 4552,
+        "niche_score": 0.46227307670672957
+      },
+      {
+        "user_idx": 4553,
+        "niche_score": 0.6035802186983581
+      },
+      {
+        "user_idx": 4554,
+        "niche_score": 0.6252756040440965
+      },
+      {
+        "user_idx": 4558,
+        "niche_score": 0.773624657751135
+      },
+      {
+        "user_idx": 4559,
+        "niche_score": 0.6563696369636964
+      },
+      {
+        "user_idx": 4564,
+        "niche_score": 0.7044417767106843
+      },
+      {
+        "user_idx": 4582,
+        "niche_score": 0.7032013022246337
+      },
+      {
+        "user_idx": 4584,
+        "niche_score": 0.5324939834458271
+      },
+      {
+        "user_idx": 4586,
+        "niche_score": 0.6840876278952985
+      },
+      {
+        "user_idx": 4592,
+        "niche_score": 0.7052711993888465
+      },
+      {
+        "user_idx": 4595,
+        "niche_score": 0.7302280336621121
+      },
+      {
+        "user_idx": 4597,
+        "niche_score": 0.6113614218715212
+      },
+      {
+        "user_idx": 4604,
+        "niche_score": 0.8960043787629994
+      },
+      {
+        "user_idx": 4605,
+        "niche_score": 0.4638147998298632
+      },
+      {
+        "user_idx": 4607,
+        "niche_score": 0.757970946242045
+      },
+      {
+        "user_idx": 4608,
+        "niche_score": 0.6718011511503377
+      },
+      {
+        "user_idx": 4613,
+        "niche_score": 0.5184791469036167
+      },
+      {
+        "user_idx": 4617,
+        "niche_score": 0.50519978106185
+      },
+      {
+        "user_idx": 4621,
+        "niche_score": 0.3044760377142318
+      },
+      {
+        "user_idx": 4622,
+        "niche_score": 0.5981788499909305
+      },
+      {
+        "user_idx": 4623,
+        "niche_score": 0.5544608648056923
+      },
+      {
+        "user_idx": 4624,
+        "niche_score": 0.6338110165696372
+      },
+      {
+        "user_idx": 4625,
+        "niche_score": 0.4981389768987049
+      },
+      {
+        "user_idx": 4629,
+        "niche_score": 0.4866543645580058
+      },
+      {
+        "user_idx": 4630,
+        "niche_score": 0.584253423015638
+      },
+      {
+        "user_idx": 4631,
+        "niche_score": 0.3274063537221432
+      },
+      {
+        "user_idx": 4632,
+        "niche_score": 0.6183640303358614
+      },
+      {
+        "user_idx": 4636,
+        "niche_score": 0.5592077179202596
+      },
+      {
+        "user_idx": 4639,
+        "niche_score": 0.7235854045478584
+      },
+      {
+        "user_idx": 4641,
+        "niche_score": 0.5172763632816311
+      },
+      {
+        "user_idx": 4644,
+        "niche_score": 0.6276828434723172
+      },
+      {
+        "user_idx": 4645,
+        "niche_score": 0.8748782862706913
+      },
+      {
+        "user_idx": 4648,
+        "niche_score": 0.8153128950695322
+      },
+      {
+        "user_idx": 4655,
+        "niche_score": 0.6993087557603687
+      },
+      {
+        "user_idx": 4656,
+        "niche_score": 0.7986852215487066
+      },
+      {
+        "user_idx": 4659,
+        "niche_score": 0.4154248050799775
+      },
+      {
+        "user_idx": 4660,
+        "niche_score": 0.6195526036344243
+      },
+      {
+        "user_idx": 4661,
+        "niche_score": 0.7921730873575692
+      },
+      {
+        "user_idx": 4664,
+        "niche_score": 0.498205969425737
+      },
+      {
+        "user_idx": 4666,
+        "niche_score": 0.39682536674121516
+      },
+      {
+        "user_idx": 4672,
+        "niche_score": 0.6230897691316067
+      },
+      {
+        "user_idx": 4674,
+        "niche_score": 0.48662083553675306
+      },
+      {
+        "user_idx": 4677,
+        "niche_score": 0.48636499850164827
+      },
+      {
+        "user_idx": 4678,
+        "niche_score": 0.7807936261173727
+      },
+      {
+        "user_idx": 4682,
+        "niche_score": 0.5138964549623583
+      },
+      {
+        "user_idx": 4684,
+        "niche_score": 0.6125027844717603
+      },
+      {
+        "user_idx": 4688,
+        "niche_score": 0.4103896103896104
+      },
+      {
+        "user_idx": 4699,
+        "niche_score": 0.733387634209552
+      },
+      {
+        "user_idx": 4700,
+        "niche_score": 0.352104532839963
+      },
+      {
+        "user_idx": 4701,
+        "niche_score": 0.6048137016363724
+      },
+      {
+        "user_idx": 4707,
+        "niche_score": 0.44017379679144375
+      },
+      {
+        "user_idx": 4712,
+        "niche_score": 0.9210704607046071
+      },
+      {
+        "user_idx": 4721,
+        "niche_score": 0.6109243697478992
+      },
+      {
+        "user_idx": 4724,
+        "niche_score": 0.4674895156733556
+      },
+      {
+        "user_idx": 4727,
+        "niche_score": 0.5945795951230733
+      },
+      {
+        "user_idx": 4729,
+        "niche_score": 0.4673387096774193
+      },
+      {
+        "user_idx": 4730,
+        "niche_score": 0.5297459893048128
+      },
+      {
+        "user_idx": 4731,
+        "niche_score": 0.7579101922346498
+      },
+      {
+        "user_idx": 4737,
+        "niche_score": 0.3109204406105309
+      },
+      {
+        "user_idx": 4742,
+        "niche_score": 0.6856122448979591
+      },
+      {
+        "user_idx": 4743,
+        "niche_score": 0.6587050880154328
+      },
+      {
+        "user_idx": 4745,
+        "niche_score": 0.5726700971983991
+      },
+      {
+        "user_idx": 4748,
+        "niche_score": 0.5157757051727339
+      },
+      {
+        "user_idx": 4749,
+        "niche_score": 0.5907382906774263
+      },
+      {
+        "user_idx": 4750,
+        "niche_score": 0.7939678641968718
+      },
+      {
+        "user_idx": 4757,
+        "niche_score": 0.7228488089450658
+      },
+      {
+        "user_idx": 4763,
+        "niche_score": 0.6859936587236557
+      },
+      {
+        "user_idx": 4764,
+        "niche_score": 0.4133031674208145
+      },
+      {
+        "user_idx": 4771,
+        "niche_score": 0.6215705487122061
+      },
+      {
+        "user_idx": 4781,
+        "niche_score": 0.8478739002932552
+      },
+      {
+        "user_idx": 4782,
+        "niche_score": 0.40889877641824257
+      },
+      {
+        "user_idx": 4783,
+        "niche_score": 0.7228544333807492
+      },
+      {
+        "user_idx": 4785,
+        "niche_score": 0.5236929922135707
+      },
+      {
+        "user_idx": 4791,
+        "niche_score": 0.6858119658119659
+      },
+      {
+        "user_idx": 4801,
+        "niche_score": 0.6526044669972706
+      },
+      {
+        "user_idx": 4802,
+        "niche_score": 0.6142566336281612
+      },
+      {
+        "user_idx": 4803,
+        "niche_score": 0.7015311209229455
+      },
+      {
+        "user_idx": 4804,
+        "niche_score": 0.6025916327286192
+      },
+      {
+        "user_idx": 4812,
+        "niche_score": 0.3522267206477733
+      },
+      {
+        "user_idx": 4813,
+        "niche_score": 0.713820078226858
+      },
+      {
+        "user_idx": 4814,
+        "niche_score": 0.5413642960812772
+      },
+      {
+        "user_idx": 4821,
+        "niche_score": 0.7710929519918284
+      },
+      {
+        "user_idx": 4825,
+        "niche_score": 0.5085963064788572
+      },
+      {
+        "user_idx": 4827,
+        "niche_score": 0.655718732540506
+      },
+      {
+        "user_idx": 4831,
+        "niche_score": 0.7523809523809524
+      },
+      {
+        "user_idx": 4832,
+        "niche_score": 0.5457429931253306
+      },
+      {
+        "user_idx": 4836,
+        "niche_score": 0.4581406105457909
+      },
+      {
+        "user_idx": 4839,
+        "niche_score": 0.436822001527884
+      },
+      {
+        "user_idx": 4842,
+        "niche_score": 0.3752910424812196
+      },
+      {
+        "user_idx": 4847,
+        "niche_score": 0.8135306553911206
+      },
+      {
+        "user_idx": 4849,
+        "niche_score": 0.5425692693594446
+      },
+      {
+        "user_idx": 4853,
+        "niche_score": 0.23094919786096257
+      },
+      {
+        "user_idx": 4857,
+        "niche_score": 0.6365363536719035
+      },
+      {
+        "user_idx": 4858,
+        "niche_score": 0.6439907686845376
+      },
+      {
+        "user_idx": 4861,
+        "niche_score": 0.5126336829876652
+      },
+      {
+        "user_idx": 4863,
+        "niche_score": 0.7089635854341736
+      },
+      {
+        "user_idx": 4866,
+        "niche_score": 0.5448469988128996
+      },
+      {
+        "user_idx": 4870,
+        "niche_score": 0.614017094017094
+      },
+      {
+        "user_idx": 4873,
+        "niche_score": 0.6968823826626064
+      },
+      {
+        "user_idx": 4874,
+        "niche_score": 0.7149193548387096
+      },
+      {
+        "user_idx": 4875,
+        "niche_score": 0.8837740244612696
+      },
+      {
+        "user_idx": 4883,
+        "niche_score": 0.39454906620448826
+      },
+      {
+        "user_idx": 4894,
+        "niche_score": 0.4118256381978318
+      },
+      {
+        "user_idx": 4903,
+        "niche_score": 0.5134431047590023
+      },
+      {
+        "user_idx": 4905,
+        "niche_score": 0.7129411764705882
+      },
+      {
+        "user_idx": 4912,
+        "niche_score": 0.6077507312902657
+      },
+      {
+        "user_idx": 4913,
+        "niche_score": 0.39207272608196797
+      },
+      {
+        "user_idx": 4914,
+        "niche_score": 0.7745394140742978
+      },
+      {
+        "user_idx": 4916,
+        "niche_score": 0.8923660502607871
+      },
+      {
+        "user_idx": 4920,
+        "niche_score": 0.6303646220227277
+      },
+      {
+        "user_idx": 4922,
+        "niche_score": 0.8507230255839822
+      },
+      {
+        "user_idx": 4923,
+        "niche_score": 0.6114552893045002
+      },
+      {
+        "user_idx": 4924,
+        "niche_score": 0.7477785372522214
+      },
+      {
+        "user_idx": 4927,
+        "niche_score": 0.6565882112603528
+      },
+      {
+        "user_idx": 4928,
+        "niche_score": 0.9382081686429512
+      },
+      {
+        "user_idx": 4937,
+        "niche_score": 0.8395618329752386
+      },
+      {
+        "user_idx": 4940,
+        "niche_score": 0.5452167431976562
+      },
+      {
+        "user_idx": 4947,
+        "niche_score": 1.136669561441598
+      },
+      {
+        "user_idx": 4958,
+        "niche_score": 0.781567992599445
+      },
+      {
+        "user_idx": 4961,
+        "niche_score": 0.4917069174121391
+      },
+      {
+        "user_idx": 4964,
+        "niche_score": 0.6509720846004032
+      },
+      {
+        "user_idx": 4966,
+        "niche_score": 0.6385093031213408
+      },
+      {
+        "user_idx": 4967,
+        "niche_score": 0.44391094073656656
+      },
+      {
+        "user_idx": 4975,
+        "niche_score": 0.5296929723649564
+      },
+      {
+        "user_idx": 4978,
+        "niche_score": 0.3337979094076653
+      },
+      {
+        "user_idx": 4979,
+        "niche_score": 0.42498914459400783
+      },
+      {
+        "user_idx": 4980,
+        "niche_score": 0.7407692307692308
+      },
+      {
+        "user_idx": 4981,
+        "niche_score": 0.6094533687738356
+      },
+      {
+        "user_idx": 4982,
+        "niche_score": 0.8344457818142028
+      },
+      {
+        "user_idx": 4988,
+        "niche_score": 0.6104700460829493
+      },
+      {
+        "user_idx": 4989,
+        "niche_score": 0.2723927953215953
+      },
+      {
+        "user_idx": 4990,
+        "niche_score": 0.452741171445148
+      },
+      {
+        "user_idx": 4991,
+        "niche_score": 0.7111367697818831
+      },
+      {
+        "user_idx": 4995,
+        "niche_score": 0.4512463343108506
+      },
+      {
+        "user_idx": 4999,
+        "niche_score": 0.7373905164602839
+      },
+      {
+        "user_idx": 5000,
+        "niche_score": 0.4274219334992816
+      },
+      {
+        "user_idx": 5004,
+        "niche_score": 0.45821769966080794
+      },
+      {
+        "user_idx": 5011,
+        "niche_score": 0.46083544785338626
+      },
+      {
+        "user_idx": 5014,
+        "niche_score": 0.42168689550014515
+      },
+      {
+        "user_idx": 5016,
+        "niche_score": 0.672242289524868
+      },
+      {
+        "user_idx": 5017,
+        "niche_score": 0.6049723810166485
+      },
+      {
+        "user_idx": 5021,
+        "niche_score": 0.6267020335985853
+      },
+      {
+        "user_idx": 5022,
+        "niche_score": 0.6727424732586305
+      },
+      {
+        "user_idx": 5023,
+        "niche_score": 0.626984126984127
+      },
+      {
+        "user_idx": 5025,
+        "niche_score": 0.3037927844588344
+      },
+      {
+        "user_idx": 5026,
+        "niche_score": 0.45436370130633597
+      },
+      {
+        "user_idx": 5030,
+        "niche_score": 0.6032349109856708
+      },
+      {
+        "user_idx": 5034,
+        "niche_score": 0.6191088222122705
+      },
+      {
+        "user_idx": 5038,
+        "niche_score": 0.5350258511364744
+      },
+      {
+        "user_idx": 5041,
+        "niche_score": 0.7827235772357723
+      },
+      {
+        "user_idx": 5042,
+        "niche_score": 0.4642959496930391
+      },
+      {
+        "user_idx": 5043,
+        "niche_score": 0.899880974180553
+      },
+      {
+        "user_idx": 5044,
+        "niche_score": 0.5380813889921496
+      },
+      {
+        "user_idx": 5045,
+        "niche_score": 0.7314641964002677
+      },
+      {
+        "user_idx": 5048,
+        "niche_score": 0.6133212726499222
+      },
+      {
+        "user_idx": 5049,
+        "niche_score": 0.49435707678075846
+      },
+      {
+        "user_idx": 5050,
+        "niche_score": 0.5280748663101604
+      },
+      {
+        "user_idx": 5056,
+        "niche_score": 0.5311168625080289
+      },
+      {
+        "user_idx": 5057,
+        "niche_score": 0.652834008097166
+      },
+      {
+        "user_idx": 5061,
+        "niche_score": 0.7118376068376069
+      },
+      {
+        "user_idx": 5063,
+        "niche_score": 0.7071421315377024
+      },
+      {
+        "user_idx": 5069,
+        "niche_score": 0.8052832023336844
+      },
+      {
+        "user_idx": 5074,
+        "niche_score": 0.8330438558402085
+      },
+      {
+        "user_idx": 5077,
+        "niche_score": 0.5641592920353982
+      },
+      {
+        "user_idx": 5080,
+        "niche_score": 0.4813723840925914
+      },
+      {
+        "user_idx": 5082,
+        "niche_score": 0.7085991678224688
+      },
+      {
+        "user_idx": 5086,
+        "niche_score": 0.36262719703977797
+      },
+      {
+        "user_idx": 5091,
+        "niche_score": 0.9225482065104706
+      },
+      {
+        "user_idx": 5092,
+        "niche_score": 0.47448864393973067
+      },
+      {
+        "user_idx": 5093,
+        "niche_score": 0.48904135696588535
+      },
+      {
+        "user_idx": 5094,
+        "niche_score": 0.5649395835703721
+      },
+      {
+        "user_idx": 5096,
+        "niche_score": 0.5163339824732229
+      },
+      {
+        "user_idx": 5109,
+        "niche_score": 0.5130806172256339
+      },
+      {
+        "user_idx": 5118,
+        "niche_score": 0.2783899403681618
+      },
+      {
+        "user_idx": 5119,
+        "niche_score": 0.4772374911909796
+      },
+      {
+        "user_idx": 5120,
+        "niche_score": 0.6539971550497867
+      },
+      {
+        "user_idx": 5122,
+        "niche_score": 0.6049709148598625
+      },
+      {
+        "user_idx": 5137,
+        "niche_score": 0.45222819154091376
+      },
+      {
+        "user_idx": 5147,
+        "niche_score": 0.6764725647085623
+      },
+      {
+        "user_idx": 5149,
+        "niche_score": 0.4630812225748935
+      },
+      {
+        "user_idx": 5152,
+        "niche_score": 0.6405829996761785
+      },
+      {
+        "user_idx": 5154,
+        "niche_score": 0.6042550864891094
+      },
+      {
+        "user_idx": 5157,
+        "niche_score": 0.5687990038519748
+      },
+      {
+        "user_idx": 5158,
+        "niche_score": 0.7914438502673796
+      },
+      {
+        "user_idx": 5160,
+        "niche_score": 0.4500457875457876
+      },
+      {
+        "user_idx": 5161,
+        "niche_score": 0.49559748427672956
+      },
+      {
+        "user_idx": 5172,
+        "niche_score": 0.5011489222015538
+      },
+      {
+        "user_idx": 5173,
+        "niche_score": 0.2857707509881424
+      },
+      {
+        "user_idx": 5181,
+        "niche_score": 0.6045315370483773
+      },
+      {
+        "user_idx": 5185,
+        "niche_score": 0.7247748650912655
+      },
+      {
+        "user_idx": 5187,
+        "niche_score": 0.5124835476359217
+      },
+      {
+        "user_idx": 5188,
+        "niche_score": 0.4787167172425917
+      },
+      {
+        "user_idx": 5195,
+        "niche_score": 0.887012987012987
+      },
+      {
+        "user_idx": 5196,
+        "niche_score": 0.7809388335704126
+      },
+      {
+        "user_idx": 5210,
+        "niche_score": 0.3652494873547506
+      },
+      {
+        "user_idx": 5217,
+        "niche_score": 0.7375
+      },
+      {
+        "user_idx": 5219,
+        "niche_score": 0.627331477899901
+      },
+      {
+        "user_idx": 5223,
+        "niche_score": 0.751721584598297
+      },
+      {
+        "user_idx": 5229,
+        "niche_score": 0.4202649205303629
+      },
+      {
+        "user_idx": 5230,
+        "niche_score": 0.6936405070502777
+      },
+      {
+        "user_idx": 5231,
+        "niche_score": 0.604053472207984
+      },
+      {
+        "user_idx": 5241,
+        "niche_score": 0.8392229417206291
+      },
+      {
+        "user_idx": 5245,
+        "niche_score": 0.6838974605145759
+      },
+      {
+        "user_idx": 5247,
+        "niche_score": 0.5764398779525957
+      },
+      {
+        "user_idx": 5249,
+        "niche_score": 0.8022728554423091
+      },
+      {
+        "user_idx": 5254,
+        "niche_score": 0.6989291261975986
+      },
+      {
+        "user_idx": 5257,
+        "niche_score": 0.541374356191346
+      },
+      {
+        "user_idx": 5267,
+        "niche_score": 0.575360946406184
+      },
+      {
+        "user_idx": 5270,
+        "niche_score": 0.36290322580645173
+      },
+      {
+        "user_idx": 5279,
+        "niche_score": 0.4339224667241831
+      },
+      {
+        "user_idx": 5280,
+        "niche_score": 0.4187982609198615
+      },
+      {
+        "user_idx": 5282,
+        "niche_score": 0.8296920698921663
+      },
+      {
+        "user_idx": 5284,
+        "niche_score": 0.5350937425364222
+      },
+      {
+        "user_idx": 5291,
+        "niche_score": 0.5839749853429743
+      },
+      {
+        "user_idx": 5295,
+        "niche_score": 0.5904283447911158
+      },
+      {
+        "user_idx": 5303,
+        "niche_score": 0.5278379148269476
+      },
+      {
+        "user_idx": 5304,
+        "niche_score": 0.6422844640261356
+      },
+      {
+        "user_idx": 5305,
+        "niche_score": 0.4144242873009998
+      },
+      {
+        "user_idx": 5306,
+        "niche_score": 0.5151890424039869
+      },
+      {
+        "user_idx": 5307,
+        "niche_score": 0.5344155452855639
+      },
+      {
+        "user_idx": 5308,
+        "niche_score": 0.6729970881307936
+      },
+      {
+        "user_idx": 5315,
+        "niche_score": 0.7165322580645161
+      },
+      {
+        "user_idx": 5317,
+        "niche_score": 0.41719145489521103
+      },
+      {
+        "user_idx": 5321,
+        "niche_score": 0.9155555555555556
+      },
+      {
+        "user_idx": 5322,
+        "niche_score": 0.6423035645089628
+      },
+      {
+        "user_idx": 5328,
+        "niche_score": 0.31936651583710407
+      },
+      {
+        "user_idx": 5333,
+        "niche_score": 0.6281500688761039
+      },
+      {
+        "user_idx": 5341,
+        "niche_score": 0.24907493061979646
+      },
+      {
+        "user_idx": 5344,
+        "niche_score": 0.6087739465220754
+      },
+      {
+        "user_idx": 5347,
+        "niche_score": 0.19957727067352082
+      },
+      {
+        "user_idx": 5349,
+        "niche_score": 0.4821370724007641
+      },
+      {
+        "user_idx": 5350,
+        "niche_score": 0.6168993020937188
+      },
+      {
+        "user_idx": 5367,
+        "niche_score": 0.5674470337487827
+      },
+      {
+        "user_idx": 5372,
+        "niche_score": 0.24560622914349273
+      },
+      {
+        "user_idx": 5375,
+        "niche_score": 0.6284864458421122
+      },
+      {
+        "user_idx": 5382,
+        "niche_score": 1.050404858299595
+      },
+      {
+        "user_idx": 5385,
+        "niche_score": 0.4028209514796345
+      },
+      {
+        "user_idx": 5387,
+        "niche_score": 0.28752374826095406
+      },
+      {
+        "user_idx": 5390,
+        "niche_score": 0.48322655794991265
+      },
+      {
+        "user_idx": 5392,
+        "niche_score": 0.6238042269187987
+      },
+      {
+        "user_idx": 5393,
+        "niche_score": 0.36233101906233656
+      },
+      {
+        "user_idx": 5395,
+        "niche_score": 0.41938926908575413
+      },
+      {
+        "user_idx": 5407,
+        "niche_score": 0.39719824380872415
+      },
+      {
+        "user_idx": 5412,
+        "niche_score": 0.4868376068376069
+      },
+      {
+        "user_idx": 5416,
+        "niche_score": 0.5720046082949308
+      },
+      {
+        "user_idx": 5417,
+        "niche_score": 0.7704409672830725
+      },
+      {
+        "user_idx": 5419,
+        "niche_score": 0.5093590031402058
+      },
+      {
+        "user_idx": 5420,
+        "niche_score": 0.35213042192105004
+      },
+      {
+        "user_idx": 5426,
+        "niche_score": 0.7646024861214735
+      },
+      {
+        "user_idx": 5427,
+        "niche_score": 0.4960550878799619
+      },
+      {
+        "user_idx": 5437,
+        "niche_score": 0.5889957419369185
+      },
+      {
+        "user_idx": 5441,
+        "niche_score": 0.6097114079054632
+      },
+      {
+        "user_idx": 5442,
+        "niche_score": 0.5043006528152438
+      },
+      {
+        "user_idx": 5447,
+        "niche_score": 0.45500113921166563
+      },
+      {
+        "user_idx": 5449,
+        "niche_score": 0.7471493212669683
+      },
+      {
+        "user_idx": 5451,
+        "niche_score": 0.9453971349283732
+      },
+      {
+        "user_idx": 5452,
+        "niche_score": 0.44643066076651905
+      },
+      {
+        "user_idx": 5453,
+        "niche_score": 0.4563025210084033
+      },
+      {
+        "user_idx": 5454,
+        "niche_score": 0.7320107108081791
+      },
+      {
+        "user_idx": 5458,
+        "niche_score": 0.32343056714844254
+      },
+      {
+        "user_idx": 5459,
+        "niche_score": 0.48570381231671556
+      },
+      {
+        "user_idx": 5462,
+        "niche_score": 0.7218045112781954
+      },
+      {
+        "user_idx": 5464,
+        "niche_score": 0.5984158415841584
+      },
+      {
+        "user_idx": 5467,
+        "niche_score": 0.41860474512356627
+      },
+      {
+        "user_idx": 5468,
+        "niche_score": 0.3871010459166784
+      },
+      {
+        "user_idx": 5472,
+        "niche_score": 0.6242244343495635
+      },
+      {
+        "user_idx": 5473,
+        "niche_score": 0.5123827392120075
+      },
+      {
+        "user_idx": 5474,
+        "niche_score": 0.20649572649572656
+      },
+      {
+        "user_idx": 5485,
+        "niche_score": 0.6719719087824508
+      },
+      {
+        "user_idx": 5487,
+        "niche_score": 0.46850613154960985
+      },
+      {
+        "user_idx": 5494,
+        "niche_score": 0.8804734860134364
+      },
+      {
+        "user_idx": 5497,
+        "niche_score": 0.5695916427294285
+      },
+      {
+        "user_idx": 5498,
+        "niche_score": 0.6029556650246306
+      },
+      {
+        "user_idx": 5499,
+        "niche_score": 0.6662060112796844
+      },
+      {
+        "user_idx": 5500,
+        "niche_score": 0.5039743682050543
+      },
+      {
+        "user_idx": 5502,
+        "niche_score": 0.5914874599085126
+      },
+      {
+        "user_idx": 5503,
+        "niche_score": 0.4784313725490196
+      },
+      {
+        "user_idx": 5504,
+        "niche_score": 0.3906758196873731
+      },
+      {
+        "user_idx": 5505,
+        "niche_score": 0.5952343300747556
+      },
+      {
+        "user_idx": 5507,
+        "niche_score": 0.7419354838709677
+      },
+      {
+        "user_idx": 5510,
+        "niche_score": 0.7717118713370588
+      },
+      {
+        "user_idx": 5514,
+        "niche_score": 0.8561827956989247
+      },
+      {
+        "user_idx": 5519,
+        "niche_score": 0.592907092907093
+      },
+      {
+        "user_idx": 5520,
+        "niche_score": 0.5534843205574913
+      },
+      {
+        "user_idx": 5526,
+        "niche_score": 0.8641365391365392
+      },
+      {
+        "user_idx": 5530,
+        "niche_score": 0.7826923076923077
+      },
+      {
+        "user_idx": 5548,
+        "niche_score": 0.5010015126393483
+      },
+      {
+        "user_idx": 5549,
+        "niche_score": 0.35923076923076935
+      },
+      {
+        "user_idx": 5554,
+        "niche_score": 0.8155080213903743
+      },
+      {
+        "user_idx": 5555,
+        "niche_score": 0.6630355152094283
+      },
+      {
+        "user_idx": 5560,
+        "niche_score": 0.3541227900410969
+      },
+      {
+        "user_idx": 5562,
+        "niche_score": 0.964103487064117
+      },
+      {
+        "user_idx": 5563,
+        "niche_score": 0.5769230769230769
+      },
+      {
+        "user_idx": 5565,
+        "niche_score": 0.35127005347593576
+      },
+      {
+        "user_idx": 5567,
+        "niche_score": 0.471700258567438
+      },
+      {
+        "user_idx": 5568,
+        "niche_score": 0.7855795369328834
+      },
+      {
+        "user_idx": 5570,
+        "niche_score": 0.6887652947719689
+      },
+      {
+        "user_idx": 5574,
+        "niche_score": 0.6167964946445958
+      },
+      {
+        "user_idx": 5579,
+        "niche_score": 0.6131256952169077
+      },
+      {
+        "user_idx": 5587,
+        "niche_score": 0.36947240504906453
+      },
+      {
+        "user_idx": 5588,
+        "niche_score": 0.5230966638152267
+      },
+      {
+        "user_idx": 5591,
+        "niche_score": 0.47705258708745724
+      },
+      {
+        "user_idx": 5592,
+        "niche_score": 0.8861746656176239
+      },
+      {
+        "user_idx": 5597,
+        "niche_score": 0.7581000097316268
+      },
+      {
+        "user_idx": 5599,
+        "niche_score": 0.6288434894324508
+      },
+      {
+        "user_idx": 5601,
+        "niche_score": 0.47066195606344763
+      },
+      {
+        "user_idx": 5605,
+        "niche_score": 0.5622168529145274
+      },
+      {
+        "user_idx": 5608,
+        "niche_score": 0.5544469546426494
+      },
+      {
+        "user_idx": 5612,
+        "niche_score": 1.1552123552123552
+      },
+      {
+        "user_idx": 5613,
+        "niche_score": 0.6448889916743756
+      },
+      {
+        "user_idx": 5614,
+        "niche_score": 0.48749999999999993
+      },
+      {
+        "user_idx": 5616,
+        "niche_score": 1.0423529411764705
+      },
+      {
+        "user_idx": 5617,
+        "niche_score": 0.5755574522564814
+      },
+      {
+        "user_idx": 5619,
+        "niche_score": 0.4603790500243261
+      }
+    ]
+  },
+  "quartile_analysis": {
+    "Random": {
+      "per_quartile_mean": [
+        70.94312796208531,
+        74.48578199052133,
+        75.14691943127963,
+        76.54502369668246
+      ],
+      "per_quartile_std": [
+        9.608279786351977,
+        8.678760735012796,
+        8.910945795204494,
+        8.539376947337994
+      ],
+      "per_quartile_n": [
+        422,
+        422,
+        422,
+        422
+      ],
+      "per_quartile_early_mean": [
+        3.56303317535545,
+        3.7246445497630334,
+        3.7364928909952604,
+        3.8265402843601897
+      ],
+      "per_quartile_late_mean": [
+        3.5418641390205368,
+        3.724170616113744,
+        3.764296998420221,
+        3.8274881516587675
+      ]
+    },
+    "Greedy CF": {
+      "per_quartile_mean": [
+        88.37914691943128,
+        87.41943127962085,
+        84.86729857819905,
+        81.38625592417061
+      ],
+      "per_quartile_std": [
+        7.012740013361564,
+        6.703391067904255,
+        7.491317046484273,
+        8.6224165420461
+      ],
+      "per_quartile_n": [
+        422,
+        422,
+        422,
+        422
+      ],
+      "per_quartile_early_mean": [
+        4.633649289099526,
+        4.5488151658767775,
+        4.403317535545023,
+        4.1469194312796205
+      ],
+      "per_quartile_late_mean": [
+        4.34739336492891,
+        4.311690363349131,
+        4.190047393364929,
+        4.0434439178515005
+      ]
+    },
+    "NLTS": {
+      "per_quartile_mean": [
+        82.81042654028435,
+        82.77251184834124,
+        81.06635071090048,
+        79.22274881516587
+      ],
+      "per_quartile_std": [
+        8.090254233467526,
+        7.993208185887577,
+        8.291225045132945,
+        8.908042802279182
+      ],
+      "per_quartile_n": [
+        422,
+        422,
+        422,
+        422
+      ],
+      "per_quartile_early_mean": [
+        4.2900473933649295,
+        4.240284360189574,
+        4.14218009478673,
+        4.004739336492891
+      ],
+      "per_quartile_late_mean": [
+        4.090679304897315,
+        4.104739336492891,
+        4.023696682464456,
+        3.9466034755134283
+      ]
+    },
+    "Hybrid TS": {
+      "per_quartile_mean": [
+        86.74170616113744,
+        85.91469194312796,
+        83.24170616113744,
+        80.61611374407583
+      ],
+      "per_quartile_std": [
+        6.815588135940816,
+        6.589329466629583,
+        7.457835024331901,
+        8.756826778506495
+      ],
+      "per_quartile_n": [
+        422,
+        422,
+        422,
+        422
+      ],
+      "per_quartile_early_mean": [
+        4.481042654028436,
+        4.366824644549763,
+        4.245023696682464,
+        4.054028436018958
+      ],
+      "per_quartile_late_mean": [
+        4.289099526066351,
+        4.272037914691943,
+        4.134439178515008,
+        4.023064770932069
+      ]
+    },
+    "Constrained": {
+      "per_quartile_mean": [
+        84.81516587677726,
+        84.51658767772511,
+        82.85781990521328,
+        80.739336492891
+      ],
+      "per_quartile_std": [
+        6.6599145594601685,
+        6.483918108926153,
+        7.238893960303172,
+        8.410854955136605
+      ],
+      "per_quartile_n": [
+        422,
+        422,
+        422,
+        422
+      ],
+      "per_quartile_early_mean": [
+        4.501421800947867,
+        4.437914691943127,
+        4.318009478672986,
+        4.108530805687204
+      ],
+      "per_quartile_late_mean": [
+        4.153870458135861,
+        4.155134281200632,
+        4.084518167456556,
+        4.013112164296999
+      ]
+    },
+    "RL\u00b2": {
+      "per_quartile_mean": [
+        85.8388625592417,
+        85.54028436018957,
+        82.94312796208531,
+        80.12322274881517
+      ],
+      "per_quartile_std": [
+        8.303348644145236,
+        7.459974582545161,
+        8.067639863347171,
+        8.934409813379737
+      ],
+      "per_quartile_n": [
+        422,
+        422,
+        422,
+        422
+      ],
+      "per_quartile_early_mean": [
+        4.596682464454975,
+        4.524644549763033,
+        4.360189573459715,
+        4.125592417061611
+      ],
+      "per_quartile_late_mean": [
+        4.190363349131122,
+        4.194470774091627,
+        4.076145339652449,
+        3.966350710900474
+      ]
+    }
+  },
+  "vignettes": [
+    {
+      "user_idx": 2666,
+      "niche_score": 0.46964692671004404,
+      "label": "Q1 (mainstream)\nGreedy CF wins",
+      "genre_profile": {
+        "Action": 0.08571881643713906,
+        "Adventure": 0.042632122197018424,
+        "Animation": 0.011412742461422154,
+        "Children's": 0.0174859125859374,
+        "Comedy": 0.25782418464510054,
+        "Crime": 0.04031139784478121,
+        "Drama": 0.1974091247924412,
+        "Fantasy": 0.007860575910910737,
+        "Film-Noir": 0.015400942954640657,
+        "Horror": 0.026732501384952978,
+        "Musical": 0.028278738322470107,
+        "Mystery": 0.030940354663089156,
+        "Romance": 0.05485428829313756,
+        "Sci-Fi": 0.07989565514033868,
+        "Thriller": 0.05837181346323304,
+        "War": 0.041616226869775966,
+        "Western": 0.003254602033611167
+      },
+      "per_method_rewards": {
+        "Random": [
+          3.0,
+          4.0,
+          4.0,
+          4.0,
+          2.0,
+          1.0,
+          3.0,
+          3.0,
+          3.0,
+          1.0,
+          3.0,
+          5.0,
+          4.0,
+          3.0,
+          4.0,
+          1.0,
+          5.0,
+          5.0,
+          4.0,
+          4.0
+        ],
+        "Greedy CF": [
+          5.0,
+          5.0,
+          3.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          4.0,
+          4.0,
+          5.0,
+          5.0,
+          3.0,
+          5.0,
+          4.0,
+          4.0,
+          5.0
+        ],
+        "NLTS": [
+          4.0,
+          3.0,
+          3.0,
+          4.0,
+          5.0,
+          4.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          3.0,
+          4.0
+        ],
+        "Hybrid TS": [
+          4.0,
+          3.0,
+          4.0,
+          4.0,
+          3.0,
+          3.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          2.0,
+          5.0,
+          4.0,
+          5.0,
+          3.0,
+          2.0,
+          5.0,
+          2.0,
+          3.0
+        ],
+        "Constrained": [
+          5.0,
+          5.0,
+          3.0,
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          5.0,
+          3.0,
+          4.0,
+          4.0,
+          4.0,
+          3.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          3.0,
+          5.0,
+          4.0
+        ],
+        "RL\u00b2": [
+          5.0,
+          3.0,
+          4.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          3.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      }
+    },
+    {
+      "user_idx": 2921,
+      "niche_score": 0.9934767689488542,
+      "label": "Q4 (niche)\nExploration +11.0",
+      "genre_profile": {
+        "Action": 0.1441597386743257,
+        "Adventure": 0.0659658603348591,
+        "Animation": 0.014699220461567134,
+        "Children's": 0.03229617968780699,
+        "Comedy": 0.09781393419538675,
+        "Crime": 0.03441218555147912,
+        "Drama": 0.09968362884632263,
+        "Fantasy": 0.015104761407046549,
+        "Film-Noir": 0.010069078185170856,
+        "Horror": 0.02898568572311278,
+        "Musical": 0.018047795059391372,
+        "Mystery": 0.04126385003558377,
+        "Romance": 0.06996029287312752,
+        "Sci-Fi": 0.07201243676528776,
+        "Thriller": 0.2378830978953757,
+        "War": 0.01764225430415627
+      },
+      "per_method_rewards": {
+        "Random": [
+          5.0,
+          5.0,
+          4.0,
+          4.0,
+          1.0,
+          4.0,
+          3.0,
+          5.0,
+          4.0,
+          2.0,
+          1.0,
+          5.0,
+          3.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0
+        ],
+        "Greedy CF": [
+          1.0,
+          5.0,
+          5.0,
+          3.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          2.0,
+          4.0,
+          5.0,
+          3.0,
+          5.0,
+          3.0,
+          5.0,
+          3.0,
+          1.0,
+          5.0,
+          5.0,
+          5.0
+        ],
+        "NLTS": [
+          3.0,
+          2.0,
+          5.0,
+          4.0,
+          5.0,
+          3.0,
+          4.0,
+          5.0,
+          1.0,
+          5.0,
+          1.0,
+          5.0,
+          5.0,
+          3.0,
+          1.0,
+          4.0,
+          1.0,
+          5.0,
+          4.0,
+          5.0
+        ],
+        "Hybrid TS": [
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          2.0,
+          1.0,
+          5.0,
+          3.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ],
+        "Constrained": [
+          1.0,
+          5.0,
+          3.0,
+          5.0,
+          2.0,
+          5.0,
+          5.0,
+          4.0,
+          1.0,
+          3.0,
+          5.0,
+          5.0,
+          1.0,
+          5.0,
+          3.0,
+          3.0,
+          5.0,
+          3.0,
+          5.0,
+          5.0
+        ],
+        "RL\u00b2": [
+          3.0,
+          5.0,
+          1.0,
+          5.0,
+          2.0,
+          3.0,
+          1.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          1.0,
+          5.0,
+          5.0,
+          2.0
+        ]
+      }
+    },
+    {
+      "user_idx": 2294,
+      "niche_score": 0.83915821812596,
+      "label": "Q4 (niche)\nExploration +8.0",
+      "genre_profile": {
+        "Action": 0.15613428340942928,
+        "Adventure": 0.0909608582930424,
+        "Animation": 0.013735777748909488,
+        "Children's": 0.020603666839449638,
+        "Comedy": 0.10071959691834857,
+        "Crime": 0.01830466075030663,
+        "Drama": 0.2046405068857089,
+        "Fantasy": 0.016595620108534794,
+        "Horror": 0.017682655455645912,
+        "Musical": 0.014679349674163253,
+        "Mystery": 0.01143677209193729,
+        "Romance": 0.09684915791091038,
+        "Sci-Fi": 0.11129336993029215,
+        "Thriller": 0.06402522204160976,
+        "War": 0.04765915226754832,
+        "Western": 0.014679349674163253
+      },
+      "per_method_rewards": {
+        "Random": [
+          3.0,
+          4.0,
+          5.0,
+          4.0,
+          3.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          3.0,
+          4.0,
+          5.0,
+          5.0,
+          3.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0
+        ],
+        "Greedy CF": [
+          5.0,
+          5.0,
+          4.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          1.0,
+          5.0,
+          4.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0
+        ],
+        "NLTS": [
+          4.0,
+          5.0,
+          4.0,
+          3.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0
+        ],
+        "Hybrid TS": [
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0
+        ],
+        "Constrained": [
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0
+        ],
+        "RL\u00b2": [
+          5.0,
+          5.0,
+          4.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          1.0,
+          5.0,
+          4.0,
+          3.0,
+          5.0,
+          5.0,
+          4.0,
+          4.0,
+          5.0
+        ]
+      }
+    }
+  ]
+}
