@@ -18,28 +18,40 @@ Run preprocessing from the parent directory: `python -m src.data.preprocess`
 
 ```
 src/
-  config.py                 # DataConfig
+  config.py                      # paths, split, embeddings, rewards
   data/
-    preprocess.py           # build processed artifacts
-    encoders.py             # item/user feature encoders
-    env.py                  # ColdStartEnv
-    visualize_dataset.py    # dataset summary figures
+    preprocess.py                # MovieLens -> processed tensors
+    encoders.py                  # sentence-transformer + demographic encoders
+    env.py                       # cold-start episode simulator
+    visualize_dataset.py         # dataset summary plots
   baselines/
-    greedy_cf.py            # Greedy CF (SVD + ridge update)
-    random_baseline.py
-    popularity_baseline.py
+    greedy_cf.py                 # SVD collaborative filtering, greedy pick
+    random_baseline.py           # uniform random recommendations
+    popularity_baseline.py       # warm-user popularity ranking
   methods/
-    neural_linear_ts.py         # NLTS on frozen embeddings
-    hybrid_neural_linear_ts.py  # TS on CF latent factors
-    neural_factor_ts.py         # reward-trained item tower + TS
-    demographic_prior_ts.py       # demographic prior mean
-    constrained_bandit.py       # LinUCB with popularity fallback
-    rl2_policy.py                 # LSTM meta-policy
+    neural_linear_ts.py          # Thompson Sampling on item embeddings
+    hybrid_neural_linear_ts.py   # TS on SVD latent factors
+    neural_factor_ts.py          # learned item tower + TS
+    demographic_prior_ts.py      # TS with demographic prior mean
+    constrained_bandit.py        # safe LinUCB with popularity fallback
+    rl2_policy.py                # LSTM in-context meta-policy
   train/
-    train_rl2.py              # meta-train RL2 on warm users
+    train_rl2.py                 # REINFORCE meta-training on warm users
   eval/
-    evaluate_*.py             # per-experiment eval scripts
-    collect_per_step_rewards.py
-    niche_case_study.py
-    plot_results.py           # figures from saved JSON
+    evaluate_greedy_cf.py        # Greedy CF vs Random
+    evaluate_hybrid.py           # Hybrid TS vs baselines
+    evaluate_neural_linear.py    # NLTS vs baselines
+    evaluate_neural_factor.py    # neural-factor TS vs baselines
+    evaluate_demographic_prior.py  # demographic TS vs baselines
+    evaluate_constrained_bandit.py # constrained LinUCB eval
+    evaluate_exploration.py      # selection-protocol comparison
+    evaluate_noisy_rewards.py    # reward-noise robustness sweep
+    evaluate_prior_ablation.py   # warm-fraction prior ablation
+    evaluate_mismatch_prior.py   # matched vs mismatched demographics
+    evaluate_longer_horizon.py   # T > 20 horizon study
+    evaluate_rl2.py              # RL2 vs baselines
+    collect_per_step_rewards.py  # per-step reward curves for RL2
+    niche_case_study.py          # niche-user quartile analysis
+    plot_results.py              # poster figures from result JSON
 ```
+
