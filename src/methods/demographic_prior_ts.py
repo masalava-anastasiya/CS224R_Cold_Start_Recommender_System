@@ -1,42 +1,13 @@
-"""Method #3: demographic-conditioned prior for Thompson Sampling.
-
-Standard NLTS / Hybrid TS give every cold user the SAME global prior mean
-(the average warm-user preference). But platforms usually know a new user's
-demographics at sign-up. A 24-year-old and a 60-year-old should not start
-from the same guess.
-
-We learn a map from demographics psi(u) -> preference vector theta_u over
-warm users (ridge regression in the CF latent space), then start each cold
-user from a personalised prior mean mu_0(u) = W^T psi(u) instead of the
-global average. The posterior precision (uncertainty) is unchanged; only
-the center moves. Thompson Sampling then explores around a smarter start.
-
-This is a hierarchical / contextual prior: psi(u) conditions the prior,
-data refines it. It costs nothing extra at test time --- demographics are
-known on day one.
-"""
+"""Thompson Sampling with a demographic-conditioned prior mean."""
 
 from __future__ import annotations
-
 from typing import Dict, List, Optional, Set
-
 import numpy as np
 import torch
 from sklearn.decomposition import TruncatedSVD
 
 
 class DemographicPriorTS:
-    """Hybrid Thompson Sampling with a demographic-conditioned prior mean.
-
-    Parameters
-    ----------
-    ratings_by_user, warm_users, n_items, k, lambda_prior, sigma_noise:
-        Same as HybridNeuralLinearTS.
-    user_emb:
-        (n_users, user_feat_dim) demographic feature matrix psi(u).
-    ridge_alpha:
-        Regularisation for the psi(u) -> theta_u ridge map.
-    """
 
     def __init__(
         self,
@@ -74,36 +45,36 @@ class DemographicPriorTS:
 
         rated = R > 0
         counts = rated.sum(axis=0)
-        self.item_means = np.where(counts > 0, R.sum(axis=0) / np.maximum(counts, 1), 0.0).astype(np.float64)
+        self.item_means = np.where(
+            counts > 0, R.sum(axis=0) / np.maximum(counts, 1), 0.0
+        ).astype(np.float64)
 
         R_centered = R.astype(np.float64)
         r_idx, c_idx = np.where(rated)
         R_centered[r_idx, c_idx] -= self.item_means[c_idx]
 
         svd = TruncatedSVD(n_components=self.k, random_state=42)
-        U_sigma = svd.fit_transform(R_centered)        # (n_warm, k) per-user latent
-        self.Q = svd.components_.T                      # (n_items, k)
+        U_sigma = svd.fit_transform(R_centered)
+        self.Q = svd.components_.T
 
         self._mu_0_global = U_sigma.mean(axis=0).astype(np.float64)
 
-        # prior precision from warm-user covariance (same as Hybrid)
         cov = np.cov(U_sigma.T) + 1e-6 * np.eye(self.k)
         self._Lambda_0 = np.linalg.inv(cov) * lambda_prior
 
-        # ridge map psi(u) -> theta_u over warm users
-        Psi = self.user_emb[warm_users]                 # (n_warm, feat_dim)
+        Psi = self.user_emb[warm_users]
         d = Psi.shape[1]
         A = Psi.T @ Psi + self.ridge_alpha * np.eye(d)
-        B = Psi.T @ U_sigma                             # (feat_dim, k)
-        self._W = np.linalg.solve(A, B)                 # (feat_dim, k)
+        B = Psi.T @ U_sigma
+        self._W = np.linalg.solve(A, B)
 
     def _prior_mean_for(self, user_idx: Optional[int]) -> np.ndarray:
         if user_idx is None:
             return self._mu_0_global.copy()
         psi = self.user_emb[user_idx]
-        if not np.any(psi):                             # no demographics -> global
+        if not np.any(psi):
             return self._mu_0_global.copy()
-        return psi @ self._W                            # (k,)
+        return psi @ self._W
 
     def reset(self, user_idx: Optional[int] = None) -> None:
         self._mu_0_user = self._prior_mean_for(user_idx)

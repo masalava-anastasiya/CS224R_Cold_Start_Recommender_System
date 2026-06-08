@@ -1,24 +1,4 @@
-"""Method #2: "true" Neural-Linear Thompson Sampling with learned features.
-
-Our NLTS runs Bayesian linear regression on FROZEN sentence-transformer
-embeddings --- the representation is never shaped by the reward signal.
-Riquelme et al. (2018) instead train a neural net on the reward, then do
-Bayesian linear regression on its LAST layer. This module follows that
-recipe.
-
-We train a two-tower model on warm-user ratings:
-    item tower   g(phi(x)) -> R^k     (content embedding -> learned factor)
-    user factors theta_u  in R^k      (one per warm user)
-    rating_hat = g(phi(x))^T theta_u + item_mean_x   (MSE on warm triples)
-
-The item tower g is shared and trained on actual ratings, so the learned
-factors encode "what about a movie drives ratings". Unlike SVD factors,
-g generalises to ANY item via its content embedding. At test time we run
-the SAME exact Bayesian linear TS as Hybrid, but over g(phi(x)) instead of
-SVD factors.
-
-Reference: Riquelme et al., "Deep Bayesian Bandits Showdown" (ICLR 2018).
-"""
+"""Neural-factor Thompson Sampling (reward-trained item tower)."""
 
 from __future__ import annotations
 
@@ -30,7 +10,6 @@ import torch.nn as nn
 
 
 class ItemTower(nn.Module):
-    """MLP mapping a content embedding phi(x) to a k-dim learned factor."""
 
     def __init__(self, in_dim: int, k: int, hidden: int = 128) -> None:
         super().__init__()
@@ -58,15 +37,6 @@ def train_neural_factors(
     seed: int = 42,
     verbose: bool = True,
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
-    """Fit the two-tower model on warm ratings.
-
-    Returns
-    -------
-    Q : (n_items, k) learned item factors g(phi(x)) for every item
-    item_means : (n_items,) warm item-mean ratings (for centering)
-    mu_0 : (k,) prior mean = average warm-user factor
-    Lambda_0 : (k, k) prior precision from warm-user factor covariance
-    """
     torch.manual_seed(seed)
     dev = torch.device(device)
 
@@ -74,7 +44,6 @@ def train_neural_factors(
     in_dim = item_emb.shape[1]
     item_emb_t = item_emb.float().to(dev)
 
-    # warm item means (same convention as Greedy CF / Hybrid)
     sums = np.zeros(n_items, dtype=np.float64)
     counts = np.zeros(n_items, dtype=np.float64)
     rows: List[int] = []
@@ -92,7 +61,6 @@ def train_neural_factors(
 
     row_idx = torch.tensor(rows, dtype=torch.long, device=dev)
     col_idx = torch.tensor(cols, dtype=torch.long, device=dev)
-    # center ratings by item mean -> model learns the residual structure
     centered = torch.tensor(
         np.array(vals, dtype=np.float32) - item_means[cols].astype(np.float32),
         device=dev,
@@ -111,8 +79,10 @@ def train_neural_factors(
     rng = np.random.default_rng(seed)
 
     if verbose:
-        print(f"  Training two-tower on {n_triples:,} warm triples "
-              f"(k={k}, hidden={hidden}, epochs={epochs})...")
+        print(
+            f"training two-tower on {n_triples:,} warm triples "
+            f"(k={k}, hidden={hidden}, epochs={epochs})..."
+        )
 
     for epoch in range(1, epochs + 1):
         perm = torch.tensor(rng.permutation(n_triples), device=dev)
@@ -121,10 +91,10 @@ def train_neural_factors(
         n_batches = 0
         for start in range(0, n_triples, batch_size):
             b = perm[start:start + batch_size]
-            phi_b = item_emb_t[col_idx[b]]              # (B, in_dim)
-            q_b = tower(phi_b)                          # (B, k)
-            theta_b = user_factors(row_idx[b])          # (B, k)
-            pred = (q_b * theta_b).sum(dim=1)           # (B,)
+            phi_b = item_emb_t[col_idx[b]]
+            q_b = tower(phi_b)
+            theta_b = user_factors(row_idx[b])
+            pred = (q_b * theta_b).sum(dim=1)
             loss = loss_fn(pred, centered[b])
             opt.zero_grad()
             loss.backward()
@@ -132,13 +102,12 @@ def train_neural_factors(
             ep_loss += loss.item()
             n_batches += 1
         if verbose and (epoch % 5 == 0 or epoch == 1):
-            print(f"    epoch {epoch:2d}/{epochs}  MSE={ep_loss / n_batches:.4f}")
+            print(f"epoch {epoch}/{epochs}, MSE={ep_loss / n_batches:.4f}")
 
-    # precompute learned factors for all items
     tower.eval()
     with torch.no_grad():
-        Q = tower(item_emb_t).cpu().numpy().astype(np.float64)   # (n_items, k)
-    theta = user_factors.weight.detach().cpu().numpy().astype(np.float64)  # (n_warm, k)
+        Q = tower(item_emb_t).cpu().numpy().astype(np.float64)
+    theta = user_factors.weight.detach().cpu().numpy().astype(np.float64)
 
     mu_0 = theta.mean(axis=0)
     cov = np.cov(theta.T) + 1e-6 * np.eye(k)
@@ -148,11 +117,6 @@ def train_neural_factors(
 
 
 class NeuralFactorTS:
-    """Thompson Sampling over learned (reward-trained) item factors.
-
-    Identical Bayesian-linear math to HybridNeuralLinearTS, but the factor
-    matrix Q comes from the trained item tower rather than SVD.
-    """
 
     def __init__(
         self,
