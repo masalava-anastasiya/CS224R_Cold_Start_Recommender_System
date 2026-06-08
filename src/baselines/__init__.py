@@ -1,5 +1,5 @@
 from .greedy_cf import GreedyCFBaseline
 from .random_baseline import RandomBaseline
-from .nonpersonalized_baseline import NonPersonalizedBaseline
+from .popularity_baseline import PopularityBaseline
 
-__all__ = ["GreedyCFBaseline", "RandomBaseline", "NonPersonalizedBaseline"]
+__all__ = ["GreedyCFBaseline", "RandomBaseline", "PopularityBaseline"]
