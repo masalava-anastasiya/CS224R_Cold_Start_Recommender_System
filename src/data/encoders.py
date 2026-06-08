@@ -1,13 +1,12 @@
 """Item and user feature encoders."""
 
 from __future__ import annotations
-
 import re
 from typing import Dict, List
-
 import numpy as np
 import pandas as pd
 import torch
+from sentence_transformers import SentenceTransformer
 
 GENRE_VOCAB: List[str] = [
     "Action",
@@ -69,8 +68,6 @@ def build_item_embeddings(
     config,
 ) -> torch.Tensor:
     """Encode all items and return an L2-normalised (n_items, emb_dim) tensor."""
-    from sentence_transformers import SentenceTransformer
-
     n_items = len(item_id_map)
     valid_movies = movies_df[movies_df["item_idx"] >= 0].copy()
 
