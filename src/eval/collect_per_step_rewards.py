@@ -7,7 +7,6 @@ import json
 import sys
 import time
 from pathlib import Path
-
 import torch
 from tqdm import tqdm
 
@@ -26,7 +25,7 @@ from src.baselines.random_baseline import RandomBaseline
 
 def run_episodes(policy, env, cold_users, label: str):
     all_rewards = []
-    for user_idx in tqdm(cold_users, desc=label):
+    for user_idx in tqdm(cold_users, desc=label, ncols=72):
         state = env.reset(user_idx=user_idx)
         policy.reset()
         ep_rewards = []
