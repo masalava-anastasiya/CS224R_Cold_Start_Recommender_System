@@ -1,14 +1,8 @@
-"""Random recommendation baseline.
-
-Selects uniformly at random from the available (not yet recommended)
-candidates.  No training.  Used as a lower-bound reference.
-"""
+"""Random recommendation baseline."""
 
 from __future__ import annotations
 from typing import Dict, List, Optional, Set
-
 import numpy as np
-
 
 class RandomBaseline:
     def __init__(self, seed: int = 42) -> None:
