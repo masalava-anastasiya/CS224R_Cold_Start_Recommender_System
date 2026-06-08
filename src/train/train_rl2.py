@@ -117,6 +117,10 @@ def train(args: argparse.Namespace) -> None:
     config = DataConfig()
     processed = Path(config.data_dir) / "processed"
 
+    # Allow overriding the episode horizon from the CLI (default: keep config value)
+    if args.horizon is not None:
+        config.cold_start_horizon_T = args.horizon
+
     print("Loading artifacts...")
     ratings_by_user = torch.load(processed / "ratings_by_user.pt", weights_only=False)
     user_split      = torch.load(processed / "user_split.pt",      weights_only=False)
@@ -125,6 +129,19 @@ def train(args: argparse.Namespace) -> None:
     warm_users = user_split["warm"]
     n_items    = item_emb.shape[0]
     T          = config.cold_start_horizon_T
+
+    # When training with a longer horizon, filter out warm users who don't
+    # have enough ratings to fill a full episode in explore mode.
+    if args.horizon is not None and args.explore:
+        original_count = len(warm_users)
+        warm_users = [
+            u for u in warm_users
+            if len(ratings_by_user[u]) >= T
+        ]
+        print(
+            f"Filtered warm users for T={T}: "
+            f"{original_count} → {len(warm_users)} (need ≥{T} ratings)"
+        )
 
     print(
         f"Warm users: {len(warm_users)} | Items: {n_items} | "
@@ -263,6 +280,7 @@ def _save_checkpoint(
             "optimizer":  optimizer.state_dict(),
             "hparams": {
                 "hidden_dim":   args.hidden_dim,
+                "horizon":      args.horizon,
                 "gamma":        args.gamma,
                 "lr":           args.lr,
                 "batch_size":   args.batch_size,
@@ -286,6 +304,8 @@ def _save_checkpoint(
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Meta-train the RL² policy.")
     p.add_argument("--hidden_dim",   type=int,   default=256)
+    p.add_argument("--horizon",      type=int,   default=None,
+                   help="Override cold_start_horizon_T (default: use config value of 20).")
     p.add_argument("--n_epochs",     type=int,   default=100)
     p.add_argument("--batch_size",   type=int,   default=32)
     p.add_argument("--lr",           type=float, default=3e-4)
